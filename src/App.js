@@ -7,6 +7,8 @@ function App() {
     <div className="App">
       <MainContainer />
       <Button name="Add to list" />
+      <Button name="Add to list" />
+      <Button name="Add to list" />
     </div>
   );
 }
