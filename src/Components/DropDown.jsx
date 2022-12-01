@@ -7,8 +7,8 @@ const DropDown2 = ({ handleChange, options }) => {
       <select className="select" name="cars" onChange={handleChange}>
         <option style={{ display: "none" }}></option>
         {options?.map((item) => (
-          <option value={item.value}>
-            <div>{item.value}</div>
+          <option value={item.value} key={item.value}>
+            {item.value}
           </option>
         ))}
       </select>

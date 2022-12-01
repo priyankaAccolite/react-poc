@@ -16,16 +16,12 @@ function App() {
   const handleChange = (e) => {
     setSelectedVal(e.target.value);
   };
-  console.log(selectedval, "selectedval");
+
   return (
     <div className="App">
       <MainContainer />
       <Button name="Add to list" />
-      <DropDown
-        options={options}
-        setSelectedVal={setSelectedVal}
-        handleChange={handleChange}
-      />
+      <DropDown options={options} handleChange={handleChange} />
     </div>
   );
 }
