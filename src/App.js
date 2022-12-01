@@ -8,9 +8,6 @@ function App() {
   return (
     <div className="App">
       <MainContainer />
-      <Button name="Add to list" />
-      <Headers title={"Product Details"}/>
-      <DateInput/>
     </div>
   );
 }
