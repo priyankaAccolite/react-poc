@@ -1,0 +1,9 @@
+.select {
+  outline: none;
+  width: 180px;
+}
+
+#ddlProducts * {
+  border-radius: 15px;
+  background-color: red;
+}
