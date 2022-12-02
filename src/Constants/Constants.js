@@ -6,3 +6,4 @@ export const options = [
   { value: "Python", label: "Python" },
   { value: "Swift", label: "Swift" },
 ];
+export let currencyCode = [];

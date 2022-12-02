@@ -1,15 +1,15 @@
 import React from "react";
 import "../Styles/dropdown.css";
 import Select from "react-select";
-const options = [
-  { value: "C++", label: "C++" },
-  { value: "JAVA", label: "JAVA" },
-  { value: "Javascript", label: "Javascript" },
-  { value: "Python", label: "Python" },
-  { value: "Swift", label: "Swift" },
-];
+// const options = [
+//   { value: "C++", label: "C++" },
+//   { value: "JAVA", label: "JAVA" },
+//   { value: "Javascript", label: "Javascript" },
+//   { value: "Python", label: "Python" },
+//   { value: "Swift", label: "Swift" },
+// ];
 
-const DropDown = ({ handleChange }) => {
+const DropDown = ({ handleChange,options }) => {
   function customTheme(theme) {
     return {
       ...theme,
