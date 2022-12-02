@@ -5,7 +5,7 @@ const Header = (props) => {
   return (
     <div className="headerView" style={{ border: "1px solid black" }}>
       <div style={{ marginTop: 5 }}>
-        <h1 className="header">{props.title}</h1>
+        <div className="header">{props.title}</div>
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
 import React from "react";
 import Header from "../Components/Header";
 import productDetails from "../Constants/Constants";
+import DropDown from "../Components/DropDown";
+import DateInput from "../Components/DateInput";
+import Button from "../Components/Button";
 
 const ProductDetails = () => {
   return (
@@ -20,13 +23,19 @@ const ProductDetails = () => {
                 marginLeft: 20,
               }}
             >
-              <h1>* {item.label}</h1>
+              <div>* {item.label}</div>
               {item.type.map((i) => {
-                return (
-                  <>
-                    <h1>{i.placeHolder}</h1>
-                  </>
-                );
+                if (i.placeHolder === "dropdown") {
+                  return (
+                    <DropDown />
+                  );
+                } else if (i.placeHolder === "date") {
+                  return <DateInput />
+                } else if(i.placeHolder === "button"){
+                  return <Button name="Add To List"/>
+                } else if(i.placeHolder === "input"){
+                  return <input></input>
+                }
               })}
             </div>
           </>
