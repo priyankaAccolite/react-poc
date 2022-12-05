@@ -1,11 +1,5 @@
-// export const options = [
-//   { value: "C++", label: "C++" },
-//   { value: "JAVA", label: "JAVA" },
-//   { value: "Javascript", label: "Javascript" },
-//   { value: "Python", label: "Python" },
-//   { value: "Swift", label: "Swift" },
-// ];
-const productDetails = [
+
+export const productDetails = [
     { 
         label: "Code", 
         type: [
@@ -28,7 +22,13 @@ const productDetails = [
         label: "Category", 
         type: [
             {
-                placeHolder:"dropdown"
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Health", label: "Health" },
+                    { value: "Life", label: "Life" },
+                    { value: "Term", label: "Term" },
+                    { value: "Group", label: "Group" }
+                ]
             }
         ],
         id:3 
@@ -37,7 +37,19 @@ const productDetails = [
         label: "Country", 
         type: [
             {
-                placeHolder:"dropdown"
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Cambodia", label: "Cambodia" },
+                    { value: "HongKong", label: "HongKong" },
+                    { value: "Indonesia", label: "Indonesia" },
+                    { value: "Laos", label: "Laos" },
+                    { value: "Malaysia", label: "Malaysia" },
+                    { value: "Myanmar", label: "Myanmar" },
+                    { value: "Philippines", label: "Philippines" },
+                    { value: "Singapore", label: "Singapore" },
+                    { value: "Thailand", label: "Thailand" },
+                    { value: "Vietnam", label: "Vietnam" }
+                ]
             }
         ],
         id:4 
@@ -46,7 +58,19 @@ const productDetails = [
         label: "Currency Code", 
         type: [
             {
-                placeHolder:"dropdown"
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Usa", label: "USD" },
+                    { value: "Hongkong", label: "HKD" },
+                    { value: "Indonesia", label: "IDR" },
+                    { value: "Laotion", label: "LAK" },
+                    { value: "Malaysia", label: "RM" },
+                    { value: "Myanmar", label: "MMK" },
+                    { value: "Philiphines", label: "PHP" },
+                    { value: "Singapore", label: "SGD" },
+                    { value: "Thailand", label: "THB" },
+                    { value: "Vietname", label: "VND" },
+                  ]
             },
             {
                 placeHolder:"button"
@@ -70,10 +94,18 @@ const productDetails = [
         label: "Whether Promotion Applicable?", 
         type: [
             {
-                placeHolder:"dropdown"
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Yes", label: "Yes" },
+                    { value: "No", label: "No" }
+                ]
             },
             {
-                placeHolder:"dropdown"
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Full", label: "Full" },
+                    { value: "Partial", label: "Partial" }
+                ]
             },
             {
                 placeHolder:"input"
@@ -85,7 +117,11 @@ const productDetails = [
         label: "is the product plan based?",
         type:[
             {
-                placeHolder:"dropdown"
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Yes", label: "Yes" },
+                    { value: "No", label: "No" }
+                ]
             }
         ],
         id:8
@@ -94,7 +130,11 @@ const productDetails = [
         label: "Product extended to child?",
         type:[
             {
-                placeHolder:"dropdown"
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Yes", label: "Yes" },
+                    { value: "No", label: "No" }
+                ]
             }
         ],
         id:9
@@ -115,12 +155,17 @@ const productDetails = [
                 placeHolder:"input"
             },
             {
-                placeHolder:"dropdown"
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Year(s)", label: "Year(s)" },
+                    { value: "Month(s)", label: "Month(s)" },
+                    { value: "Week(s)", label: "Week(s)" },
+                    { value: "Day(s)", label: "Day(s)" }
+                ]
             }
         ],
         id:11
     }
 ];
-export default productDetails;
 
 export let currencyCode = [];

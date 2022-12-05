@@ -1,11 +1,10 @@
 .viewContainer{
     margin-left:30px;
     margin-right:5px;
-    width: 40%;
-    border: solid gray 2px;
+    border: solid black 1px;
     border-radius: 3px;
-    padding-top:10px;
-    padding-bottom:10px;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-top:17px;
+    padding-bottom:17px;
+    padding-left: 98px;
+    padding-right: 98px;
   }

@@ -9,7 +9,7 @@ const TextInput = (props) => {
     };
     
     return (
-        <input type="text" value={value} onChange={e => handleChange(e)} size={props.size} />
+        <input style={{border:'1px solid black', height:30, borderRadius:3}} type="text" value={value} onChange={e => handleChange(e)} size={props.size} />
     );
 };
 

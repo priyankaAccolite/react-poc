@@ -28,7 +28,7 @@ const TextboxWithRadio = (props) => {
         })}
       </div>
       <div>
-        <input type="button" value="Delete" onClick={handleClick} />
+        <input type="button" value="Delete" onClick={handleClick} style={{border:'1px solid black', height:35, borderRadius:3 ,width:60, fontWeight:'bold', fontSize:12}}/>
       </div>
     </div>
   );

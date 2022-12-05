@@ -20,8 +20,8 @@ const DateInput = () => {
   });
 
   return (
-    <div className="date"
-     style={{border: '1px solid black'}}
+    <div
+     style={{border: '1px solid black', height:30, borderRadius:3, width:196, display:'flex', justifyContent:'center', alignItems:'center'}}
      >
       <DatePicker
         selected={pickedDate}
