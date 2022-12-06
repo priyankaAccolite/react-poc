@@ -525,7 +525,7 @@ export const validation = [
 
 export let currencyCode = [];
 export let applicableBenefits=[];
-
+export let otherLaValidations=[];
 export const benefitDetails = [
     { 
         label: "Applicable Benefits *", 
@@ -624,5 +624,52 @@ export const benefitDetails = [
             }
         ],
         id:17
+    },
+    {
+        label: "Other LA Validations *", 
+        type: [
+            {
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Gender", label: "Gender" },
+                    { value: "Smoker", label: "Smoker" },
+                ]
+            },
+            {
+                placeHolder:"textinputlist"
+            }
+        ],
+        id:18
     }
 ];
+
+export const policyServicing = [
+    { 
+        label: "Applicable Policy Services *", 
+        type: [
+            {
+                placeHolder:"dropdown",
+                options : [
+                    { value: "Sales", label: "Sales" },
+                    { value: "Manual Renew", label: "Manual Renew" },
+                    { value: "Auto Renewal & Cancel Auto Renewal", label: "Auto Renewal & Cancel Auto Renewal" },
+                    { value: "Cancel", label: "Cancel" },
+                    { value: "Claims", label: "Claims" },
+                    { value: "Policy Loan", label: "Policy Loan" },
+                    { value: "Update Beneficiary details", label: "Update Beneficiary details" },
+                    { value: "Reinstatement", label: "Reinstatement" },
+                    { value: "Surrender", label: "Surrender" },
+                    { value: "Update Contact details", label: "Update Contact details" },
+                ]
+            },
+            {
+                placeHolder:"button"
+            },
+            {
+                placeHolder:"list"
+            }
+        ],
+        id:25
+    },
+];
+export let applicablePolicyServicing=[];
