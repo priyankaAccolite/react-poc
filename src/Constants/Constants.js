@@ -5,7 +5,8 @@ export const productDetails = [
         type: [
             {
                 placeHolder: "input",
-                enable: "n"
+                enable: "n",
+                placeHolderText: "S99999"
             }
         ],
         id: 1,
@@ -71,19 +72,7 @@ export const productDetails = [
             },
             {
                 label: "Currency Code",
-                placeHolder: "dropdown",
-                options: [
-                    { value: "Usa", label: "USD" },
-                    { value: "Hongkong", label: "HKD" },
-                    { value: "Indonesia", label: "IDR" },
-                    { value: "Laotion", label: "LAK" },
-                    { value: "Malaysia", label: "RM" },
-                    { value: "Myanmar", label: "MMK" },
-                    { value: "Philiphines", label: "PHP" },
-                    { value: "Singapore", label: "SGD" },
-                    { value: "Thailand", label: "THB" },
-                    { value: "Vietname", label: "VND" },
-                ],
+                placeHolder: "input",
                 enable: "n",
                 mandatory: "n"
             }
