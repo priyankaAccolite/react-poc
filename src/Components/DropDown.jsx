@@ -2,7 +2,7 @@ import React from "react";
 import "../Styles/dropdown.css";
 import Select from "react-select";
 
-const DropDown = ({ handleChange,options }) => {
+const DropDown = ({ handleChange, width, options, enable }) => {
   function customTheme(theme) {
     return {
       ...theme,
@@ -39,12 +39,13 @@ const DropDown = ({ handleChange,options }) => {
   return (
     <div
       style={{
-        width: "200px",
+        width: width,
         display: "inline-block",
         justifyContent: "center",
       }}
     >
       <Select
+        isDisabled={enable === "n"}
         theme={customTheme}
         myFontSize="20px"
         options={options}
