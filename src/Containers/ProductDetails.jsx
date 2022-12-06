@@ -19,6 +19,7 @@ const ProductDetails = () => {
     //console.log("selected-value",value);
   };
   const handleClick = () => {
+    if(!currencyCode.includes(value))
     currencyCode.push(value);
     Setrerender(!rerender);
     //console.log("global-array",currencyCode);
