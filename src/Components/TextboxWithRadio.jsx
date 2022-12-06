@@ -18,11 +18,11 @@ const TextboxWithRadio = (props) => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <div style={{ display: "flex", flexDirection: "row", justifyContent:"flex-start" }}>
       <div className="viewContainer">
         {props.currencyCode.map(val => {
           return (
-            <div>
+            <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-start",alignItems:"flex-start"}}>
               <input type="radio" id={val} value={val} name="value" checked={value==val?true:false} onChange={e => {setValue(e.target.value)}} />{val}
             </div>
           );
