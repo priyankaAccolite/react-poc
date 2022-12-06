@@ -10,6 +10,7 @@ const Validation = () => {
 
     const [value, setValue] = useState('');
     const [rerender, Setrerender] = useState(false);
+    const [display, setDisplay] = useState(true);
 
     const handleChange = (e) => {
         setValue(e.label);
@@ -21,18 +22,29 @@ const Validation = () => {
     //     Setrerender(!rerender);
     //     console.log("global-array", laValidations);
     // };
+    const handleAccordion = () => {
+        setDisplay(!display);
+    };
 
 
     return (
         <>
-            <Header title={"Validations"} />
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                <Header title={"Validation"} />
+                <div >
+                    <input type="button" onClick={handleAccordion} style={{ padding: 12, width: 60, backgroundColor: "white", borderLeft: '1px solid black', borderBottom: '1px solid black', borderTop: 'none', borderRight: 'none' }} value="-" />
+                </div>
+            </div>
             {validation.map((item) => {
                 return <>
                     <div
                         style={{
                             flexDirection: "row",
                             display: "flex",
-                            padding: 12
+                            padding: 12,
+                            display: display ? "flex" : "none",
+                            marginRight: 20,
+                            marginLeft: 20,
                         }}
                     >
                         <div style={{ width: 400, textAlign: 'left', fontSize: 16 }}>{item.id + '.' + ' ' + item.label}</div>
