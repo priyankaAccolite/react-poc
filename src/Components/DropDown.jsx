@@ -1,15 +1,8 @@
 import React from "react";
 import "../Styles/dropdown.css";
 import Select from "react-select";
-const options = [
-  { value: "C++", label: "C++" },
-  { value: "JAVA", label: "JAVA" },
-  { value: "Javascript", label: "Javascript" },
-  { value: "Python", label: "Python" },
-  { value: "Swift", label: "Swift" },
-];
 
-const DropDown = ({ handleChange }) => {
+const DropDown = ({ handleChange, width, options, enable }) => {
   function customTheme(theme) {
     return {
       ...theme,
@@ -46,12 +39,13 @@ const DropDown = ({ handleChange }) => {
   return (
     <div
       style={{
-        width: "200px",
+        width: width,
         display: "inline-block",
         justifyContent: "center",
       }}
     >
       <Select
+        isDisabled={enable === "n"}
         theme={customTheme}
         myFontSize="20px"
         options={options}

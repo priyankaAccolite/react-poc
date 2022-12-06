@@ -1,0 +1,59 @@
+.updateContainer {
+  border: 1px solid black;
+  margin: auto;
+  width: 800px;
+  height: 420px;
+  margin-top: 20px;
+}
+.subUpdateContainer {
+  padding: 20px 40px 20px 0px;
+}
+.mainCard {
+  padding: 10px;
+}
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.mainLabel {
+  display: flex;
+  width: 250px;
+  font-size: 14px;
+}
+.labelStar {
+  margin: 0px 20px;
+}
+.Field {
+  display: flex;
+  justify-content: start;
+  width: 550px;
+}
+.input {
+  margin-left: 30px;
+  height: 31px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.dropdownContainer {
+  padding-left: 30px;
+}
+.buttonheader {
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
+  margin-top: -10px;
+}
+.policyButtonHeader {
+  display: flex;
+}
+.textareaContainer {
+  margin-left: 70px;
+}
+.textArea {
+  border-radius: 5px;
+}
+.buttonPolicy {
+  margin: 20px 0px 0px 20px;
+}

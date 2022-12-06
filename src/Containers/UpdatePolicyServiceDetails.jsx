@@ -2,22 +2,21 @@ import React from "react";
 import Button from "../Components/Button";
 import DropDown from "../Components/DropDown";
 import Header from "../Components/Header";
-import { updateBenfitDetails } from "../Constants/Constants";
+import { updatePolicyServiceDetails } from "../Constants/Constants";
 import "../Styles/updateBenefit.css";
 
-const UpdateBenfitDetails = () => {
+const UpdatePolicyServiceDetails = () => {
   const [selectedval, setSelectedVal] = React.useState("");
 
   const handleChange = (e) => {
     setSelectedVal(e.value);
   };
-
   return (
     <div className="updateContainer">
       {" "}
-      <Header title="Update Benefit Details" BorderLeft={false} />
+      <Header title="Update Policy Service Details" BorderLeft={false} />
       <div className="subUpdateContainer">
-        {updateBenfitDetails?.map((item) => (
+        {updatePolicyServiceDetails?.map((item) => (
           <div className="mainCard">
             <div className="card">
               <div className="mainLabel">
@@ -29,24 +28,27 @@ const UpdateBenfitDetails = () => {
                   if (subItem.label === "input") {
                     return (
                       <div>
-                        <input
-                          className="input"
-                          style={{
-                            width: subItem.width,
-                          }}
-                        />
+                        <input className="input" />
                       </div>
                     );
                   } else if (subItem.label === "dropdown") {
                     return (
-                      <div
-                        className="dropdownContainer"
-                        style={{ paddingLeft: "30px" }}
-                      >
+                      <div className="dropdownContainer">
                         <DropDown
                           handleChange={handleChange}
                           width={subItem.width}
                         />{" "}
+                      </div>
+                    );
+                  } else if (subItem.label === "textField") {
+                    return (
+                      <div className="policyButtonHeader">
+                        <div className="textareaContainer">
+                          <textarea className="textArea" rows="5" cols="46" />
+                        </div>
+                        <div className="buttonPolicy">
+                          <Button name="save" />
+                        </div>
                       </div>
                     );
                   }
@@ -55,11 +57,8 @@ const UpdateBenfitDetails = () => {
             </div>
           </div>
         ))}
-        <div className="buttonheader">
-          <Button name="save" />
-        </div>
       </div>
     </div>
   );
 };
-export default UpdateBenfitDetails;
+export default UpdatePolicyServiceDetails;
