@@ -48,7 +48,9 @@ const FileUpload = () => {
                 </div>
             </div>
             <input type="button" value="Delete" style={{fontWeight:"bold"}} class="deleteButton" onClick={handleClick} />
-            <input type="button" value="Template" style={{fontWeight:"bold"}} class="templateButton"  />
+           <a href={require('../Resources/file.txt')} download="file" target="_blank">
+           <input type="button" value="Template" style={{fontWeight:"bold"}} class="templateButton"  />
+           </a>
         </Container>
 
     );
