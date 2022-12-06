@@ -266,7 +266,7 @@ export const validation = [
                 {
                     placeHolder: "button",
                     placeHolderText: "Add To List",
-                    enable: "e"
+                    enable: "ce"
                 },
                 {
                     placeHolder: "list"
@@ -297,7 +297,7 @@ export const validation = [
             {
                 placeHolder: "button",
                 placeHolderText: "Add To List",
-                enable: "e"
+                enable: "ce"
             },
             {
                 placeHolder: "list"
@@ -342,7 +342,7 @@ export const validation = [
             {
                 placeHolder: "button",
                 placeHolderText: "Add To List",
-                enable: "e"
+                enable: "ce"
             },
             {
                 placeHolder: "list"
@@ -357,3 +357,4 @@ export const validation = [
 
 
 export let currencyCode = [];
+
