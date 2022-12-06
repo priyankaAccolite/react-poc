@@ -5,9 +5,11 @@ import BenefitDetails from './Containers/BenefitDetails';
 import "./Styles/mainContainer.css";
 import { Container } from 'react-bootstrap';
 import Validation from './Containers/Validations'
+import PolicyServicing from "./Containers/PolicyServicing";
+
 
 const MainContainer = () => {
-  return <div style={{ margin: '20px' }}>
+  return <div>
     <Container style={{ width: '100%', paddingTop: '10px', paddingBottom: '10px' }}>
       <div className="mainContainer">
         <div align="left" style={{ paddingLeft: '10px', fontWeight: 'bold' }}>
@@ -18,6 +20,7 @@ const MainContainer = () => {
         <div className="subContainer"><Validation /></div>
         <div className="subContainer"><BenefitDetails /></div>
         <div className="subContainer"><PremiumDetails /></div>
+        <div className="subContainer"><PolicyServicing /></div>
       </div>
     </Container>
   </div>;
