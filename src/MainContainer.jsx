@@ -1,6 +1,7 @@
 import React from "react";
 import ProductDetails from './Containers/ProductDetails';
 import PremiumDetails from './Containers/PremiumDetails';
+import BenefitDetails from './Containers/BenefitDetails';
 import "./Styles/mainContainer.css";
 import { Container } from 'react-bootstrap';
 import Validation from './Containers/Validations'
@@ -15,6 +16,7 @@ const MainContainer = () => {
         <hr style={{ border: '1px solid gray' }} />
         <div className="subContainer"><ProductDetails /></div>
         <div className="subContainer"><Validation /></div>
+        <div className="subContainer"><BenefitDetails /></div>
         <div className="subContainer"><PremiumDetails /></div>
       </div>
     </Container>
