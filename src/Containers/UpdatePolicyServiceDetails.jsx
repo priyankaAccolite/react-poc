@@ -16,11 +16,11 @@ const UpdatePolicyServiceDetails = () => {
       {" "}
       <Header title="Update Policy Service Details" BorderLeft={false} />
       <div className="subUpdateContainer">
-        {updatePolicyServiceDetails?.map((item) => (
+        {updatePolicyServiceDetails?.map((item, i) => (
           <div className="mainCard">
             <div className="card">
               <div className="mainLabel">
-                <div className="labelStar">*</div>
+                <div className="labelStar">25.{i + 1}</div>
                 <div>{item.label}</div>
               </div>
               <div className="Field">

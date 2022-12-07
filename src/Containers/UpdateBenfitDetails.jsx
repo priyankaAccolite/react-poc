@@ -17,11 +17,11 @@ const UpdateBenfitDetails = () => {
       {" "}
       <Header title="Update Benefit Details" BorderLeft={false} />
       <div className="subUpdateContainer">
-        {updateBenfitDetails?.map((item) => (
+        {updateBenfitDetails?.map((item, i) => (
           <div className="mainCard">
             <div className="card">
               <div className="mainLabel">
-                <div className="labelStar">*</div>
+                <div className="labelStar">16.{i + 1}</div>
                 <div>{item.label}</div>
               </div>
               <div className="Field">
@@ -44,6 +44,7 @@ const UpdateBenfitDetails = () => {
                         style={{ paddingLeft: "30px" }}
                       >
                         <DropDown
+                          options={subItem.options}
                           handleChange={handleChange}
                           width={subItem.width}
                         />{" "}
