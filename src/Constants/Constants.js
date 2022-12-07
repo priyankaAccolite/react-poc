@@ -769,22 +769,6 @@ export const benefitDetails = [
     ],
     id: 17,
   },
-  {
-    label: "Other LA Validations *",
-    type: [
-      {
-        placeHolder: "dropdown",
-        options: [
-          { value: "Gender", label: "Gender" },
-          { value: "Smoker", label: "Smoker" },
-        ],
-      },
-      {
-        placeHolder: "textinputlist",
-      },
-    ],
-    id: 18,
-  },
 ];
 
 export const policyServicing = [
