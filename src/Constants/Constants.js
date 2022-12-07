@@ -45,6 +45,7 @@ export const productDetails = [
           { value: "Group", label: "Group" },
         ],
         enable: "y",
+        width: "200px",
       },
     ],
     id: 4,
@@ -68,6 +69,7 @@ export const productDetails = [
           { value: "Vietnam", label: "Vietnam" },
         ],
         enable: "y",
+        width: "200px",
       },
       {
         label: "Currency Code",
@@ -97,10 +99,11 @@ export const productDetails = [
       {
         placeHolder: "dropdown",
         options: [
-          { value: "Yes", label: "Yes" },
-          { value: "No", label: "No" },
+          { value: "Yes", label: "Yes", type: "ipa" },
+          { value: "No", label: "No", type: "ipa" },
         ],
         enable: "y",
+        width: "200px",
       },
       {
         label: "Promotion Redemption",
@@ -111,6 +114,7 @@ export const productDetails = [
         ],
         mandatory: "cm",
         enable: "ce",
+        width: "200px",
       },
       {
         label: "Promotion Code",
@@ -133,6 +137,7 @@ export const productDetails = [
           { value: "No", label: "No" },
         ],
         enable: "y",
+        width: "200px",
       },
     ],
     id: 8,
@@ -165,6 +170,7 @@ export const productDetails = [
           { value: "Day(s)", label: "Day(s)" },
         ],
         enable: "y",
+        width: "200px",
       },
     ],
     id: 10,
@@ -426,8 +432,22 @@ export const validation = [
   {
     label: "Applicable Age Limit for LA",
     type: [
-      { placeHolder: "input", placeHolderText: "Min", enable: "y" },
-      { placeHolder: "input", placeHolderText: "Max", enable: "y" },
+      {
+        placeHolder: "input",
+        placeHolderText: "Min",
+        enable: "y",
+        width: "100px",
+        marginRight: "75px",
+        u_id: 1,
+      },
+      {
+        placeHolder: "input",
+        placeHolderText: "Max",
+        enable: "y",
+        width: "105px",
+        marginRight: "28px",
+        u_id: 2,
+      },
       {
         label: "Calculation Basis",
         placeHolder: "dropdown",
@@ -440,6 +460,7 @@ export const validation = [
         ],
         enale: "y",
         mandatory: "y",
+        width: "100px",
       },
       {
         placeHolder: "dropdownwithoutborder",
@@ -460,14 +481,17 @@ export const validation = [
         placeHolder: "dropdown",
         options: [
           { value: "Gender", label: "Gender" },
-          { value: "Occupation", label: "Occupation" },
           { value: "Smoker", label: "Smoker" },
         ],
         enable: "y",
+        width: "100px",
       },
       {
         placeHolder: "input",
         enable: "ce",
+        width: "150px",
+        marginRight: "0px",
+        u_id: 3,
       },
       {
         placeHolder: "button",
@@ -488,6 +512,8 @@ export const validation = [
         placeHolder: "input",
         placeHolderText: "Count",
         enable: "y",
+        width: "100px",
+        u_id: 4,
       },
       {
         placeHolder: "dropdown",
@@ -497,6 +523,8 @@ export const validation = [
           { value: "F-Name + L-Name + DOB", label: "F-Name + L-Name + DOB" },
         ],
         enable: "y",
+        width: "150px",
+        marginRight: "0px",
       },
       {
         placeHolder: "button",
@@ -504,7 +532,7 @@ export const validation = [
         enable: "ce",
       },
       {
-        placeHolder: "list",
+        placeHolder: "dropdownlist1",
       },
     ],
     id: 14,
@@ -517,6 +545,8 @@ export const validation = [
         placeHolder: "input",
         placeHolderText: "Value",
         enable: "y",
+        width: "100px",
+        u_id: 5,
       },
       {
         placeHolder: "dropdown",
@@ -530,6 +560,8 @@ export const validation = [
           },
         ],
         enable: "y",
+        width: "150px",
+        marginRight: "0px",
       },
       {
         placeHolder: "button",
@@ -537,7 +569,7 @@ export const validation = [
         enable: "ce",
       },
       {
-        placeHolder: "list",
+        placeHolder: "dropdownlist2",
       },
     ],
     id: 15,
@@ -559,11 +591,16 @@ export const validation = [
           },
         ],
         enable: "y",
+        width: "100px",
+        marginRight: "0px",
       },
       {
         placeHolder: "input",
         placeHolderText: "Value",
         enable: "n",
+        width: "80px",
+        marginRight: "0px",
+        u_id: 6,
       },
       {
         placeHolder: "dropdown",
@@ -586,6 +623,8 @@ export const validation = [
           { value: "Update Contact Details", label: "Update Contact Details" },
         ],
         enable: "y",
+        width: "150px",
+        marginRight: "0px",
       },
       {
         placeHolder: "button",
@@ -593,7 +632,7 @@ export const validation = [
         enable: "ce",
       },
       {
-        placeHolder: "list",
+        placeHolder: "dropdownlist3",
       },
     ],
     id: 16,
@@ -604,6 +643,10 @@ export const validation = [
 export let currencyCode = [];
 export let applicableBenefits = [];
 export let otherLaValidations = [];
+export let limitAgainstPolicy = [];
+export let applicableExternalValidation = [];
+export let applicableTransactionValidation = [];
+
 export const benefitDetails = [
   {
     label: "Applicable Benefits *",

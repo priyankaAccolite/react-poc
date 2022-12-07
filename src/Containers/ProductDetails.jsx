@@ -13,12 +13,13 @@ const ProductDetails = () => {
   const [value, setValue] = useState('');
   const [rerender, Setrerender] = useState(false);
   const [currency, setCurrency] = useState("")
-  const [display,setDisplay]=useState(true);
+  const [display, setDisplay] = useState(true);
+  const [enablePromotionRedemption, setEnablePromotionRedemption] = useState("n")
 
   const handleChange = (e) => {
     setValue(e.label);
     Setrerender(!rerender);
-    //console.log("selected-value",value);
+    console.log("selected-value",e);
     if (e.label === "Cambodia") {
       setCurrency("USD")
     } else if (e.label === "HongKong") {
@@ -43,19 +44,24 @@ const ProductDetails = () => {
     } else {
       setCurrency("")
     }
+    if(e.label === "Yes" && e.type === "ipa"){
+      setEnablePromotionRedemption("y")
+    }else {
+      setEnablePromotionRedemption("n")
+    }
   };
-  const handleAccordion=()=>{
+  const handleAccordion = () => {
     setDisplay(!display);
-};
+  };
 
   return (
     <>
-     <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
-      <Header title={"Product Details"} />
-      <div >
-            <input type="button" onClick={handleAccordion} style={{padding:12,width:60,backgroundColor:"white",borderLeft: '1px solid black', borderBottom: '1px solid black', borderTop: 'none', borderRight: 'none'}} value="-"/>
+      <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+        <Header title={"Product Details"} />
+        <div >
+          <input type="button" onClick={handleAccordion} style={{ padding: 12, width: 60, backgroundColor: "white", borderLeft: '1px solid black', borderBottom: '1px solid black', borderTop: 'none', borderRight: 'none' }} value="-" />
+        </div>
       </div>
-    </div>
       {productDetails.map((item) => {
         return (
           <>
@@ -63,34 +69,35 @@ const ProductDetails = () => {
               style={{
                 flexDirection: "row",
                 display: "flex",
-                padding: 12,
-                display:display?"flex":"none",
-                marginRight:20,
-                marginLeft:20,
+                padding: 18,
+                display: display ? "flex" : "none",
+                marginRight: 20,
+                marginLeft: 20,
               }}
             >
-              <div style={{ width: 400, textAlign: 'left', fontSize: 16 }}>{item.id + '.' + ' ' + item.label}</div>
+              <div style={{ width: 400, textAlign: 'left', fontSize: 16 }}>{item.id + '.' + ' ' + item.label + " "+(item.mandatory === "y" ? '*' : '')}</div>
               {item.type.map((i) => {
                 if (i.placeHolder === "dropdown") {
                   return (
                     <>
-                      <div style={{ marginLeft: item.id === 11 ? 90 : 40 , marginTop:i.label?-18:0}}>
-                        <div >{i.label}</div>
+                      <div style={{ marginLeft: item.id === 11 ? 90 : 40, marginTop: i.label ? -20: 0 }}>
+                        <div >{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
                         <DropDown
                           handleChange={handleChange}
                           options={i.options}
-                          enable={i.enable}
+                          enable={i.label ==="Promotion Redemption"?enablePromotionRedemption:i.enable}
+                          width={i.width}
                         />
                       </div>
                     </>
                   )
-                } else if (i.placeHolder === "date") { 
+                } else if (i.placeHolder === "date") {
                   return <div style={{ marginLeft: 40 }}>
                     <DateInput />
                   </div>
                 } else if (i.placeHolder === "input") {
-                  return <div style={{ marginLeft: 40, color: "black" ,marginTop:i.label?-18:0}}>
-                    <div>{i.label}</div>
+                  return <div style={{ marginLeft: 40, color: "black", marginTop: i.label ? -20 : 0 }}>
+                    <div>{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
                     <TextInput
                       size={item.label === "Description" ? 72 : 21}
                       enable={i.enable}
@@ -98,7 +105,7 @@ const ProductDetails = () => {
                     />
                   </div>
                 } else {
-                  return <div style={{ marginLeft: 115 }}>
+                  return <div style={{  }}>
                     {/* <TextboxWithRadio currencyCode={currencyCode} /> */}
                   </div>
                 }

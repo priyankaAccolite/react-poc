@@ -7,7 +7,8 @@ const TextInput = (props) => {
         <input
             style={{
                 border: '1px solid black', height: 30, borderRadius: 3, fontSize: 15, textAlign: "center",
-                backgroundColor: props.enable === "n" || props.enable === "ce" ? "lightgrey" : "white"
+                backgroundColor: props.enable === "n" || props.enable === "ce" ? "lightgrey" : "white",
+                width: props.width
             }}
             type="text"
             value={props.value}
@@ -15,6 +16,7 @@ const TextInput = (props) => {
             size={props.size}
             placeholder={props.placeHolderText}
             disabled={props.enable === "n" ? true : false}
+            data-id={props.data}
         />
     );
 };

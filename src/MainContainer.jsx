@@ -6,9 +6,13 @@ import "./Styles/mainContainer.css";
 import { Container } from 'react-bootstrap';
 import Validation from './Containers/Validations'
 import PolicyServicing from "./Containers/PolicyServicing";
-
+import Button from './Components/Button'
 
 const MainContainer = () => {
+
+  const handleClick = () => {
+
+  }
   return <div>
     <Container style={{ width: '100%', paddingTop: '10px', paddingBottom: '10px' }}>
       <div className="mainContainer">
@@ -21,6 +25,14 @@ const MainContainer = () => {
         <div className="subContainer"><BenefitDetails /></div>
         <div className="subContainer"><PremiumDetails /></div>
         <div className="subContainer"><PolicyServicing /></div>
+        <div style={{justifyContent:"flex-end", display:"flex", marginRight:140, marginBottom:50, marginTop:50}}>
+          <input
+            type="button"
+            value="Generate JSON"
+            onClick={handleClick}
+            style={{ border: '1px solid black', height: 35, borderRadius: 3, width: 120, fontWeight: 'bold', fontSize: 12, backgroundColor: '#edb525' }}
+          />
+        </div>
       </div>
     </Container>
   </div>;
