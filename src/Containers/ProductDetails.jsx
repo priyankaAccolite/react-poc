@@ -81,7 +81,7 @@ const ProductDetails = () => {
                   return (
                     <>
                       <div style={{ marginLeft: item.id === 11 ? 90 : 40, marginTop: i.label ? -20: 0 }}>
-                        <div >{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
+                        <div style={{textAlign:"left"}}>{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
                         <DropDown
                           handleChange={handleChange}
                           options={i.options}
@@ -97,7 +97,7 @@ const ProductDetails = () => {
                   </div>
                 } else if (i.placeHolder === "input") {
                   return <div style={{ marginLeft: 40, color: "black", marginTop: i.label ? -20 : 0 }}>
-                    <div>{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
+                    <div style={{textAlign:"left"}}>{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
                     <TextInput
                       size={item.label === "Description" ? 72 : 21}
                       enable={i.enable}

@@ -445,7 +445,7 @@ export const validation = [
         placeHolderText: "Max",
         enable: "y",
         width: "105px",
-        marginRight: "28px",
+        marginRight: "23px",
         u_id: 2,
       },
       {
@@ -460,7 +460,7 @@ export const validation = [
         ],
         enale: "y",
         mandatory: "y",
-        width: "100px",
+        width: "96px",
       },
       {
         placeHolder: "dropdownwithoutborder",
@@ -592,14 +592,14 @@ export const validation = [
         ],
         enable: "y",
         width: "100px",
-        marginRight: "0px",
+        marginRight: "5px",
       },
       {
         placeHolder: "input",
         placeHolderText: "Value",
         enable: "n",
-        width: "80px",
-        marginRight: "0px",
+        width: "70px",
+        marginRight: "5px",
         u_id: 6,
       },
       {
@@ -750,6 +750,7 @@ export const benefitDetails = [
           },
           { value: "S00900", label: "S00900-Renewals" },
         ],
+        width: "276px"
       },
       {
         placeHolder: "button",
@@ -758,7 +759,7 @@ export const benefitDetails = [
         placeHolder: "list",
       },
     ],
-    id: 16,
+    id: 16
   },
   {
     label: "Upload Plan Table *",
@@ -795,6 +796,7 @@ export const policyServicing = [
           { value: "Surrender", label: "Surrender" },
           { value: "Update Contact details", label: "Update Contact details" },
         ],
+        width: "200px"
       },
       {
         placeHolder: "button",

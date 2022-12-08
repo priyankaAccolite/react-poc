@@ -43,13 +43,13 @@ const FileUpload = () => {
                     {concatString && <label>{"...." + file.name.slice(-4)}</label>}
                 </div>
                 <div className="uploadButton">
-                    <label for="upload-photo" id="button" style={{ float: "right", fontWeight:"bold" }}>Upload</label>
+                    <label for="upload-photo" id="button" style={{ float: "right", fontWeight:"bold" , color:"whitesmoke"}}>Upload</label>
                     <input type="file" name="photo" id="upload-photo" onChange={handleUpload} />
                 </div>
             </div>
-            <input type="button" value="Delete" style={{fontWeight:"bold"}} class="deleteButton" onClick={handleClick} />
+            <input type="button" value="Delete" style={{fontWeight:"bold", color:"whitesmoke"}} class="deleteButton" onClick={handleClick} />
            <a href={require('../Resources/file.txt')} download="file" target="_blank">
-           <input type="button" value="Template" style={{fontWeight:"bold"}} class="templateButton"  />
+           <input type="button" value="Template" style={{fontWeight:"bold", color:"whitesmoke"}} class="templateButton"  />
            </a>
         </Container>
 

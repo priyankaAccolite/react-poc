@@ -204,7 +204,7 @@ const Validation = () => {
                                 return <>
                                     {i.label ?
                                         <div style={{ marginTop: -18, marginRight: i.marginRight ? i.marginRight : 80 }}>
-                                            <div>{i.label ? i.label + (i.mandatory === "y" ? "*" : "") : ""}</div>
+                                            <div style={{textAlign:"left", marginLeft:"27px"}}>{i.label ? i.label + (i.mandatory === "y" ? "*" : "") : ""}</div>
                                             <DropDown handleChange={handleChange} options={i.options} width={i.width} />
                                         </div>
                                         : <div style={{ marginRight: i.marginRight ? i.marginRight : 80 }}><DropDown handleChange={handleChange} options={i.options} width={i.width} /></div>
@@ -216,7 +216,7 @@ const Validation = () => {
                                     type="button"
                                     value="Add to List"
                                     onClick={handleClick}
-                                    style={{ border: '1px solid black', height: 35, borderRadius: 3, width: 96, fontWeight: 'bold', fontSize: 12, backgroundColor: '#edb525' }}
+                                    style={{ border: '1px solid black', height: 35, borderRadius: 3, width: 96, fontWeight: 'bold', fontSize: 12, backgroundColor: '#ED2939', marginLeft:6 , color: "whitesmoke"}}
                                     data-id={item.id}
                                 />
                             } else if (i.placeHolder === "dropdownlist1") {

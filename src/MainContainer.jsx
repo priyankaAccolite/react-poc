@@ -30,7 +30,7 @@ const MainContainer = () => {
             type="button"
             value="Generate JSON"
             onClick={handleClick}
-            style={{ border: '1px solid black', height: 35, borderRadius: 3, width: 120, fontWeight: 'bold', fontSize: 12, backgroundColor: '#edb525' }}
+            style={{ border: '1px solid black', height: 35, borderRadius: 3, width: 120, fontWeight: 'bold', fontSize: 12, backgroundColor: '#ED2939' , color:"whitesmoke"}}
           />
         </div>
       </div>
