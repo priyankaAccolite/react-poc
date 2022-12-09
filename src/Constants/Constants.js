@@ -809,3 +809,1482 @@ export const policyServicing = [
   },
 ];
 export let applicablePolicyServicing = [];
+
+
+export let BaseJson={
+  "_id": "PRODUCT_DEFINITION/S00001/A.1",
+  "documentType": "PRODUCT_DEFINITION",
+  "code": "S00001",
+  "version": "A.1",
+  "shortName": "$FullName$",
+  "fullName": "$FullName$",
+  "desc": "$Desc$",
+  "effectiveFrom": "$DateTime.Now$",
+  "effectiveTo": "$DateTime.Now+10$",
+  "toolVersion": "1.0.0.0",
+  "offeringType": "CUSTOMEROFFERING",
+  "canBeCloned": null,
+  "isTemplate": null,
+  "status": "Inprogress",
+  "category": "$Category$",
+  "LBU": {
+    "id": 0,
+    "distributingLOB": "DIGITAL",
+    "distributingCurrency": "$Currency$"
+  },
+  "transactionContext": [
+    {
+      "id": "ALL-ANY-ALL",
+      "transaction": "ALL",
+      "transactionRole": "ANY",
+      "transactionChannel": "ALL"
+    },
+    {
+      "id": "SALES-ANY-ALL",
+      "transaction": "SALES",
+      "transactionRole": "ANY",
+      "transactionChannel": "ALL"
+    }
+  ],
+  "productDisplayBehaviour": {
+    "transactionRef": "ALL-ANY-ALL",
+    "visibleInFrontCatalog": null,
+    "productGroupName": "$Category$",
+    "productDisplayName": "$FullName$"
+  },
+  "salesPartner": {
+    "channel": []
+  },
+  "attributes": [
+    {
+      "name": "totalPremium",
+      "dataType": "number",
+      "value": null,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 1,
+            "visibleInCatalog": false,
+            "displayName": "Premium"
+          },
+          "allowedValues": []
+        },
+        {
+          "transactionContext": {
+            "id": "CLAIMS-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 1,
+            "visibleInCatalog": false,
+            "displayName": "Premium"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "totalSumAssured",
+      "dataType": "number",
+      "value": null,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 7,
+            "visibleInCatalog": false,
+            "displayName": "Maximum Sum Assured"
+          },
+          "allowedValues": []
+        },
+        {
+          "transactionContext": {
+            "id": "CLAIMS-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 7,
+            "visibleInCatalog": false,
+            "displayName": "Maximum Sum Assured"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "policyTerm",
+      "dataType": "number",
+      "value": null,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 23,
+            "visibleInCatalog": false,
+            "displayName": "Policy Term"
+          },
+          "allowedValues": [
+
+          ]
+        },
+        {
+          "transactionContext": {
+            "id": "CLAIMS-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 23,
+            "visibleInCatalog": false,
+            "displayName": "Policy Term"
+          },
+          "allowedValues": [
+      
+          ]
+        }
+      ]
+    },
+    {
+      "name": "policyTermUnit",
+      "dataType": "string",
+      "value": "Y",
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 24,
+            "visibleInCatalog": false,
+            "displayName": "Policy Term Unit"
+          },
+          "allowedValues": []
+        },
+        {
+          "transactionContext": {
+            "id": "CLAIMS-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 24,
+            "visibleInCatalog": false,
+            "displayName": "Policy Term Unit"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "planName",
+      "dataType": "string",
+      "value": null,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 25,
+            "visibleInCatalog": false,
+            "displayName": "planName"
+          },
+          "allowedValues": []
+        },
+        {
+          "transactionContext": {
+            "id": "CLAIMS-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 25,
+            "visibleInCatalog": false,
+            "displayName": "planName"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "premiumFrequency",
+      "dataType": "string",
+      "value": "Annually",
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "ALL-ANY-ALL"
+          },
+          "display": {
+            "hidden": true,
+            "displayIndex": 2,
+            "visibleInCatalog": false,
+            "displayName": "Premium Frequency"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "policyStatus",
+      "dataType": "string",
+      "value": null,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "ALL-ANY-ALL"
+          },
+          "display": {
+            "hidden": true,
+            "displayIndex": 20,
+            "visibleInCatalog": false,
+            "displayName": "Policy Status"
+          },
+          "allowedValues": [
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pulseUniqueIdName",
+      "dataType": "string",
+      "value": "KTP_ID",
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 19,
+            "visibleInCatalog": false,
+            "displayName": "Pulse Unique Id Name"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "referralCode",
+      "dataType": "string",
+      "value": null,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 19,
+            "visibleInCatalog": false,
+            "displayName": "Referral Code"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "retryInterval",
+      "dataType": "number",
+      "value": 5,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 20,
+            "visibleInCatalog": false,
+            "displayName": "Retry Interval"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "noOfRetries",
+      "dataType": "number",
+      "value": 2,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 21,
+            "visibleInCatalog": false,
+            "displayName": "Number Of Retries"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "noOfBeneficiaries",
+      "dataType": "number",
+      "value": 1,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 12,
+            "visibleInCatalog": false,
+            "displayName": "Number of Beneficiaries"
+          },
+          "allowedValues": []
+        },
+        {
+          "transactionContext": {
+            "id": "CLAIMS-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 12,
+            "visibleInCatalog": false,
+            "displayName": "Number of Beneficiaries"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "policyId",
+      "dataType": "string",
+      "value": null,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": true,
+            "displayIndex": 42,
+            "visibleInCatalog": false,
+            "displayName": "Policy Id"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "policyStartDate",
+      "dataType": "string",
+      "value": null,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "ALL-ANY-ALL"
+          },
+          "display": {
+            "hidden": true,
+            "displayIndex": 9,
+            "visibleInCatalog": false,
+            "displayName": "Policy Start Date"
+          },
+          "allowedValues": []
+        }
+      ]
+    },
+    {
+      "name": "eventDate",
+      "dataType": "string",
+      "value": null,
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "CLAIMS-ANY-ALL"
+          },
+          "display": {
+            "hidden": false,
+            "displayIndex": 14,
+            "visibleInCatalog": true,
+            "displayName": "Event Occured Date"
+          },
+          "allowedValues": []
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "C001",
+      "code": "S00304",
+      "version": null,
+      "name": "RISK",
+      "desc": "RISK",
+      "relationshipTypeName": "INTERNAL",
+      "computeOverride": null,
+      "behaviours": [
+        {
+          "transactionContextRef": "ALL-ANY-ALL",
+          "displayIndex": 2,
+          "displayName": "RISK",
+          "isViewable": false,
+          "minimum": 1,
+          "default": 1,
+          "maximum": 1
+        }
+      ],
+      "attributes": [
+        {
+          "name": "email",
+          "dataType": "string",
+          "value": null,
+          "copyFromAttribute": null,
+          "copyToChild": false,
+          "behaviours": [
+            {
+              "transactionContext": {
+                "id": "ALL-ANY-ALL"
+              },
+              "display": {
+                "hidden": false,
+                "displayIndex": 1,
+                "visibleInCatalog": true,
+                "displayName": "Email"
+              }
+            }
+          ]
+        },
+        {
+          "name": "birthDate",
+          "dataType": "dateTime",
+          "value": null,
+          "copyFromAttribute": "",
+          "copyToChild": false,
+          "behaviours": null
+        },
+        {
+          "name": "age",
+          "dataType": "number",
+          "value": null,
+          "copyFromAttribute": "",
+          "copyToChild": false,
+          "behaviours": null
+        },
+        {
+          "name": "gender",
+          "dataType": "string",
+          "value": null,
+          "copyFromAttribute": "",
+          "copyToChild": false,
+          "behaviours": null
+        },
+        {
+          "name": "ktpId",
+          "dataType": "string",
+          "value": null,
+          "copyFromAttribute": "",
+          "copyToChild": false,
+          "behaviours": null
+        },
+        {
+          "name": "nationalId",
+          "dataType": "string",
+          "value": null,
+          "copyFromAttribute": "",
+          "copyToChild": false,
+          "behaviours": null
+        },
+        {
+          "name": "phone",
+          "dataType": "string",
+          "value": null,
+          "copyFromAttribute": "",
+          "copyToChild": false,
+          "behaviours": null
+        },
+        {
+          "name": "firstName",
+          "dataType": "string",
+          "value": null,
+          "copyFromAttribute": "",
+          "copyToChild": false,
+          "behaviours": null
+        },
+        {
+          "name": "lastName",
+          "dataType": "string",
+          "value": null,
+          "copyFromAttribute": "",
+          "copyToChild": false,
+          "behaviours": null
+        }
+      ]
+    }
+  ],
+  "insuredObjs": [
+    {
+      "id": 1,
+      "name": "POLICYHOLDER",
+      "desc": null,
+      "type": "POLICYHOLDER",
+      "selectionCriteria": [
+        {
+          "type": "INCLUSION",
+          "functionName": "checkProductAvailability"
+        },
+        {
+          "type": "INCLUSION",
+          "functionName": "checkProductAvailabilityWithMinor"
+        },
+        {
+          "type": "INCLUSION",
+          "functionName": "F_CheckCancelAvailability"
+        }
+      ],
+      "coverages": [
+        {
+          "id": "COV001",
+          "name": "DeathBenefit",
+          "desc": "Protection for your family in case of your death",
+          "riderRef": "S00309",
+          "event": {
+            "name": "DEATH",
+            "desc": "Protection for your family in case of your death",
+            "eventType": "DEATH",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND001",
+              "name": "DeathBenefit",
+              "desc": "Protection for your family in case of your death",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateDeathBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV002",
+          "name": "TPDBenefit",
+          "desc": "Protection against Temporary and Permanent Disability for your family",
+          "riderRef": "S00312",
+          "event": {
+            "name": "TPD",
+            "desc": "Protection against Temporary and Permanent Disability for your family",
+            "eventType": "TPD",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND002",
+              "name": "TPD",
+              "desc": "Protection against Temporary and Permanent Disability for your family",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateTPDBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV003",
+          "name": "DailyHospitalIncomeBenefit",
+          "desc": "",
+          "riderRef": "S00313",
+          "event": {
+            "name": "HOSPITALIZATION",
+            "desc": "Complete payment in case of hospitalization upto 5 days and 3 times an year",
+            "eventType": "HOSPITALIZATION",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND003",
+              "name": "DailyHospitalIncomeBenefit",
+              "desc": "Complete payment in case of hospitalization upto 5 days and 3 times an year",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateIPDBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV004",
+          "name": "LongTermHospitalisationBenefit ",
+          "desc": "In the event of hospitalisation,a daily cash benefit for each day at hospital confinement is paid to the insured",
+          "riderRef": "S00537",
+          "event": {
+            "name": "HOSPITALIZATION",
+            "desc": "In the event of hospitalization beyond 30 days,additional daily cash benefit for each day at hospital confinement is paid to the insured",
+            "eventType": "HOSPITALIZATION",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND004",
+              "name": "LongTermHospitalisationBenefit",
+              "desc": "In the event of hospitalisation,a daily cash benefit for each day at hospital confinement is paid to the insured",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateIPDBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV005",
+          "name": "ICUBenefit",
+          "desc": "In the event of hospitalisation in an ICU, a daily cash benefit for each day at ICU confinement is paid to the insured",
+          "riderRef": "S00538",
+          "event": {
+            "name": "ICU",
+            "desc": "In the event of hospitalisation in an ICU, a daily cash benefit for each day at ICU confinement is paid to the insured",
+            "eventType": "ICU",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND005",
+              "name": "ICUBenefit",
+              "desc": "Complete payment in case of hospitalization upto 5 days and 3 times an year",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateICUBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV006",
+          "name": "Infectious Disease Death Benefit",
+          "desc": "Additional protection for your family in case of your death due to infectious disease",
+          "riderRef": "S00557",
+          "event": {
+            "name": "ILLNESSDEATH",
+            "desc": "",
+            "eventType": "ILLNESSDEATH",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND006",
+              "name": "Infectious Disease Death Benefit",
+              "desc": "Additional protection for your family in case of your death due to infectious disease",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateDeathIllnessBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV007",
+          "name": "ADB - Accidental Death Benefit",
+          "desc": "Accidental Death Benefit",
+          "riderRef": "S00371",
+          "event": {
+            "name": "ACCIDENTALDEATH",
+            "desc": "Protection for your family in case of accidental death",
+            "eventType": "ACCIDENTALDEATH",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND007",
+              "name": "ACCIDENTALDEATH",
+              "desc": "Protection for your family in case of accidental death",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateADBBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV008",
+          "name": "Illness Benefit",
+          "desc": "Illness Benefit",
+          "riderRef": "S00469",
+          "event": {
+            "name": "ILLNESS",
+            "desc": "Protection for your family in case you are ill.",
+            "eventType": "ILLNESS",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND008",
+              "name": "ILLNESS Benefit",
+              "desc": "Protection for your family in case of your illness",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateIllnessBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV009",
+          "name": "MedicalBenefit",
+          "desc": "Medical Benefit",
+          "riderRef": "S00351",
+          "event": {
+            "name": "MEDICALREIMBURSEMENT",
+            "desc": "Protection for your family in case you are ill.",
+            "eventType": "MEDICALREIMBURSEMENT",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND009",
+              "name": "MEDICALREIMBURSEMENT",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateMedicalBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV0010",
+          "name": "Funeral Benefit",
+          "desc": "Funeral Benefit amount that is payable to the Funeral Service Provider",
+          "riderRef": "S00496",
+          "event": {
+            "name": "DEATH",
+            "desc": "",
+            "eventType": "DEATH",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0010",
+              "name": "FUNERAL",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateDeathBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV0011",
+          "name": "ADD - Accidental Death and Dismemberment",
+          "desc": "Accidental Death and Dismemberment (ADD)",
+          "riderRef": "S00375",
+          "event": {
+            "name": "ACCIDENT",
+            "desc": "Protection for your family in case of Accidental Death Dismemberment",
+            "eventType": "ACCIDENT",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0011",
+              "name": "ACCIDENT",
+              "desc": "Protection for your family in case of Accidental Death and Dismemberment",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateADDBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV0012",
+          "name": "Additional Illness Benefit",
+          "desc": "",
+          "riderRef": "S00573",
+          "event": {
+            "name": "ILLNESS",
+            "desc": "",
+            "eventType": "ILLNESS",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0012",
+              "name": "Illness Benefit",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateIllnessBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV0013",
+          "name": "AdditionalDeathBenefit",
+          "desc": "Protection for your family in case of your death",
+          "riderRef": "S00572",
+          "event": {
+            "name": "DEATH",
+            "desc": "Protection for your family in case of your death",
+            "eventType": "DEATH",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0013",
+              "name": "DEATH",
+              "desc": "Protection for your family in case of your death",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateDeathBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV0014",
+          "name": "SurgeryBenefit",
+          "desc": "Surgery Benefit provides a lumpsum benefit in case of a surgery as per policy norms",
+          "riderRef": "S00548",
+          "event": {
+            "name": "SURGERY",
+            "desc": "Surgery Benefit",
+            "eventType": "SURGERY",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0014",
+              "name": "SURGERY",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateBenefit_Surgery"
+                }
+              ],
+              "selectionCriteria": null
+            }
+          ]
+        },
+        {
+          "id": "COV0015",
+          "name": "Hospital Service Benefit",
+          "desc": "",
+          "riderRef": "S00315",
+          "event": {
+            "name": "HOSPITALSERVICE",
+            "desc": "Hospital Service Benefit",
+            "eventType": "HOSPITALSERVICE",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0015",
+              "name": "HOSPITALSERVICE",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateBenefit_HospitalService"
+                }
+              ],
+              "selectionCriteria": null
+            }
+          ]
+        },
+        {
+          "id": "COV0016",
+          "name": "DentalBenefit",
+          "desc": "",
+          "riderRef": "S00316",
+          "event": {
+            "name": "DENTAL",
+            "desc": "Dental Benefit",
+            "eventType": "DENTAL",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0016",
+              "name": "DENTAL",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateBenefit_Dental"
+                }
+              ],
+              "selectionCriteria": null
+            }
+          ]
+        },
+        {
+          "id": "COV0017",
+          "name": "OPD Benefit",
+          "desc": "",
+          "riderRef": "S00317",
+          "event": {
+            "name": "OPD",
+            "desc": "OPD Benefit",
+            "eventType": "OPD",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0017",
+              "name": "OPD",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateBenefit_OPD"
+                }
+              ],
+              "selectionCriteria": null
+            }
+          ]
+        },
+        {
+          "id": "COV0018",
+          "name": "Emergency Benefit",
+          "desc": "",
+          "riderRef": "S00592",
+          "event": {
+            "name": "EMERGENCYTREATMENT",
+            "desc": "Emergency Benefit",
+            "eventType": "EMERGENCYTREATMENT",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0018",
+              "name": "EMERGENCYTREATMENT",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateBenefit_Emergency"
+                }
+              ],
+              "selectionCriteria": null
+            }
+          ]
+        },
+        {
+          "id": "COV0019",
+          "name": "CM Benefit",
+          "desc": "",
+          "riderRef": "S00563",
+          "event": {
+            "name": "CRITICALILLNESS",
+            "desc": "CM Benefit",
+            "eventType": "CRITICALILLNESS",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0019",
+              "name": "CRITICALILLNESS",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateBenefit_CM"
+                }
+              ],
+              "selectionCriteria": null
+            }
+          ]
+        },
+        {
+          "id": "COV0020",
+          "name": "DoctorConsultationBenefit",
+          "desc": "Doctor Consultation Benefit",
+          "riderRef": "S00318",
+          "event": {
+            "name": "CONSULTATION",
+            "desc": "Doctor Consultation Benefit",
+            "eventType": "CONSULTATION",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0020",
+              "name": "CONSULTATION",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateBenefit_Consultation"
+                }
+              ],
+              "selectionCriteria": null
+            }
+          ]
+        },
+        {
+          "id": "COV0021",
+          "name": "SpecialistConsultationBenefit",
+          "desc": "Specialist Consultation Benefit",
+          "riderRef": "S00318",
+          "event": {
+            "name": "CONSULTATION",
+            "desc": "Specialist Consultation Benefit",
+            "eventType": "CONSULTATION",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0021",
+              "name": "CONSULTATION",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateBenefit_Consultation"
+                }
+              ],
+              "selectionCriteria": null
+            }
+          ]
+        },
+        {
+          "id": "COV0022",
+          "name": "General Hospital Service Benefit",
+          "desc": "",
+          "riderRef": "S00320",
+          "event": {
+            "name": "HOSPITALSERVICE",
+            "desc": "General Hospital Service Benefit",
+            "eventType": "HOSPITALSERVICE",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0022",
+              "name": "HOSPITALSERVICE",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateBenefit_HospitalService"
+                }
+              ],
+              "selectionCriteria": null
+            }
+          ]
+        },
+        {
+          "id": "COV0023",
+          "name": "Illness Benefit",
+          "desc": "Illness Benefit",
+          "riderRef": "S00469",
+          "event": {
+            "name": "ILLNESS",
+            "desc": "Protection for your family in case you are ill.",
+            "eventType": "ILLNESS",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0023",
+              "name": "ILLNESS Benefit",
+              "desc": "Protection for your family in case of your illness",
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateIllnessBenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        },
+        {
+          "id": "COV0024",
+          "name": "Murder and Assault",
+          "desc": "Personal Accident Insurance policy provides complete financial protection to the insured members against uncertainties such as accidental death, accidental bodily injuries, and partial/total disabilities, permanent as well as temporary disabilities resulting from an accident.",
+          "riderRef": "S00534",
+          "event": {
+            "name": "MURDERASSAULT",
+            "desc": "",
+            "eventType": "MURDERASSAULT",
+            "selectionCriteria": [
+              {
+                "type": "INCLUSION",
+                "functionName": "F_checkPolicyAvailability"
+              }
+            ]
+          },
+          "indemnities": [
+            {
+              "id": "IND0024",
+              "name": "MURDER",
+              "desc": null,
+              "addition": "CUMULATIVE",
+              "type": "SIMPLE",
+              "computes": [
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_Calculate_Benefit"
+                },
+                {
+                  "type": "BENEFIT",
+                  "functionName": "F_CalculateMABenefit"
+                }
+              ],
+              "selectionCriteria": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "computes": {
+    "allFunctionsDefinitions": "",
+    "functionGroups": [
+
+    ],
+    "tables": [
+
+    ]
+  },
+  "customerJourney": null,
+  "questionnaire": null,
+  "productDocumentTemplateMap": null,
+  "productDocument": null,
+  "auditDetail": {
+    "createTime": "",
+    "updateTime": "",
+    "updateBy": ""
+  }
+};

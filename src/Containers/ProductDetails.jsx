@@ -8,17 +8,35 @@ import '../Styles/productDetails.css'
 import TextboxWithRadio from "../Components/TextboxWithRadio";
 // import { currencyCode } from '../Constants/Constants';
 import TextInput from '../Components/TextInput'
+import { BaseJson } from "../Constants/Constants";
 
-const ProductDetails = () => {
+const ProductDetails = ({rerender,Setrerender}) => {
   const [value, setValue] = useState('');
-  const [rerender, Setrerender] = useState(false);
-  const [currency, setCurrency] = useState("")
+//  const [rerender, Setrerender] = useState(false);
+  const [currency, setCurrency] = useState("");
+  const [category,setCategory]=useState("");
   const [display, setDisplay] = useState(true);
-  const [enablePromotionRedemption, setEnablePromotionRedemption] = useState("n")
+  const [enablePromotionRedemption, setEnablePromotionRedemption] = useState("n");
+  const [name,setName]=useState('');
+  const [desc,setDesc]=useState('');
+  // productDetailsResult.name=name;
+  // productDetailsResult.desc=desc;
+  console.log("json values", BaseJson.shortName);
+  BaseJson.shortName=name;
+  BaseJson.fullName=name;
+  BaseJson.productDisplayBehaviour.productDisplayName=name;
+  BaseJson.desc=desc;
+  BaseJson.category=category;
+  BaseJson.productDisplayBehaviour.productGroupName=value;
+  BaseJson.LBU.distributingCurrency=currency;
+  console.log("nameValue",name);
+  console.log("descValue",desc);
+  console.log("category",category);
 
   const handleChange = (e) => {
     setValue(e.label);
-    Setrerender(!rerender);
+    console.log("dropdown",e.label);
+    Setrerender();
     console.log("selected-value",e);
     if (e.label === "Cambodia") {
       setCurrency("USD")
@@ -83,7 +101,7 @@ const ProductDetails = () => {
                       <div style={{ marginLeft: item.id === 11 ? 90 : 40, marginTop: i.label ? -20: 0 }}>
                         <div style={{textAlign:"left"}}>{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
                         <DropDown
-                          handleChange={handleChange}
+                          handleChange={e=>item.label==="Category"?setCategory(e.label):handleChange(e)}
                           options={i.options}
                           enable={i.label ==="Promotion Redemption"?enablePromotionRedemption:i.enable}
                           width={i.width}
@@ -101,6 +119,8 @@ const ProductDetails = () => {
                     <TextInput
                       size={item.label === "Description" ? 72 : 21}
                       enable={i.enable}
+                      value={item.label==="Name"?name:item.label==="Description"?desc:null}
+                      handleChange={e=>item.label==="Name"?setName(e.target.value):item.label==="Description"?setDesc(e.target.value):null}
                       placeHolderText={i?.label === "Currency Code" ? currency : i.placeHolderText}
                     />
                   </div>

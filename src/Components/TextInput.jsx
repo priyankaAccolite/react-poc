@@ -6,7 +6,7 @@ const TextInput = (props) => {
     return (
         <input
             style={{
-                border: '1px solid black', height: 30, borderRadius: 3, fontSize: 15, textAlign: "center",
+                border: '1px solid black', height: 30, borderRadius: 3, fontSize: 15,paddingLeft:15,paddingRight:15,
                 backgroundColor: props.enable === "n" || props.enable === "ce" ? "lightgrey" : "white",
                 width: props.width
             }}
