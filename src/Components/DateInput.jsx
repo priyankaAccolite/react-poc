@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/dateInput.css"
 
-const DateInput = () => {
-  const [pickedDate, setPickedDate] = useState(new Date());
+const DateInput = (props) => {
+//   const [pickedDate, setPickedDate] = useState(new Date());
 
   const CustomInput = ((props) => {
     return (
@@ -21,13 +21,13 @@ const DateInput = () => {
 
   return (
     <div
-     style={{border: '1px solid black', height:30, borderRadius:3, width:196, display:'flex', justifyContent:'center', alignItems:'center'}}
+     style={{border: '1px solid black', height:30, borderRadius:3, width:222, display:'flex', justifyContent:'center', alignItems:'center'}}
      >
       <DatePicker
-        selected={pickedDate}
+        selected={props.pickDate}
         dateFormat="dd-MM-yyyy"
         onChange={date => {
-          setPickedDate(date);
+          props.setPickDate(date);
         }}
         customInput={<CustomInput />}
       />
