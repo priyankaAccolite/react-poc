@@ -23,7 +23,7 @@ const MainContainer = () => {
         </div>
         <hr style={{ border: '1px solid gray' }} />
         <div className="subContainer"><ProductDetails rerender={rerender} Setrerender={Setrerender}/></div>
-        <div className="subContainer"><Validation /></div>
+        <div className="subContainer"><Validation rerender={rerender} Setrerender={Setrerender}/></div>
         <div className="subContainer"><BenefitDetails /></div>
         <div className="subContainer"><PremiumDetails /></div>
         <div className="subContainer"><PolicyServicing /></div>

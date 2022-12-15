@@ -13,7 +13,7 @@ import { BaseJson } from "../Constants/Constants";
 const ProductDetails = ({ rerender, Setrerender }) => {
   const [value, setValue] = useState('');
   //  const [rerender, Setrerender] = useState(false);
-  const [pickedDate, setPickedDate] = useState(new Date());
+  const [pickedDate, setPickedDate] = useState("");
   const [currency, setCurrency] = useState("");
   const [category, setCategory] = useState("");
   const [display, setDisplay] = useState(true);
@@ -27,6 +27,8 @@ const ProductDetails = ({ rerender, Setrerender }) => {
   const [promotionR, setPromotionR] = useState('')
   const [petc, setPetc] = useState('')
   const [ymwd, setymwd] = useState('')
+  const [promoCode, setPromoCode] = useState('')
+
   const handleMinor = () => {
     let obj = {
       "name": "isMinor",
@@ -53,7 +55,7 @@ const ProductDetails = ({ rerender, Setrerender }) => {
   const handleBeneficiary = () => {
     return BaseJson.attributes.map((item) => {
       if (item.name === "noOfBeneficiaries") {
-        item.value = mnoba
+        item.value = Number(mnoba)
       }
     })
   }
@@ -116,14 +118,14 @@ const ProductDetails = ({ rerender, Setrerender }) => {
   const handlePolicyTerm = () => {
     return BaseJson.attributes.map((item) => {
       if (item.name === "policyTerm") {
-        item.value = ptotp
+        item.value = Number(ptotp)
       }
     })
   }
   const handlePolicyTermUnit = () => {
     return BaseJson.attributes.map((item) => {
       if (item.name === "policyTermUnit") {
-        item.value = ymwd
+        item.value = ymwd === "Week(s)" ? "W" : ymwd === "Year(s)" ? "Y" : ymwd === "Day(s)" ? "D" : "M"
       }
     })
   }
@@ -149,12 +151,50 @@ const ProductDetails = ({ rerender, Setrerender }) => {
         }
       ]
     }
-    return BaseJson.attributes.some((item) => item.name === "saleCoverageEndDate") ? null : BaseJson.attributes.push(obj)
+    return BaseJson.attributes.some((item) => item.name === "saleCoverageEndDate") ? null : pickedDate != "" ? BaseJson.attributes.push(obj) : null
   }
   const handleDateValue = () => {
-    return BaseJson.attributes.map((item) => {
+    return pickedDate != "" ? BaseJson.attributes.map((item) => {
       if (item.name === "saleCoverageEndDate") {
         item.value = pickedDate.toLocaleDateString('sv')
+      }
+    }) : null
+
+  }
+  const handlePromoCode = () => {
+    let promoobj = {
+      "name": "promotionCategory",
+      "dataType": "string",
+      "value": "$$value$$",
+      "copyFromAttribute": null,
+      "copyToChild": false,
+      "behaviours": [
+        {
+          "transactionContext": {
+            "id": "SALES-ANY-ALL"
+          },
+          "display": {
+            "hidden": true,
+            "displayIndex": 5,
+            "visibleInCatalog": false,
+            "displayName": "promotionCategory"
+          }
+        }
+      ]
+    }
+    if (isPa === "Yes") {
+      if (BaseJson.attributes.some((item) => item.name === "promotionCategory")) { } else BaseJson.attributes.push(promoobj)
+
+    } else if (isPa === "No") {
+      if (BaseJson.attributes.some((item) => item.name === "promotionCategory")) { BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name === "promotionCategory"), 1) } else { }
+    }
+    return BaseJson.attributes
+  }
+
+  const handlePromoCodeValue = () => {
+    return BaseJson.attributes.map((item) => {
+      if (item.name === "promotionCategory") {
+        item.value = promoCode != "" ? promoCode : "S99999"
       }
     })
   }
@@ -176,8 +216,10 @@ const ProductDetails = ({ rerender, Setrerender }) => {
   handlePolicyTermUnit()
   handleDate()
   handleDateValue()
+  handlePromoCode()
+  handlePromoCodeValue()
 
-  console.log("BaseJSON", BaseJson, BaseJson.attributes.length, BaseJson.attributes)
+  console.log("BaseJSON", BaseJson, BaseJson.attributes.length, BaseJson.attributes, pickedDate)
 
   const handleChange = (e) => {
     setValue(e.label);
@@ -277,9 +319,9 @@ const ProductDetails = ({ rerender, Setrerender }) => {
                     <div style={{ textAlign: "left" }}>{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
                     <TextInput
                       size={item.label === "Description" ? 72 : 21}
-                      enable={i.enable}
-                      value={item.label === "Name" ? name : item.label === "Description" ? desc : item.id === 9 ? mnoba : item.id === 1 ? pCode : item.id === 10 ? ptotp : null}
-                      handleChange={e => item.label === "Name" ? setName(e.target.value) : item.label === "Description" ? setDesc(e.target.value) : item.id === 9 ? setMnoba(e.target.value) : item.id === 1 ? setPcode('S99999') : item.id === 10 ? setptotp(e.target.value) : null}
+                      enable={i.label === "Promotion Code" ? enablePromotionRedemption : i.enable}
+                      value={item.label === "Name" ? name : item.label === "Description" ? desc : item.id === 9 ? mnoba : item.id === 1 ? pCode : item.id === 10 ? ptotp : item.id === 7 ? promoCode : null}
+                      handleChange={e => item.label === "Name" ? setName(e.target.value) : item.label === "Description" ? setDesc(e.target.value) : item.id === 9 ? setMnoba(e.target.value) : item.id === 1 ? setPcode('S99999') : item.id === 10 ? setptotp(e.target.value) : item.id === 7 ? setPromoCode(e.target.value) : null}
                       placeHolderText={i?.label === "Currency Code" ? currency : i.placeHolderText}
                       width={i.width}
                     />
