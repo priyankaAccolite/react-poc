@@ -59,19 +59,19 @@ const PolicyServicing = () => {
                   return (
                     <>
                       <div style={{ marginLeft: 40 }}>
-                        <DropDown handleChange={handleChange} options={i.options} />
+                        <DropDown handleChange={handleChange} options={i.options} width={i.width}/>
                       </div>
                     </>
                   )
                 }  else if (i.placeHolder === "button") {
                   return <div style={{ marginLeft: 10 }}>
-                    <input type="button" value="Add to List" onClick={handleClick} style={{border:'1px solid black', backgroundColor:"#edb525", height:35, borderRadius:3 ,width:75, fontWeight:'bold', fontSize:12}}/>
+                    <input type="button" value="Add to List" onClick={handleClick} style={{border:'1px solid black', backgroundColor:"#ED2939", height:35, borderRadius:3 ,width:75, fontWeight:'bold', fontSize:12, color:"whitesmoke"}}/>
                   </div>
                 } 
                 else {
                   return <div style={{display:"flex", flexDirection:"row",marginLeft: 5}}>
                     <TextboxWithRadio currencyCode={applicablePolicyServicing} />
-                    <input type="button" value="Edit" onClick={handleEdit} style={{border:'1px solid black', backgroundColor:"#edb525", height:35, borderRadius:3 ,width:40, marginLeft:5, fontWeight:'bold', fontSize:12}}/>
+                    <input type="button" value="Edit" onClick={handleEdit} style={{border:'1px solid black', backgroundColor:"#ED2939", height:35, borderRadius:3 ,width:40, marginLeft:5, fontWeight:'bold', fontSize:12, color:"whitesmoke"}}/>
                   </div>
                 }
               })}

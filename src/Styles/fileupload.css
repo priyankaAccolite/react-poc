@@ -29,7 +29,7 @@ img {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  background-color: #edb525; 
+  background-color: #ED2939; 
   border: none;
   color: black;
   padding: 7px 20px;
@@ -59,8 +59,8 @@ img {
   text-decoration: none;
   border: solid black 0.1px;
   font-size: 12px;
-  background-color: #edb525;
-  color: #000;
+  background-color: #ED2939;
+  color: "whitesmoke";
   box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
   cursor: pointer;
   outline: none;
@@ -82,8 +82,8 @@ img {
   text-decoration: none;
   border: solid black 0.1px;
   font-size: 12px;
-  background-color: #edb525;
-  color: #000;
+  background-color: #ED2939;
+  color: "whitesmoke";
   box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
   cursor: pointer;
   outline: none;
