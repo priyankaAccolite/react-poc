@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "../Components/Header";
 import { premiumDetails } from "../Constants/Constants";
-import DropDown from "../Components/DropDown";
 import "../Styles/premiumDetails.css";
 import FileUpload from "../Components/FileUpload";
+import DropDown2 from "../Components/DropDown2";
 
 const PremiumDetails = () => {
   const [premiumDetailsData, setPremiumDetailsData] = React.useState(
@@ -23,6 +23,7 @@ const PremiumDetails = () => {
     }
     setPremiumDetailsData(JSON.parse(JSON.stringify(_premiumDetailsData)));
   };
+  console.log(premiumDetailsData, "premiumDetailsData");
   let validPremiumTypes = ["premium", "freemium"];
   let validAttribute = "constant";
   let validAttribute2 = "varies with attributes";
@@ -125,7 +126,7 @@ const PremiumDetails = () => {
                             className="premiumDropdownContainer"
                             style={{ paddingLeft: "30px" }}
                           >
-                            <DropDown
+                            <DropDown2
                               handleChange={(e) =>
                                 handleChange(index, subIndex, e?.value)
                               }

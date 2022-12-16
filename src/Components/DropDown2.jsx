@@ -2,7 +2,14 @@ import React from "react";
 import "../Styles/dropdown.css";
 import Select from "react-select";
 
-const DropDown = ({ handleChange, width, options, enable }) => {
+const DropDown2 = ({
+  handleChange,
+  width,
+  options,
+  enable,
+  value,
+  ...rest
+}) => {
   function customTheme(theme) {
     return {
       ...theme,
@@ -35,7 +42,7 @@ const DropDown = ({ handleChange, width, options, enable }) => {
       };
     },
   };
-  // let _value = options?.filter((opt) => opt.value === value);
+  let _value = options?.filter((opt) => opt.value === value);
   return (
     <div
       style={{
@@ -55,9 +62,9 @@ const DropDown = ({ handleChange, width, options, enable }) => {
           IndicatorSeparator: () => null,
         }}
         onChange={handleChange}
-        // value={_value}
+        value={_value}
       />
     </div>
   );
 };
-export default DropDown;
+export default DropDown2;
