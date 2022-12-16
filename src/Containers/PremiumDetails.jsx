@@ -115,7 +115,7 @@ const PremiumDetails = () => {
                               }}
                               value={subItem.fieldvalue}
                               onChange={(e) =>
-                                handleChange(index, subIndex, e?.value)
+                                handleChange(index, subIndex, e?.target?.value)
                               }
                             />
                           </div>
@@ -149,7 +149,7 @@ const PremiumDetails = () => {
                                 cols="100"
                                 value={subItem.fieldvalue}
                                 onChange={(e) =>
-                                  handleChange(index, subIndex, e?.value)
+                                  handleChange(index, subIndex, e.target.value)
                                 }
                               />
                             </div>
