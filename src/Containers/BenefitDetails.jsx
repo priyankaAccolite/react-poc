@@ -7,6 +7,7 @@ import TextboxWithRadio from "../Components/TextboxWithRadio";
 import FileUpload from "../Components/FileUpload";
 import { applicableBenefits } from "../Constants/Constants";
 import TextInput from "../Components/TextInput";
+import UpdateBenfitDetails from "./UpdateBenfitDetails";
 
 const BenefitDetails = () => {
 
@@ -14,7 +15,8 @@ const BenefitDetails = () => {
   const [value, setValue] = useState('');
   const [rerender, Setrerender] = useState(false);
   const [display,setDisplay]=useState(true);
-
+  const [showModal,setshowModal]=useState(false);
+  console.log("applicable",applicableBenefits);
   const handleTextChange=(e)=>{
      setTextValue(e.target.value);
   };
@@ -37,7 +39,8 @@ const BenefitDetails = () => {
     }
   };
   const handleEdit=()=>{
-
+    console.log("modal",showModal);
+  setshowModal(!showModal);
   };
   const handleAccordion=()=>{
     setDisplay(!display);
@@ -93,8 +96,7 @@ const BenefitDetails = () => {
                 } 
                 else {
                   return <div style={{display:"flex", flexDirection:"row",marginLeft: 5}}>
-                    <TextboxWithRadio currencyCode={applicableBenefits} />
-                    <input type="button" value="Edit" onClick={handleEdit} style={{border:'1px solid black', backgroundColor:"#ED2939", height:35, borderRadius:3 ,width:40, marginLeft:5, fontWeight:'bold', fontSize:12, color:"whitesmoke"}}/>
+                    <TextboxWithRadio currencyCode={applicableBenefits} fromBenefit={true} rerender={rerender} Setrerender={Setrerender}/>
                   </div>
                 }
               })}
