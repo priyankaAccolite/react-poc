@@ -8,7 +8,8 @@ const TextInput = (props) => {
             style={{
                 border: '1px solid black', height: 30, borderRadius: 3, fontSize: 15,paddingLeft:15,paddingRight:15,
                 backgroundColor: props.enable === "n" || props.enable === "ce" ? "lightgrey" : "white",
-                width: props.width
+                width: props.width,
+                marginLeft:props.isItModalInput?30:15
             }}
             type="text"
             value={props.value}
