@@ -183,18 +183,22 @@ export const productDetails = [
 export const updateBenfitDetails = [
   {
     label: "Benefit Code",
+    enable:"n",
     type: [{ label: "input", value: "", width: "200px" }],
   },
   {
     label: "Benefit Name",
+    mandatory:"y",
     type: [{ label: "input", value: "", width: "470px" }],
   },
   {
     label: "Claim Template Type",
+    mandatory:"y",
     type: [{ label: "input", value: "", width: "200px" }],
   },
   {
     label: "Waiting period",
+    mandatory:"y",
     type: [
       { label: "input", value: "", width: "150px" },
       {
@@ -219,9 +223,9 @@ export const updateBenfitDetails = [
       {
         label: "dropdown",
         options: [
-          { value: "Accident", label: "Accident" },
-          { value: "Death", label: "Death" },
-          { value: "Sucide", label: "Week(s)" },
+          { value: "Accident", label: "ACCIDENT" },
+          { value: "Death", label: "DEATH" },
+          { value: "Sucide", label: "SUICIDE" },
         ],
         value: "",
         width: "206px",
@@ -232,12 +236,28 @@ export const updateBenfitDetails = [
   },
   {
     label: "Claimant Role",
+    mandatory:"y",
     type: [
       {
         label: "dropdown",
         options: [
           { value: "Lifeassured", label: "Lifeassured" },
           { value: "Beneficiary", label: "Beneficiary" },
+        ],
+        value: "",
+        width: "206px",
+      },
+    ],
+  },
+  {
+    label: "Benefit Type",
+    mandatory:"y",
+    type: [
+      {
+        label: "dropdown",
+        options: [
+          { value: "Baseplan", label: "BASEPLAN" },
+          { value: "Rider", label: "RIDER" },
         ],
         value: "",
         width: "206px",
