@@ -56,11 +56,12 @@ const ProductDetails = ({ rerender, Setrerender }) => {
     let str = 'if (age >= laMinAge && age <= laMaxAge) {return true;} else {this.errorMessage = "Age should be within /"+ laMinAge +/" to /"+ laMaxAge +/" years for an adult";this.errorCode = 1001;return false;}'
     if(petc === "Yes"){
         checkProductAvailability[2]=param
-        if(checkProductAvailabilityArgument.some((item) => item.name === "isMinor")){}else checkProductAvailabilityArgument.push("isMinor") 
+        if(checkProductAvailabilityArgument.some((item) => item === "isMinor")){}else checkProductAvailabilityArgument.push("isMinor") 
 
     }
     if(petc === "No"){
       checkProductAvailability[2]=str
+      if(checkProductAvailabilityArgument.some((item) => item === "isMinor")){ checkProductAvailabilityArgument.splice(checkProductAvailabilityArgument.findIndex(item => item === "isMinor"), 1)}else {}
     }
     return petc === "Yes" ? BaseJson.attributes.some((item) => item.name === "isMinor") ? null : BaseJson.attributes.push(obj) : BaseJson.attributes.some((item) => item.name === "isMinor") ? BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name === "isMinor"), 1) : null
   }
@@ -173,7 +174,7 @@ const ProductDetails = ({ rerender, Setrerender }) => {
         }
       })
       checkProductAvailability[0]=param
-      if(checkProductAvailabilityArgument.some((item) => item.name === "saleCoverageEndDate")){}else checkProductAvailabilityArgument.push("saleCoverageEndDate") 
+      if(checkProductAvailabilityArgument.some((item) => item === "saleCoverageEndDate")){}else checkProductAvailabilityArgument.push("saleCoverageEndDate") 
     }  
 
   }
@@ -277,7 +278,7 @@ const ProductDetails = ({ rerender, Setrerender }) => {
   handleComputesSales()
   handleComputesMinor()
 
-  console.log("BaseJSON", BaseJson, BaseJson.attributes.length, BaseJson.attributes, BaseJson.computes.allFunctionsDefinitions)
+  console.log("BaseJSON", BaseJson, BaseJson.attributes.length, BaseJson.attributes, BaseJson.computes.allFunctionsDefinitions, checkProductAvailabilityArgument)
 
   const handleChange = (e) => {
     setValue(e.label);

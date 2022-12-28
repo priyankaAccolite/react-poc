@@ -379,7 +379,7 @@ export const premiumDetails = [
     mandatory: "y",
   },
   {
-    label: "Free Peroid details",
+    label: " Free period details (Freemium)",
     type: [
       {
         placeHolder: "input",

@@ -4,6 +4,7 @@ import { premiumDetails } from "../Constants/Constants";
 import "../Styles/premiumDetails.css";
 import FileUpload from "../Components/FileUpload";
 import DropDown2 from "../Components/DropDown2";
+import { BaseJson } from "../Constants/Constants";
 
 const PremiumDetails = () => {
   const [premiumDetailsData, setPremiumDetailsData] = React.useState(
@@ -12,6 +13,7 @@ const PremiumDetails = () => {
   const [selectedval, setSelectedVal] = React.useState("");
   const [display, setDisplay] = React.useState(true);
 
+ 
   const handleChange = (index, subIndex = 0, value) => {
     setSelectedVal(value);
     let _premiumDetailsData = JSON.parse(JSON.stringify(premiumDetailsData));
@@ -36,8 +38,7 @@ const PremiumDetails = () => {
     premiumDetailsData[1]?.type[0].fieldvalue === validAttribute;
 
   let isFreeEnabled =
-    isConstEnabled &&
-    premiumDetailsData[1]?.type[0].fieldvalue === validAttribute2;
+  premiumDetailsData[0]?.type[0].fieldvalue === "freemium"
 
   let premiumDetailsEnables = {
     0: "y",
@@ -48,8 +49,107 @@ const PremiumDetails = () => {
   const handleAccordion = () => {
     setDisplay(!display);
   };
-
+  const handleAttributes = () =>{
+    console.log("premiumDetailsData[1]?.type[0].fieldvalue",premiumDetailsData[0]?.type[0].fieldvalue)
+      BaseJson.attributes.map((item)=>{
+        if(item.name === "totalPremium"){
+          if(premiumDetailsData[0]?.type[0].fieldvalue === "free"){
+            item.value = 0
+          } else if(premiumDetailsData[0]?.type[0].fieldvalue === "premium" || premiumDetailsData[0]?.type[0].fieldvalue === "freemium"){
+            item.value = Number(premiumDetailsData[2]?.type[0].fieldvalue)
+          }
+        }
+      })
+      if(premiumDetailsData[0]?.type[0].fieldvalue === "freemium" && premiumDetailsData[3]?.type[0].fieldvalue != ""){
+        if(BaseJson.attributes.some((item) => item.name === "freeCampaignPeriod")){} else {
+          BaseJson.attributes.push({
+            "name": "freeCampaignPeriod",
+            "dataType": "number",
+            "value": "$$value$$",
+            "copyFromAttribute": null,
+            "copyToChild": false,
+            "behaviours": [
+              {
+                "transactionContext": {
+                  "id": "SALES-ANY-ALL"
+                },
+                "display": {
+                  "hidden": true,
+                  "displayIndex": 5,
+                  "visibleInCatalog": false,
+                  "displayName": "freeCampaignPeriod"
+                }
+              }
+            ]
+          })
+        } 
+      } else {
+        if(BaseJson.attributes.some((item) => item.name === "freeCampaignPeriod")){
+          BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name === "freeCampaignPeriod"), 1)
+        } else {}
+      }
+      if(premiumDetailsData[0]?.type[0].fieldvalue === "freemium" && premiumDetailsData[3]?.type[1].fieldvalue != ""){
+      if(BaseJson.attributes.some((item) => item.name === "freeCampaignPeriodUnit")){} else {
+        BaseJson.attributes.push({
+          "name": "freeCampaignPeriodUnit",
+          "dataType": "string",
+          "value": "$$value$$",
+          "copyFromAttribute": null,
+          "copyToChild": false,
+          "behaviours": [
+            {
+              "transactionContext": {
+                "id": "SALES-ANY-ALL"
+              },
+              "display": {
+                "hidden": true,
+                "displayIndex": 5,
+                "visibleInCatalog": false,
+                "displayName": "freeCampaignPeriodUnit"
+              }
+            }
+          ]
+        })
+      }
+      } else {
+        if(BaseJson.attributes.some((item) => item.name === "freeCampaignPeriodUnit")){
+          BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name === "freeCampaignPeriodUnit"), 1)
+        } else {}
+      }
+  }
+  const handleValueOfFreePeriod = () =>{
+    let value0 = Number(premiumDetailsData[3]?.type[0].fieldvalue)
+    let value1
+    if(premiumDetailsData[3]?.type[1].fieldvalue === "Week(s)"){
+      value1 = "W"
+    } else if(premiumDetailsData[3]?.type[1].fieldvalue === "Day(s)"){
+      value1 = "D"
+    } else if(premiumDetailsData[3]?.type[1].fieldvalue === "Year(s)"){
+      value1 = "Y"
+    } else if(premiumDetailsData[3]?.type[1].fieldvalue === "Month(s)"){
+      value1 = "M"
+    }
+    BaseJson.attributes.map((item)=>{
+      if(item.name === "freeCampaignPeriodUnit"){
+        item.value = value1
+      }
+      if(item.name === "freeCampaignPeriod"){
+        item.value = value0
+      }
+    })
+  }
+  const handlePremiumFrequencyAttribute = () =>{
+    BaseJson.attributes.map((item)=>{
+      if(item.name=== "premiumFrequency"){
+        item.value = premiumDetailsData[4]?.type[0].fieldvalue
+      }
+    })
+  }
+  handleAttributes()
+  handleValueOfFreePeriod()
+  handlePremiumFrequencyAttribute()
   return (
+    console.log("checkkkk",BaseJson.attributes),
     <>
       <div>
         <div className="premiumContainer">

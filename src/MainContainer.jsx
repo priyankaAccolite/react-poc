@@ -17,7 +17,9 @@ const MainContainer = () => {
     Setrerender(!rerender);
  };
  const handleComputesAllFunctionsDefinitions = () =>{
-  return BaseJson.computes.allFunctionsDefinitions = `function checkProductAvailability(${checkProductAvailabilityArgument.join(",")}){${checkProductAvailability.join("")}}`
+  let var1 = `function checkProductAvailability(${checkProductAvailabilityArgument.join(",")})`
+  let var2 = "function F_Calculate_Benefit(planName,T_PLANDETAILS){var rows=T_PLANDETAILS.filter(function (elem) {return elem.packageName==planName.toUpperCase()});if (rows.length>0) {return {\"totalSumAssured\": rows[0].sumInsured,\"S00309_SI\": rows[0].S00309_SI};} else{this.errorMessage = \"plan doesnt exist\"; this.errorCode = 1008;}}"
+  return BaseJson.computes.allFunctionsDefinitions = `${var1}{${checkProductAvailability.join("")}}${var2}`
 }
 handleComputesAllFunctionsDefinitions()
 
@@ -25,12 +27,72 @@ const handleComputesFunctionGroupsFunctionBody = () =>{
   return BaseJson.computes.functionGroups.map((item)=>{
     if(item.type === "INCLUSION"){
       item.functions.map((i)=>{
-        i.functionBody = `function checkProductAvailability(${checkProductAvailabilityArgument.join(",")}){${checkProductAvailability.join("")}}`
+        i.functionBody = `${checkProductAvailability.join("")}`
       })
     }
   })
 }
+const handleComputesFUnctionGroupBenefit = () =>{
+  let obj = {
+    "type": "BENEFIT",
+    "functions": [
+      {
+        "transactionContextRef": [
+          "SALES-ANY-ALL"
+        ],
+        "functionName": "F_Calculate_Benefit",
+        "functionBody": "var rows=T_PLANDETAILS.filter(function (elem) {return elem.packageName==planName.toUpperCase()});if (rows.length>0) {return {\"totalSumAssured\": rows[0].sumInsured,\"S00309_SI\": rows[0].S00309_SI};} else{this.errorMessage = \"plan doesnt exist\"; this.errorCode = 1008;}",
+        "input": [
+          {
+            "name": "planName",
+            "attributeMapping": {
+              "domainObjectMapping": "",
+              "source": "productOption",
+              "productCode": "THIS",
+              "attributeName": "planName"
+            }
+          },
+          {
+            "name": "table",
+            "tableRef": "T_PLANDETAILS"
+          }
+        ],
+        "output": {
+          "name": "planInfo",
+          "dataType": "jsonString",
+          "attributeMapping": [
+            {
+              "domainObjectMapping": null,
+              "source": "product",
+              "outputPropertyName": "totalSumAssured",
+              "productCode": "THIS",
+              "attributeName": "totalSumAssured"
+            },
+            {
+              "domainObjectMapping": null,
+              "source": "productOption",
+              "outputPropertyName": "S00309_SI",
+              "productCode": "S00309",
+              "attributeName": "totalSumAssured"
+            },
+            {
+              "domainObjectMapping": null,
+              "source": "productOption",
+              "outputPropertyName": "S00312_SI",
+              "productCode": "S00312",
+              "attributeName": "totalSumAssured"
+            }
+          ]
+        },
+        "order": 0
+      }
+    ]
+  }
+
+  return BaseJson.computes.functionGroups.some((item) => item.type === "BENEFIT") ?null :BaseJson.computes.functionGroups.push(obj)
+}
 handleComputesFunctionGroupsFunctionBody()
+handleComputesFUnctionGroupBenefit()
 
 console.log("BaseJSON main container", BaseJson.attributes, BaseJson.computes.allFunctionsDefinitions)
   return <div>

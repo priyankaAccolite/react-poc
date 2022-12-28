@@ -29,7 +29,7 @@ const Validation = () => {
     const [gendersmokerval, setgendersmokerval] = useState('')
 
     const handleAgeVariable = () =>{
-        let param 
+        let param = ""
         if(calculation === "ANB")
         param = "var age = calculateAgeNextBirthday(birthDate);"
         else if (calculation === "ALB")
@@ -38,7 +38,7 @@ const Validation = () => {
         param = "var age = calculateAgeNearestBirthday(birthDate);"
         else if(calculation === "ANBfrD")
         param = "var age = calculateAgeNextBirthdayFromReferenceDate(birthDate);"
-        else 
+        else if(calculation === "ALBfrD")
         param = "var age = calculateAgeLastBirthdayFromReferenceDate(birthDate);"
         checkProductAvailability[1] = param
         
@@ -172,12 +172,12 @@ const Validation = () => {
                 }
             })
         checkProductAvailability[4] = param
-        if(checkProductAvailabilityArgument.some((item) => item.name === "applicableLaGender")){}else checkProductAvailabilityArgument.push("applicableLaGender") 
-            if(checkProductAvailabilityArgument.some((item) => item.name === "gender")){}else checkProductAvailabilityArgument.push("gender") 
+        if(checkProductAvailabilityArgument.some((item) => item === "applicableLaGender")){}else checkProductAvailabilityArgument.push("applicableLaGender") 
+            if(checkProductAvailabilityArgument.some((item) => item === "gender")){}else checkProductAvailabilityArgument.push("gender") 
         BaseJson.computes.functionGroups.map((item)=>{
             if(item.type === "INCLUSION"){
               item.functions.map((i)=>{
-              return (i.input.some((item) => item.name === "iapplicableLaGender"))?null:i.input.push(obj)
+              if (i.input.some((item) => item.name === "applicableLaGender")){} else i.input.push(obj)
               })
             }
           })
@@ -202,12 +202,12 @@ const Validation = () => {
                 }
             })
             checkProductAvailability[4] = param 
-            if(checkProductAvailabilityArgument.some((item) => item.name === "isSmokerAllowed")){}else checkProductAvailabilityArgument.push("isSmokerAllowed") 
-            if(checkProductAvailabilityArgument.some((item) => item.name === "smoker")){}else checkProductAvailabilityArgument.push("smoker") 
+            if(checkProductAvailabilityArgument.some((item) => item === "isSmokerAllowed")){}else checkProductAvailabilityArgument.push("isSmokerAllowed") 
+            if(checkProductAvailabilityArgument.some((item) => item === "smoker")){}else checkProductAvailabilityArgument.push("smoker") 
             BaseJson.computes.functionGroups.map((item)=>{
                 if(item.type === "INCLUSION"){
                   item.functions.map((i)=>{
-                  return (i.input.some((item) => item.name === "isSmokerAllowed"))?null:i.input.push(obj)
+                  if(i.input.some((item) => item.name === "isSmokerAllowed")){} else i.input.push(obj)
                   })
                 }
               })
@@ -224,8 +224,14 @@ const Validation = () => {
     handleSmokerValue()
     handleAgeVariable()
 
-    console.log("BaseJSON", BaseJson.attributes, min, max, BaseJson.computes.functionGroups)
-
+    console.log("BaseJSON", BaseJson.attributes, min, max, BaseJson.computes.functionGroups, checkProductAvailabilityArgument)
+    BaseJson.computes.functionGroups.map((item)=>{
+        if(item.type === "INCLUSION"){
+          item.functions.map((i)=>{
+         console.log("input",i.input)
+          })
+        }
+      })
     const handleChange = (e) => {
         setValue(e.label);
         Setrerender(!rerender);
