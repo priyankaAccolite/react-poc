@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import Validation from './Containers/Validations'
 import PolicyServicing from "./Containers/PolicyServicing";
 import { BaseJson } from "./Constants/Constants";
+import { checkProductAvailability, checkProductAvailabilityArgument } from "./Constants/Constants";
 
 const MainContainer = () => {
   const [download,setDownload]=useState(false);
@@ -15,6 +16,23 @@ const MainContainer = () => {
     setDownload(true);
     Setrerender(!rerender);
  };
+ const handleComputesAllFunctionsDefinitions = () =>{
+  return BaseJson.computes.allFunctionsDefinitions = `function checkProductAvailability(${checkProductAvailabilityArgument.join(",")}){${checkProductAvailability.join("")}}`
+}
+handleComputesAllFunctionsDefinitions()
+
+const handleComputesFunctionGroupsFunctionBody = () =>{
+  return BaseJson.computes.functionGroups.map((item)=>{
+    if(item.type === "INCLUSION"){
+      item.functions.map((i)=>{
+        i.functionBody = `function checkProductAvailability(${checkProductAvailabilityArgument.join(",")}){${checkProductAvailability.join("")}}`
+      })
+    }
+  })
+}
+handleComputesFunctionGroupsFunctionBody()
+
+console.log("BaseJSON main container", BaseJson.attributes, BaseJson.computes.allFunctionsDefinitions)
   return <div>
     <Container style={{ width: '100%', paddingTop: '10px', paddingBottom: '10px' }}>
       <div className="mainContainer">
@@ -22,8 +40,8 @@ const MainContainer = () => {
           Product RunTime Configurator
         </div>
         <hr style={{ border: '1px solid gray' }} />
-        <div className="subContainer"><ProductDetails rerender={rerender} Setrerender={Setrerender}/></div>
-        <div className="subContainer"><Validation rerender={rerender} Setrerender={Setrerender}/></div>
+        <div className="subContainer"><ProductDetails rerender={rerender} Setrerender={Setrerender} /></div>
+        <div className="subContainer"><Validation rerender={rerender} Setrerender={Setrerender} /></div>
         <div className="subContainer"><BenefitDetails /></div>
         <div className="subContainer"><PremiumDetails /></div>
         <div className="subContainer"><PolicyServicing /></div>

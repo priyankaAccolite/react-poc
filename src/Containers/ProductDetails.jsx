@@ -9,8 +9,10 @@ import TextboxWithRadio from "../Components/TextboxWithRadio";
 // import { currencyCode } from '../Constants/Constants';
 import TextInput from '../Components/TextInput'
 import { BaseJson } from "../Constants/Constants";
+import { checkProductAvailability , checkProductAvailabilityArgument} from "../Constants/Constants";
 
 const ProductDetails = ({ rerender, Setrerender }) => {
+  // let checkProductAvailability = ""
   const [value, setValue] = useState('');
   //  const [rerender, Setrerender] = useState(false);
   const [pickedDate, setPickedDate] = useState("");
@@ -49,6 +51,16 @@ const ProductDetails = ({ rerender, Setrerender }) => {
           }
         }
       ]
+    }
+    let param = 'if (isMinor.toString().toUpperCase() == "TRUE") {if (age >= laMinAge && age <= 17) {return true;} else {this.errorMessage = "Age should be within /"+ laMinAge +/" to 17 years for a minor.";this.errorCode = 1000;return false;}}if (isMinor.toString().toUpperCase() == "FALSE") {if (age >= 18 && age <= laMaxAge) {return true;} else {this.errorMessage = "Age should be within 18 to /"+ laMaxAge +/" years for an adult";this.errorCode = 1001;return false;}} else {this.errorMessage = "Please define isMinor value properly";this.errorCode = 1002;return false;}'
+    let str = 'if (age >= laMinAge && age <= laMaxAge) {return true;} else {this.errorMessage = "Age should be within /"+ laMinAge +/" to /"+ laMaxAge +/" years for an adult";this.errorCode = 1001;return false;}'
+    if(petc === "Yes"){
+        checkProductAvailability[2]=param
+        if(checkProductAvailabilityArgument.some((item) => item.name === "isMinor")){}else checkProductAvailabilityArgument.push("isMinor") 
+
+    }
+    if(petc === "No"){
+      checkProductAvailability[2]=str
     }
     return petc === "Yes" ? BaseJson.attributes.some((item) => item.name === "isMinor") ? null : BaseJson.attributes.push(obj) : BaseJson.attributes.some((item) => item.name === "isMinor") ? BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name === "isMinor"), 1) : null
   }
@@ -130,7 +142,6 @@ const ProductDetails = ({ rerender, Setrerender }) => {
     })
   }
   const handleDate = () => {
-    console.log("check", pickedDate)
     let obj = {
       "name": "saleCoverageEndDate",
       "dataType": "string",
@@ -154,11 +165,16 @@ const ProductDetails = ({ rerender, Setrerender }) => {
     return BaseJson.attributes.some((item) => item.name === "saleCoverageEndDate") ? null : pickedDate != "" ? BaseJson.attributes.push(obj) : null
   }
   const handleDateValue = () => {
-    return pickedDate != "" ? BaseJson.attributes.map((item) => {
-      if (item.name === "saleCoverageEndDate") {
-        item.value = pickedDate.toLocaleDateString('sv')
-      }
-    }) : null
+    let param = "var diffBetweenDates = calculateActualDaysBetweenDates(new Date().toISOString().split('T')[0],saleCoverageEndDate); if(diffBetweenDates<0) { this.errorMessage = \"Product is Not available\"; this.errorCode = 1002; return false; }"
+    if(pickedDate != "" ){
+      BaseJson.attributes.map((item) => {
+        if (item.name === "saleCoverageEndDate") {
+          item.value = pickedDate.toLocaleDateString('sv')
+        }
+      })
+      checkProductAvailability[0]=param
+      if(checkProductAvailabilityArgument.some((item) => item.name === "saleCoverageEndDate")){}else checkProductAvailabilityArgument.push("saleCoverageEndDate") 
+    }  
 
   }
   const handlePromoCode = () => {
@@ -198,6 +214,46 @@ const ProductDetails = ({ rerender, Setrerender }) => {
       }
     })
   }
+
+  const handleComputesSales = () =>{
+    let obj = 	{
+      "name": "saleCoverageEndDate",
+      "attributeMapping": {
+        "domainObjectMapping": "",
+        "source": null,
+        "productCode": "THIS",
+        "attributeName": "saleCoverageEndDate"
+      }
+    }
+       if(pickedDate != "" ) {
+        BaseJson.computes.functionGroups.map((item)=>{
+          if(item.type === "INCLUSION"){
+            item.functions.map((i)=>{
+            return  i.input.some((items) => items.name === "saleCoverageEndDate")?null:i.input.push(obj)
+            })
+          }
+        }) 
+       }
+
+  }
+  const handleComputesMinor = () =>{
+    let obj = {
+      "name": "isMinor",
+      "attributeMapping": {
+        "domainObjectMapping": "",
+        "source": null,
+        "productCode": "THIS",
+        "attributeName": "isMinor"
+      }
+    }
+     BaseJson.computes.functionGroups.map((item)=>{
+      if(item.type === "INCLUSION"){
+        item.functions.map((i)=>{
+         return petc === "Yes" ? i.input.some((items) => items.name === "isMinor")?null : i.input.push(obj): i.input.some((items) => items.name === "isMinor") ? i.input.splice(i.input.findIndex(item => item.name === "isMinor"), 1) : null
+        })
+      }
+    })
+  }
   BaseJson._id = `PRODUCT_DEFINITION//${pCode}/A.1`
   BaseJson.code = pCode
   BaseJson.shortName = name;
@@ -218,8 +274,10 @@ const ProductDetails = ({ rerender, Setrerender }) => {
   handleDateValue()
   handlePromoCode()
   handlePromoCodeValue()
+  handleComputesSales()
+  handleComputesMinor()
 
-  console.log("BaseJSON", BaseJson, BaseJson.attributes.length, BaseJson.attributes, pickedDate)
+  console.log("BaseJSON", BaseJson, BaseJson.attributes.length, BaseJson.attributes, BaseJson.computes.allFunctionsDefinitions)
 
   const handleChange = (e) => {
     setValue(e.label);

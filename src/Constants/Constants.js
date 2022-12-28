@@ -832,6 +832,9 @@ export const policyServicing = [
 ];
 export let applicablePolicyServicing = [];
 
+export let checkProductAvailability = []
+
+export let checkProductAvailabilityArgument = ["birthDate","email","firstName","lastName","nationalId","laMinAge","laMaxAge"]
 
 export let BaseJson={
   "_id": "PRODUCT_DEFINITION/S00001/A.1",
@@ -2294,7 +2297,70 @@ export let BaseJson={
   "computes": {
     "allFunctionsDefinitions": "",
     "functionGroups": [
-
+      {
+				"type": "INCLUSION",
+				"functions": [
+					{
+						"transactionContextRef": [
+							"SALES-ANY-ALL"
+						],
+						"functionName": "checkProductAvailability",
+						"functionBody": "",
+						"input": [
+							{
+								"name": "birthDate",
+								"attributeMapping": {
+									"domainObjectMapping": "$..lifeAssured[0].dob",
+									"source": null,
+									"productCode": "S00304",
+									"attributeName": "birthDate"
+								}
+							},
+							{
+								"name": "email",
+								"attributeMapping": {
+									"domainObjectMapping": "$..lifeAssured[0].contactDetails.EMAIL.value",
+									"source": null,
+									"productCode": "S00304",
+									"attributeName": "email"
+								}
+							},
+							{
+								"name": "firstName",
+								"attributeMapping": {
+									"domainObjectMapping": "$..lifeAssured[0].firstName",
+									"source": "",
+									"productCode": "S00304",
+									"attributeName": "firstName"
+								}
+							},
+							{
+								"name": "lastName",
+								"attributeMapping": {
+									"domainObjectMapping": "$..lifeAssured[0].surName",
+									"source": "",
+									"productCode": "S00304",
+									"attributeName": "lastName"
+								}
+							},
+							{
+								"name": "nationalId",
+								"attributeMapping": {
+									"domainObjectMapping": "$..lifeAssured[0].externalIds.NATIONAL_ID",
+									"source": "",
+									"productCode": "S00304",
+									"attributeName": "nationalId"
+								}
+							}
+						],
+						"output": {
+							"name": "planInfo",
+							"dataType": "jsonString"
+						},
+						"order": 0
+					}
+				]
+			},
     ],
     "tables": [
 

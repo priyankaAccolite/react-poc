@@ -9,9 +9,9 @@ import { applicableExternalValidation } from '../Constants/Constants'
 import { applicableTransactionValidation } from '../Constants/Constants'
 import TextboxWithRadio from "../Components/TextboxWithRadio";
 import { BaseJson } from "../Constants/Constants";
+import { checkProductAvailability , checkProductAvailabilityArgument} from "../Constants/Constants";
 
 const Validation = () => {
-
     const [value, setValue] = useState('');
     const [rerender, Setrerender] = useState(false);
     const [display, setDisplay] = useState(true);
@@ -28,23 +28,21 @@ const Validation = () => {
     const [atv, setatv] = useState('')
     const [gendersmokerval, setgendersmokerval] = useState('')
 
-    const CalculationBasis = [
-        {
-            "ANB": "calculateAgeNextBirthday"
-        },
-        {
-            "ALB": "calculateAgeLastBirthday"
-        },
-        {
-            "ANrB": "calculateAgeNearestBirthday"
-        },
-        {
-            "ANBfrD": "calculateAgeNextBirthdayFromReferenceDate"
-        },
-        {
-            "ALBfrD": "calculateAgeLastBirthdayFromReferenceDate"
-        }
-    ]
+    const handleAgeVariable = () =>{
+        let param 
+        if(calculation === "ANB")
+        param = "var age = calculateAgeNextBirthday(birthDate);"
+        else if (calculation === "ALB")
+        param = "var age = calculateAgeLastBirthday(birthDate);"
+        else if(calculation === "ANrB")
+        param = "var age = calculateAgeNearestBirthday(birthDate);"
+        else if(calculation === "ANBfrD")
+        param = "var age = calculateAgeNextBirthdayFromReferenceDate(birthDate);"
+        else 
+        param = "var age = calculateAgeLastBirthdayFromReferenceDate(birthDate);"
+        checkProductAvailability[1] = param
+        
+    }
     const handleMin = () => {
         let objmin = {
             "name": "laMinAge",
@@ -157,19 +155,66 @@ const Validation = () => {
         return BaseJson.attributes
     }
     const handleGenderValue = () => {
-        return BaseJson.attributes.map((item) => {
-            if (item.name === "applicableLaGender") {
-                item.value = gendersmokerval
+        let param = 'var allowedVal = applicableLaGender.toUpperCase().split(",");var isContained = allowedVal.indexOf(gender.toUpperCase()) > -1;//if (isContained.toString().toUpperCase() == "FALSE"){this.errorMessage = "Product not applicable for the Gender";this.errorCode = 1004;return false;}'
+        let obj = {
+            "name": "applicableLaGender",
+            "attributeMapping": {
+              "domainObjectMapping": "",
+              "source": null,
+              "productCode": "THIS",
+              "attributeName": "applicableLaGender"
             }
-        })
+        }
+        if(value==="Gender"){
+            BaseJson.attributes.map((item) => {
+                if (item.name === "applicableLaGender") {
+                    item.value = gendersmokerval
+                }
+            })
+        checkProductAvailability[4] = param
+        if(checkProductAvailabilityArgument.some((item) => item.name === "applicableLaGender")){}else checkProductAvailabilityArgument.push("applicableLaGender") 
+            if(checkProductAvailabilityArgument.some((item) => item.name === "gender")){}else checkProductAvailabilityArgument.push("gender") 
+        BaseJson.computes.functionGroups.map((item)=>{
+            if(item.type === "INCLUSION"){
+              item.functions.map((i)=>{
+              return (i.input.some((item) => item.name === "iapplicableLaGender"))?null:i.input.push(obj)
+              })
+            }
+          })
+        }
+
     }
     const handleSmokerValue = () => {
-        return BaseJson.attributes.map((item) => {
-            if (item.name === "isSmokerAllowed") {
-                item.value = gendersmokerval
+        let param = 'if (isSmokerAllowed.toString().toUpperCase() == "FALSE") {if (smoker.toString().toUpperCase() == "TRUE"){this.errorMessage = "Product not applicable for smokers";this.errorCode = 1003;return false;}}'
+        let obj = {
+            "name": "isSmokerAllowed",
+            "attributeMapping": {
+              "domainObjectMapping": "",
+              "source": null,
+              "productCode": "THIS",
+              "attributeName": "isSmokerAllowed"
             }
-        })
+        }
+        if(value==="Smoker"){
+            BaseJson.attributes.map((item) => {
+                if (item.name === "isSmokerAllowed") {
+                    item.value = gendersmokerval
+                }
+            })
+            checkProductAvailability[4] = param 
+            if(checkProductAvailabilityArgument.some((item) => item.name === "isSmokerAllowed")){}else checkProductAvailabilityArgument.push("isSmokerAllowed") 
+            if(checkProductAvailabilityArgument.some((item) => item.name === "smoker")){}else checkProductAvailabilityArgument.push("smoker") 
+            BaseJson.computes.functionGroups.map((item)=>{
+                if(item.type === "INCLUSION"){
+                  item.functions.map((i)=>{
+                  return (i.input.some((item) => item.name === "isSmokerAllowed"))?null:i.input.push(obj)
+                  })
+                }
+              })
+        }
+
     }
+
     handleMax()
     handleMaxValue()
     handleMin()
@@ -177,8 +222,9 @@ const Validation = () => {
     handleOtherLaValidation()
     handleGenderValue()
     handleSmokerValue()
+    handleAgeVariable()
 
-    console.log("BaseJSON", BaseJson.attributes, min, max)
+    console.log("BaseJSON", BaseJson.attributes, min, max, BaseJson.computes.functionGroups)
 
     const handleChange = (e) => {
         setValue(e.label);
@@ -202,16 +248,19 @@ const Validation = () => {
             setTextValue("");
         }
         else if (e.target.dataset.id === "14") {
-            if (!limitAgainstPolicy.includes(value))
-                limitAgainstPolicy.push(value);
+            if (!limitAgainstPolicy.includes(lapuc)){
+                limitAgainstPolicy.push(lapuc);
+                console.log("limitAgainstPolicy", limitAgainstPolicy)
+            }
+                
             Setrerender(!rerender);
         } else if (e.target.dataset.id === "15") {
-            if (!applicableExternalValidation.includes(value))
-                applicableExternalValidation.push(value);
+            if (!applicableExternalValidation.includes(aev))
+                applicableExternalValidation.push(aev);
             Setrerender(!rerender);
         } else if (e.target.dataset.id === "16") {
-            if (!applicableTransactionValidation.includes(value))
-                applicableTransactionValidation.push(value);
+            if (!applicableTransactionValidation.includes(atv))
+                applicableTransactionValidation.push(atv);
             Setrerender(!rerender);
         } else {
 
