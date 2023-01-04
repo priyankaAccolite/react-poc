@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/textboxWithRadio.css";
-import { BaseJson, currencyCode , calculateCancelRefund, checkCancelAvailability, checkProductAvailabilityArgument, calculateCancelRefundArgument} from '../Constants/Constants';
+import { BaseJson, currencyCode , calculateCancelRefund, checkCancelAvailability, checkProductAvailabilityArgument, calculateCancelRefundArgument, checkProductAvailability} from '../Constants/Constants';
 import UpdateBenfitDetails from "../Containers/UpdateBenfitDetails";
 import { insuredObjs_coverages_array } from "../Constants/JsonSkeleton-BenefitDetails";
 import UpdatePolicyServiceDetails from "../Containers/UpdatePolicyServiceDetails";
@@ -19,8 +19,7 @@ const TextboxWithRadio = (props) => {
       setArray(props.currencyCode.splice(index, 1));
       Setrerender(!rerender);
     }
-    setValue('');
-
+    setValue(''); //Confusion
     if(props.fromBenefit){
       let index=-1;
       BaseJson.components.map((item)=>{
@@ -44,23 +43,56 @@ const TextboxWithRadio = (props) => {
       }
     }
     if(props.fromPolicyServicing){
-      BaseJson.computes.functionGroups.map((item) => {
-        if (item.type === "INCLUSION") {
-          if (item.functions.some((item) => item.functionName === "checkCancelAvailability")) {item.functions.splice(item.functions.findIndex(item => item.functionName === "checkCancelAvailability"), 1)} else {}
+      if(value === "Cancel"){
+        BaseJson.computes.functionGroups.map((item) => {
+          if (item.type === "INCLUSION") {
+            if (item.functions.some((item) => item.functionName === "checkCancelAvailability")) {item.functions.splice(item.functions.findIndex(item => item.functionName === "checkCancelAvailability"), 1)} else {}
+          }
+        })
+        if(BaseJson.computes.functionGroups.some((item)=>item.type === "REFUND")) {BaseJson.computes.functionGroups.splice(BaseJson.computes.functionGroups.findIndex(item => item.type === "REFUND"), 1)} else {}
+        while(checkCancelAvailability.length>0) {
+          checkCancelAvailability.pop()
         }
-      })
-      if(BaseJson.computes.functionGroups.some((item)=>item.type === "REFUND")) {BaseJson.computes.functionGroups.splice(BaseJson.computes.functionGroups.findIndex(item => item.type === "REFUND"), 1)} else {}
-      while(checkCancelAvailability.length>0) {
-        checkCancelAvailability.pop()
+        while(calculateCancelRefund.length > 0){
+          calculateCancelRefund.pop()
+        }
+        while(calculateCancelRefundArgument.length>0){
+          calculateCancelRefundArgument.pop()
+        }
       }
-      while(calculateCancelRefund.length > 0){
-        calculateCancelRefund.pop()
+      if(value === "Auto Renewal & Cancel Auto Renewal"){
+        if(BaseJson.attributes.some((item) => item.name === "isAutoRenewAllowed")){BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name=== "isAutoRenewAllowed"), 1)} else{}
       }
-      while(calculateCancelRefundArgument.length>0){
-        calculateCancelRefundArgument.pop()
-      }
-      
     }
+    if(props.fromOtherLaValidations){
+      if(value.substring(0,1) === "G"){
+        if(BaseJson.attributes.some((item) => item.name === "applicableLaGender")){BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name=== "applicableLaGender"), 1)} else{}
+        BaseJson.computes.functionGroups.map((item) => {
+          if (item.type === "INCLUSION") {
+            item.functions.map((i)=>{
+              if (i.input.some((item) => item.name === "applicableLaGender")){i.input.splice(i.input.findIndex(item => item.name=== "applicableLaGender"), 1)} else {}
+              })
+          }
+        })
+        checkProductAvailability[4] = ""
+        if(checkProductAvailabilityArgument.some((item) => item === "applicableLaGender")){checkProductAvailabilityArgument.splice(checkProductAvailabilityArgument.findIndex(item => item=== "applicableLaGender"), 1)}else {} 
+            if(checkProductAvailabilityArgument.some((item) => item === "gender")){checkProductAvailabilityArgument.splice(checkProductAvailabilityArgument.findIndex(item => item=== "gender"), 1)}else {}
+      }
+      if(value.substring(0,1) === "S"){
+        if(BaseJson.attributes.some((item) => item.name === "isSmokerAllowed")){BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name=== "isSmokerAllowed"), 1)} else{}
+        BaseJson.computes.functionGroups.map((item) => {
+          if (item.type === "INCLUSION") {
+            item.functions.map((i)=>{
+              if (i.input.some((item) => item.name === "isSmokerAllowed")){i.input.splice(i.input.findIndex(item => item.name=== "isSmokerAllowed"), 1)} else {}
+              })
+          }
+        })
+        checkProductAvailability[5] = ""
+        if(checkProductAvailabilityArgument.some((item) => item === "isSmokerAllowed")){checkProductAvailabilityArgument.splice(checkProductAvailabilityArgument.findIndex(item => item=== "isSmokerAllowed"), 1)}else {} 
+            if(checkProductAvailabilityArgument.some((item) => item === "smoker")){checkProductAvailabilityArgument.splice(checkProductAvailabilityArgument.findIndex(item => item=== "smoker"), 1)}else {}
+      }
+    }
+ 
   };
  const handleEdit=()=>{
     console.log("modal",showModal);
@@ -75,7 +107,7 @@ const TextboxWithRadio = (props) => {
   };
 
   return (
-    console.log("props.fromPolicyServicing",props.fromPolicyServicing),
+    console.log("BaseJSON.attributes",BaseJson.attributes),
     <div style={{ display: "flex", flexDirection: "row", justifyContent:"flex-start" }}>
         {showModal&&<UpdateBenfitDetails showModal handleEdit={handleEdit} selectedvalue={value}/>}
         {showPolicyModal && <UpdatePolicyServiceDetails showPolicyModal handleEditPolicy={handleEditPolicy} selectedvalue={value}/>}

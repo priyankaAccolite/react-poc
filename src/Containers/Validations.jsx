@@ -26,7 +26,7 @@ const Validation = () => {
     const [lapuc, setlapuc] = useState('')
     const [aev, setaev] = useState('')
     const [atv, setatv] = useState('')
-    const [gendersmokerval, setgendersmokerval] = useState('')
+    // const [gendersmokerval, setgendersmokerval] = useState('')
 
     const handleAgeVariable = () =>{
         let param = ""
@@ -103,8 +103,66 @@ const Validation = () => {
             }
         })
     }
+    const handleGenderValue = (textValue) => {
+        let param = 'var allowedVal = applicableLaGender.toUpperCase().split(",");var isContained = allowedVal.indexOf(gender.toUpperCase()) > -1;//if (isContained.toString().toUpperCase() == "FALSE"){this.errorMessage = "Product not applicable for the Gender";this.errorCode = 1004;return false;}'
+        let obj = {
+            "name": "applicableLaGender",
+            "attributeMapping": {
+              "domainObjectMapping": "",
+              "source": null,
+              "productCode": "THIS",
+              "attributeName": "applicableLaGender"
+            }
+        }
+            BaseJson.attributes.map((item) => {
+                if (item.name === "applicableLaGender") {
+                    item.value = textValue
+                }
+            })
+        checkProductAvailability[4] = param
+        if(checkProductAvailabilityArgument.some((item) => item === "applicableLaGender")){}else checkProductAvailabilityArgument.push("applicableLaGender") 
+            if(checkProductAvailabilityArgument.some((item) => item === "gender")){}else checkProductAvailabilityArgument.push("gender") 
+        BaseJson.computes.functionGroups.map((item)=>{
+            if(item.type === "INCLUSION"){
+              item.functions.map((i)=>{
+              if (i.input.some((item) => item.name === "applicableLaGender")){} else i.input.push(obj)
+              })
+            }
+          })
 
-    const handleOtherLaValidation = () => {
+    }
+    const handleSmokerValue = (textValue) => {
+        let param = 'if (isSmokerAllowed.toString().toUpperCase() == "FALSE") {if (smoker.toString().toUpperCase() == "TRUE"){this.errorMessage = "Product not applicable for smokers";this.errorCode = 1003;return false;}}'
+        let obj = {
+            "name": "isSmokerAllowed",
+            "attributeMapping": {
+              "domainObjectMapping": "",
+              "source": null,
+              "productCode": "THIS",
+              "attributeName": "isSmokerAllowed"
+            }
+        }
+
+            BaseJson.attributes.map((item) => {
+                if (item.name === "isSmokerAllowed") {
+                    item.value = textValue
+                }
+            })
+            checkProductAvailability[5] = param 
+            if(checkProductAvailabilityArgument.some((item) => item === "isSmokerAllowed")){}else checkProductAvailabilityArgument.push("isSmokerAllowed") 
+            if(checkProductAvailabilityArgument.some((item) => item === "smoker")){}else checkProductAvailabilityArgument.push("smoker") 
+            BaseJson.computes.functionGroups.map((item)=>{
+                if(item.type === "INCLUSION"){
+                  item.functions.map((i)=>{
+                  if(i.input.some((item) => item.name === "isSmokerAllowed")){} else i.input.push(obj)
+                  })
+                }
+              })
+        
+
+    }
+
+    const handleOtherLaValidation = (textValue) => {
         let smoker = {
             "name": "isSmokerAllowed",
             "dataType": "boolean",
@@ -147,81 +205,19 @@ const Validation = () => {
         }
         if (value === "Gender") {
             if (BaseJson.attributes.some((item) => item.name === "applicableLaGender")) { } else BaseJson.attributes.push(gender)
+            handleGenderValue(textValue)
         } else if (value === "Smoker") {
             if (BaseJson.attributes.some((item) => item.name === "isSmokerAllowed")) { } else BaseJson.attributes.push(smoker)
+            handleSmokerValue(textValue)
         } else {
 
         }
         return BaseJson.attributes
     }
-    const handleGenderValue = () => {
-        let param = 'var allowedVal = applicableLaGender.toUpperCase().split(",");var isContained = allowedVal.indexOf(gender.toUpperCase()) > -1;//if (isContained.toString().toUpperCase() == "FALSE"){this.errorMessage = "Product not applicable for the Gender";this.errorCode = 1004;return false;}'
-        let obj = {
-            "name": "applicableLaGender",
-            "attributeMapping": {
-              "domainObjectMapping": "",
-              "source": null,
-              "productCode": "THIS",
-              "attributeName": "applicableLaGender"
-            }
-        }
-        if(value==="Gender"){
-            BaseJson.attributes.map((item) => {
-                if (item.name === "applicableLaGender") {
-                    item.value = gendersmokerval
-                }
-            })
-        checkProductAvailability[4] = param
-        if(checkProductAvailabilityArgument.some((item) => item === "applicableLaGender")){}else checkProductAvailabilityArgument.push("applicableLaGender") 
-            if(checkProductAvailabilityArgument.some((item) => item === "gender")){}else checkProductAvailabilityArgument.push("gender") 
-        BaseJson.computes.functionGroups.map((item)=>{
-            if(item.type === "INCLUSION"){
-              item.functions.map((i)=>{
-              if (i.input.some((item) => item.name === "applicableLaGender")){} else i.input.push(obj)
-              })
-            }
-          })
-        }
-
-    }
-    const handleSmokerValue = () => {
-        let param = 'if (isSmokerAllowed.toString().toUpperCase() == "FALSE") {if (smoker.toString().toUpperCase() == "TRUE"){this.errorMessage = "Product not applicable for smokers";this.errorCode = 1003;return false;}}'
-        let obj = {
-            "name": "isSmokerAllowed",
-            "attributeMapping": {
-              "domainObjectMapping": "",
-              "source": null,
-              "productCode": "THIS",
-              "attributeName": "isSmokerAllowed"
-            }
-        }
-        if(value==="Smoker"){
-            BaseJson.attributes.map((item) => {
-                if (item.name === "isSmokerAllowed") {
-                    item.value = gendersmokerval
-                }
-            })
-            checkProductAvailability[4] = param 
-            if(checkProductAvailabilityArgument.some((item) => item === "isSmokerAllowed")){}else checkProductAvailabilityArgument.push("isSmokerAllowed") 
-            if(checkProductAvailabilityArgument.some((item) => item === "smoker")){}else checkProductAvailabilityArgument.push("smoker") 
-            BaseJson.computes.functionGroups.map((item)=>{
-                if(item.type === "INCLUSION"){
-                  item.functions.map((i)=>{
-                  if(i.input.some((item) => item.name === "isSmokerAllowed")){} else i.input.push(obj)
-                  })
-                }
-              })
-        }
-
-    }
-
     handleMax()
     handleMaxValue()
     handleMin()
     handleMinValue()
-    handleOtherLaValidation()
-    handleGenderValue()
-    handleSmokerValue()
     handleAgeVariable()
 
     console.log("BaseJSON", BaseJson.attributes, min, max, BaseJson.computes.functionGroups, checkProductAvailabilityArgument)
@@ -245,11 +241,12 @@ const Validation = () => {
     const handleClick = (e) => {
         console.log("e.target", e.target.dataset)
         if (e.target.dataset.id === "13") {
-            setgendersmokerval(textValue)
+            // setgendersmokerval(textValue)
             let arrayValue = `${value}-${textValue}`;
             if (!otherLaValidations.includes(arrayValue))
                 otherLaValidations.push(arrayValue);
-            console.log("otherlaValidation", otherLaValidations)
+                handleOtherLaValidation(textValue)
+            console.log("otherlaValidation", otherLaValidations, )
             Setrerender(!rerender);
             setTextValue("");
         }
@@ -337,13 +334,13 @@ const Validation = () => {
                                     data-id={item.id}
                                 />
                             } else if (i.placeHolder === "dropdownlist1") {
-                                return <TextboxWithRadio currencyCode={limitAgainstPolicy} />
+                                return <TextboxWithRadio currencyCode={limitAgainstPolicy} fromLimitAgainstPolicy={true}/>
                             } else if (i.placeHolder === "dropdownlist2") {
                                 return <TextboxWithRadio currencyCode={applicableExternalValidation} />
                             } else if (i.placeHolder === "dropdownlist3") {
                                 return <TextboxWithRadio currencyCode={applicableTransactionValidation} />
                             } else if (i.placeHolder === "list") {
-                                return <TextboxWithRadio currencyCode={otherLaValidations} />
+                                return <TextboxWithRadio currencyCode={otherLaValidations} fromOtherLaValidations={true}/>
                             }
                         })}
                     </div>
