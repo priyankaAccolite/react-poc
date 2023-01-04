@@ -6,6 +6,7 @@ import { updatePolicyServiceDetails, checkCancelAvailability, BaseJson, calculat
 import "../Styles/updateBenefit.css";
 import Modal from "react-modal";
 import TextInput from "../Components/TextInput";
+import { insuredObjs } from "../Constants/JsonSkeleton-BenefitDetails";
 
 const UpdatePolicyServiceDetails = (props) => {
   // const [selectedval, setSelectedVal] = React.useState("");
@@ -96,6 +97,17 @@ const UpdatePolicyServiceDetails = (props) => {
       ]
     }
     if (props.selectedvalue === "Cancel") {
+
+      let index=-1;
+      BaseJson.insuredObjs[0].selectionCriteria.map((item)=>{
+        if(item.functionName=="checkCancelAvailability")
+        index=0;
+      });
+      if(index==-1)
+      BaseJson.insuredObjs[0].selectionCriteria.push({
+        "type": "INCLUSION",
+        "functionName": "checkCancelAvailability"
+      });
       calculateCancelRefund[0] =textArea
       checkCancelAvailability[0] ="function checkCancelAvailability(freeLookPeriod,freelookPeriodUnitpolicyCancelDate,policyStartDate) {var policyAgeInDays = calculateDaysBetweenDates(policyStartDate, policyCancelDate);var freecancelPrd = 0;if (freelookPeriodUnit = \"M\") {freecancelPrd = freelookPeriod  * 30;} else if (freelookPeriodUnit = \"W\") {freecancelPrd = freelookPeriod  * 7;} else if (freelookPeriodUnit = \"Y\") {freecancelPrd = freelookPeriod  * 365;}else if (freelookPeriodUnit = \"D\") {freecancelPrd = freelookPeriod;}if (policyAgeInDays > freecancelPrd) {this.errorCode = 1007; this.errorMessage = \"The policy cannot be cancelled as it is beyond the freelook period \";return false;} else{return true};}"
       

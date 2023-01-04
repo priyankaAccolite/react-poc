@@ -44,6 +44,18 @@ const TextboxWithRadio = (props) => {
     }
     if(props.fromPolicyServicing){
       if(value === "Cancel"){
+
+
+        let index=-1;
+        BaseJson.insuredObjs[0].selectionCriteria.map((item)=>{
+          if(item.functionName=="checkCancelAvailability"){
+            index= BaseJson.insuredObjs[0].selectionCriteria.indexOf(item);
+          }
+        })
+        if(index>-1){
+          BaseJson.insuredObjs[0].selectionCriteria.splice(index,1);
+        }
+
         BaseJson.computes.functionGroups.map((item) => {
           if (item.type === "INCLUSION") {
             if (item.functions.some((item) => item.functionName === "checkCancelAvailability")) {item.functions.splice(item.functions.findIndex(item => item.functionName === "checkCancelAvailability"), 1)} else {}
