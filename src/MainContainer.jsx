@@ -24,7 +24,6 @@ const MainContainer = () => {
   let var4 =  `function F_calculatePremium(${checkPremiumArgument.join(",")})`
   let param= ""
   if(calculateCancelRefund.length && checkCancelAvailability.length){
-    console.log("kjkj")
     param=`function F_CalculateCancelRefund(${calculateCancelRefundArgument.join(",")}){${calculateCancelRefund}}${checkCancelAvailability.join("")}`
   }
   
@@ -150,7 +149,7 @@ console.log("BaseJSON main container", BaseJson.attributes, BaseJson.computes.al
         <div className="subContainer"><BenefitDetails /></div>
         <div className="subContainer"><PremiumDetails /></div>
         <div className="subContainer"><PolicyServicing /></div>
-        <div style={{justifyContent:"flex-end", display:"flex", marginRight:140, marginBottom:50, marginTop:50}}>
+        <div style={{justifyContent:"flex-end", display:"flex", marginRight:30, marginBottom:50, marginTop:50}}>
           <a href={ download&&'data:text/json;charset=utf-8,' + JSON.stringify(BaseJson)} download="ModifiedJson.json">
           <input
             type="button"
