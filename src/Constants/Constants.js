@@ -459,7 +459,7 @@ export const validation = [
         placeHolderText: "Min",
         enable: "y",
         width: "100px",
-        marginRight: "75px",
+        marginRight: "80px",
         u_id: 1,
       },
       {
@@ -467,7 +467,7 @@ export const validation = [
         placeHolderText: "Max",
         enable: "y",
         width: "120px",
-        marginRight: "105px",
+        marginRight: "85px",
         u_id: 2,
       },
       {
@@ -614,14 +614,14 @@ export const validation = [
         ],
         enable: "y",
         width: "130px",
-        marginRight: "5px",
+        marginRight: "-2px",
       },
       {
         placeHolder: "input",
         placeHolderText: "Value",
         enable: "n",
         width: "40px",
-        marginRight: "5px",
+        marginRight: "-2px",
         u_id: 6,
       },
       {

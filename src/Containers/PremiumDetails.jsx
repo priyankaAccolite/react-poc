@@ -368,7 +368,7 @@ const PremiumDetails = () => {
                               <textarea
                                 className="premiumTextArea"
                                 rows="5"
-                                cols="100"
+                                cols="102"
                                 value={textArea}
                                 // onChange={{}}
                               />
@@ -385,7 +385,7 @@ const PremiumDetails = () => {
                               type="button"
                               value="Generate Function"
                               onClick={handleClick}
-                              style={{ border: '1px solid black', height: 35, borderRadius: 3, width: 120, fontWeight: 'bold', fontSize: 12, backgroundColor: '#ED2939', color: "whitesmoke" }}
+                              style={{ border: '1px solid black', height: 33, borderRadius: 3, width: 80, fontWeight: 'bold', fontSize: 11, backgroundColor: '#ED2939', color: "whitesmoke" , whiteSpace: "normal", marginLeft:3}}
                             />
                           </>
                         );

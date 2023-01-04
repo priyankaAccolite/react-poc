@@ -314,7 +314,7 @@ const Validation = () => {
                             } else if (i.placeHolder === "dropdown") {
                                 return <>
 
-                                    <div style={{ marginTop: i.label ? -20 : 0, marginRight: i.marginRight ? i.marginRight : 80 }}>
+                                    <div style={{ marginTop: i.label ? -20 : 0, marginRight: i.marginRight ? i.marginRight : 80 , marginLeft: 15}}>
                                         <div style={{ textAlign: "left", marginLeft: "27px" }}>{i.label ? i.label + (i.mandatory === "y" ? "*" : "") : ""}</div>
                                         <DropDown
                                             handleChange={e => item.id === 12 ? setCalculation(e.label) : item.id === 13 ? handleChange(e) : item.id === 14 ? setlapuc(e.label) : item.id === 15 ? setaev(e.label) : setatv(e.label)}

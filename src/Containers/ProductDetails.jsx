@@ -358,7 +358,7 @@ const ProductDetails = ({ rerender, Setrerender }) => {
                 if (i.placeHolder === "dropdown") {
                   return (
                     <>
-                      <div style={{ marginLeft: item.id === 11 ? 90 : 40, marginTop: i.label ? -20 : 0 }}>
+                      <div style={{ marginLeft: item.id === 11 ? 90 : 60, marginTop: i.label ? -20 : 0 }}>
                         <div style={{ textAlign: "left" }}>{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
                         <DropDown
                           handleChange={e => item.label === "Category" ? setCategory(e.label) : item.id === 8 ? setPetc(e.label) : item.id === 10 ? setymwd(e.label) : item.id === 7 ? promoRedemption(e) : handleChange(e)}
@@ -370,12 +370,12 @@ const ProductDetails = ({ rerender, Setrerender }) => {
                     </>
                   )
                 } else if (i.placeHolder === "date") {
-                  return <div style={{ marginLeft: 40 }}>
+                  return <div style={{ marginLeft: 60 }}>
                     <DateInput pickDate={pickedDate} setPickDate={e => setPickedDate(e)} />
                   </div>
                 } else if (i.placeHolder === "input") {
                   return <div style={{ marginLeft: 40, color: "black", marginTop: i.label ? -20 : 0 }}>
-                    <div style={{ textAlign: "left" }}>{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
+                    <div style={{ textAlign: "left" , marginLeft: 15}}>{i.label ? i.label + (i.mandatory === "cm" ? "(*)" : "") : ""}</div>
                     <TextInput
                       size={item.label === "Description" ? 72 : 21}
                       enable={i.label === "Promotion Code" ? enablePromotionRedemption : i.enable}
