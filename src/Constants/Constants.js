@@ -1392,907 +1392,920 @@ export let BaseJson={
         {
           "type": "INCLUSION",
           "functionName": "checkProductAvailability"
-        },
-        {
-          "type": "INCLUSION",
-          "functionName": "checkProductAvailabilityWithMinor"
-        },
-        {
-          "type": "INCLUSION",
-          "functionName": "F_CheckCancelAvailability"
         }
       ],
-      "coverages": [
-        {
-          "id": "COV001",
-          "name": "DeathBenefit",
-          "desc": "Protection for your family in case of your death",
-          "riderRef": "S00309",
-          "event": {
-            "name": "DEATH",
-            "desc": "Protection for your family in case of your death",
-            "eventType": "DEATH",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND001",
-              "name": "DeathBenefit",
-              "desc": "Protection for your family in case of your death",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateDeathBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV002",
-          "name": "TPDBenefit",
-          "desc": "Protection against Temporary and Permanent Disability for your family",
-          "riderRef": "S00312",
-          "event": {
-            "name": "TPD",
-            "desc": "Protection against Temporary and Permanent Disability for your family",
-            "eventType": "TPD",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND002",
-              "name": "TPD",
-              "desc": "Protection against Temporary and Permanent Disability for your family",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateTPDBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV003",
-          "name": "DailyHospitalIncomeBenefit",
-          "desc": "",
-          "riderRef": "S00313",
-          "event": {
-            "name": "HOSPITALIZATION",
-            "desc": "Complete payment in case of hospitalization upto 5 days and 3 times an year",
-            "eventType": "HOSPITALIZATION",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND003",
-              "name": "DailyHospitalIncomeBenefit",
-              "desc": "Complete payment in case of hospitalization upto 5 days and 3 times an year",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateIPDBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV004",
-          "name": "LongTermHospitalisationBenefit ",
-          "desc": "In the event of hospitalisation,a daily cash benefit for each day at hospital confinement is paid to the insured",
-          "riderRef": "S00537",
-          "event": {
-            "name": "HOSPITALIZATION",
-            "desc": "In the event of hospitalization beyond 30 days,additional daily cash benefit for each day at hospital confinement is paid to the insured",
-            "eventType": "HOSPITALIZATION",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND004",
-              "name": "LongTermHospitalisationBenefit",
-              "desc": "In the event of hospitalisation,a daily cash benefit for each day at hospital confinement is paid to the insured",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateIPDBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV005",
-          "name": "ICUBenefit",
-          "desc": "In the event of hospitalisation in an ICU, a daily cash benefit for each day at ICU confinement is paid to the insured",
-          "riderRef": "S00538",
-          "event": {
-            "name": "ICU",
-            "desc": "In the event of hospitalisation in an ICU, a daily cash benefit for each day at ICU confinement is paid to the insured",
-            "eventType": "ICU",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND005",
-              "name": "ICUBenefit",
-              "desc": "Complete payment in case of hospitalization upto 5 days and 3 times an year",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateICUBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV006",
-          "name": "Infectious Disease Death Benefit",
-          "desc": "Additional protection for your family in case of your death due to infectious disease",
-          "riderRef": "S00557",
-          "event": {
-            "name": "ILLNESSDEATH",
-            "desc": "",
-            "eventType": "ILLNESSDEATH",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND006",
-              "name": "Infectious Disease Death Benefit",
-              "desc": "Additional protection for your family in case of your death due to infectious disease",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateDeathIllnessBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV007",
-          "name": "ADB - Accidental Death Benefit",
-          "desc": "Accidental Death Benefit",
-          "riderRef": "S00371",
-          "event": {
-            "name": "ACCIDENTALDEATH",
-            "desc": "Protection for your family in case of accidental death",
-            "eventType": "ACCIDENTALDEATH",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND007",
-              "name": "ACCIDENTALDEATH",
-              "desc": "Protection for your family in case of accidental death",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateADBBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV008",
-          "name": "Illness Benefit",
-          "desc": "Illness Benefit",
-          "riderRef": "S00469",
-          "event": {
-            "name": "ILLNESS",
-            "desc": "Protection for your family in case you are ill.",
-            "eventType": "ILLNESS",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND008",
-              "name": "ILLNESS Benefit",
-              "desc": "Protection for your family in case of your illness",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateIllnessBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV009",
-          "name": "MedicalBenefit",
-          "desc": "Medical Benefit",
-          "riderRef": "S00351",
-          "event": {
-            "name": "MEDICALREIMBURSEMENT",
-            "desc": "Protection for your family in case you are ill.",
-            "eventType": "MEDICALREIMBURSEMENT",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND009",
-              "name": "MEDICALREIMBURSEMENT",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateMedicalBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV0010",
-          "name": "Funeral Benefit",
-          "desc": "Funeral Benefit amount that is payable to the Funeral Service Provider",
-          "riderRef": "S00496",
-          "event": {
-            "name": "DEATH",
-            "desc": "",
-            "eventType": "DEATH",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0010",
-              "name": "FUNERAL",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateDeathBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV0011",
-          "name": "ADD - Accidental Death and Dismemberment",
-          "desc": "Accidental Death and Dismemberment (ADD)",
-          "riderRef": "S00375",
-          "event": {
-            "name": "ACCIDENT",
-            "desc": "Protection for your family in case of Accidental Death Dismemberment",
-            "eventType": "ACCIDENT",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0011",
-              "name": "ACCIDENT",
-              "desc": "Protection for your family in case of Accidental Death and Dismemberment",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateADDBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV0012",
-          "name": "Additional Illness Benefit",
-          "desc": "",
-          "riderRef": "S00573",
-          "event": {
-            "name": "ILLNESS",
-            "desc": "",
-            "eventType": "ILLNESS",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0012",
-              "name": "Illness Benefit",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateIllnessBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV0013",
-          "name": "AdditionalDeathBenefit",
-          "desc": "Protection for your family in case of your death",
-          "riderRef": "S00572",
-          "event": {
-            "name": "DEATH",
-            "desc": "Protection for your family in case of your death",
-            "eventType": "DEATH",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0013",
-              "name": "DEATH",
-              "desc": "Protection for your family in case of your death",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateDeathBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV0014",
-          "name": "SurgeryBenefit",
-          "desc": "Surgery Benefit provides a lumpsum benefit in case of a surgery as per policy norms",
-          "riderRef": "S00548",
-          "event": {
-            "name": "SURGERY",
-            "desc": "Surgery Benefit",
-            "eventType": "SURGERY",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0014",
-              "name": "SURGERY",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateBenefit_Surgery"
-                }
-              ],
-              "selectionCriteria": null
-            }
-          ]
-        },
-        {
-          "id": "COV0015",
-          "name": "Hospital Service Benefit",
-          "desc": "",
-          "riderRef": "S00315",
-          "event": {
-            "name": "HOSPITALSERVICE",
-            "desc": "Hospital Service Benefit",
-            "eventType": "HOSPITALSERVICE",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0015",
-              "name": "HOSPITALSERVICE",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateBenefit_HospitalService"
-                }
-              ],
-              "selectionCriteria": null
-            }
-          ]
-        },
-        {
-          "id": "COV0016",
-          "name": "DentalBenefit",
-          "desc": "",
-          "riderRef": "S00316",
-          "event": {
-            "name": "DENTAL",
-            "desc": "Dental Benefit",
-            "eventType": "DENTAL",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0016",
-              "name": "DENTAL",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateBenefit_Dental"
-                }
-              ],
-              "selectionCriteria": null
-            }
-          ]
-        },
-        {
-          "id": "COV0017",
-          "name": "OPD Benefit",
-          "desc": "",
-          "riderRef": "S00317",
-          "event": {
-            "name": "OPD",
-            "desc": "OPD Benefit",
-            "eventType": "OPD",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0017",
-              "name": "OPD",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateBenefit_OPD"
-                }
-              ],
-              "selectionCriteria": null
-            }
-          ]
-        },
-        {
-          "id": "COV0018",
-          "name": "Emergency Benefit",
-          "desc": "",
-          "riderRef": "S00592",
-          "event": {
-            "name": "EMERGENCYTREATMENT",
-            "desc": "Emergency Benefit",
-            "eventType": "EMERGENCYTREATMENT",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0018",
-              "name": "EMERGENCYTREATMENT",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateBenefit_Emergency"
-                }
-              ],
-              "selectionCriteria": null
-            }
-          ]
-        },
-        {
-          "id": "COV0019",
-          "name": "CM Benefit",
-          "desc": "",
-          "riderRef": "S00563",
-          "event": {
-            "name": "CRITICALILLNESS",
-            "desc": "CM Benefit",
-            "eventType": "CRITICALILLNESS",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0019",
-              "name": "CRITICALILLNESS",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateBenefit_CM"
-                }
-              ],
-              "selectionCriteria": null
-            }
-          ]
-        },
-        {
-          "id": "COV0020",
-          "name": "DoctorConsultationBenefit",
-          "desc": "Doctor Consultation Benefit",
-          "riderRef": "S00318",
-          "event": {
-            "name": "CONSULTATION",
-            "desc": "Doctor Consultation Benefit",
-            "eventType": "CONSULTATION",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0020",
-              "name": "CONSULTATION",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateBenefit_Consultation"
-                }
-              ],
-              "selectionCriteria": null
-            }
-          ]
-        },
-        {
-          "id": "COV0021",
-          "name": "SpecialistConsultationBenefit",
-          "desc": "Specialist Consultation Benefit",
-          "riderRef": "S00318",
-          "event": {
-            "name": "CONSULTATION",
-            "desc": "Specialist Consultation Benefit",
-            "eventType": "CONSULTATION",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0021",
-              "name": "CONSULTATION",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateBenefit_Consultation"
-                }
-              ],
-              "selectionCriteria": null
-            }
-          ]
-        },
-        {
-          "id": "COV0022",
-          "name": "General Hospital Service Benefit",
-          "desc": "",
-          "riderRef": "S00320",
-          "event": {
-            "name": "HOSPITALSERVICE",
-            "desc": "General Hospital Service Benefit",
-            "eventType": "HOSPITALSERVICE",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0022",
-              "name": "HOSPITALSERVICE",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateBenefit_HospitalService"
-                }
-              ],
-              "selectionCriteria": null
-            }
-          ]
-        },
-        {
-          "id": "COV0023",
-          "name": "Illness Benefit",
-          "desc": "Illness Benefit",
-          "riderRef": "S00469",
-          "event": {
-            "name": "ILLNESS",
-            "desc": "Protection for your family in case you are ill.",
-            "eventType": "ILLNESS",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0023",
-              "name": "ILLNESS Benefit",
-              "desc": "Protection for your family in case of your illness",
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateIllnessBenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        },
-        {
-          "id": "COV0024",
-          "name": "Murder and Assault",
-          "desc": "Personal Accident Insurance policy provides complete financial protection to the insured members against uncertainties such as accidental death, accidental bodily injuries, and partial/total disabilities, permanent as well as temporary disabilities resulting from an accident.",
-          "riderRef": "S00534",
-          "event": {
-            "name": "MURDERASSAULT",
-            "desc": "",
-            "eventType": "MURDERASSAULT",
-            "selectionCriteria": [
-              {
-                "type": "INCLUSION",
-                "functionName": "F_checkPolicyAvailability"
-              }
-            ]
-          },
-          "indemnities": [
-            {
-              "id": "IND0024",
-              "name": "MURDER",
-              "desc": null,
-              "addition": "CUMULATIVE",
-              "type": "SIMPLE",
-              "computes": [
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_Calculate_Benefit"
-                },
-                {
-                  "type": "BENEFIT",
-                  "functionName": "F_CalculateMABenefit"
-                }
-              ],
-              "selectionCriteria": []
-            }
-          ]
-        }
-      ]
-    }
+      "coverages": []
+    },
+    // {
+    //   "id": 1,
+    //   "name": "POLICYHOLDER",
+    //   "desc": null,
+    //   "type": "POLICYHOLDER",
+    //   "selectionCriteria": [
+    //     {
+    //       "type": "INCLUSION",
+    //       "functionName": "checkProductAvailability"
+    //     },
+    //     {
+    //       "type": "INCLUSION",
+    //       "functionName": "checkProductAvailabilityWithMinor"
+    //     },
+    //     {
+    //       "type": "INCLUSION",
+    //       "functionName": "F_CheckCancelAvailability"
+    //     }
+    //   ],
+    //   "coverages": [
+    //     {
+    //       "id": "COV001",
+    //       "name": "DeathBenefit",
+    //       "desc": "Protection for your family in case of your death",
+    //       "riderRef": "S00309",
+    //       "event": {
+    //         "name": "DEATH",
+    //         "desc": "Protection for your family in case of your death",
+    //         "eventType": "DEATH",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND001",
+    //           "name": "DeathBenefit",
+    //           "desc": "Protection for your family in case of your death",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateDeathBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV002",
+    //       "name": "TPDBenefit",
+    //       "desc": "Protection against Temporary and Permanent Disability for your family",
+    //       "riderRef": "S00312",
+    //       "event": {
+    //         "name": "TPD",
+    //         "desc": "Protection against Temporary and Permanent Disability for your family",
+    //         "eventType": "TPD",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND002",
+    //           "name": "TPD",
+    //           "desc": "Protection against Temporary and Permanent Disability for your family",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateTPDBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV003",
+    //       "name": "DailyHospitalIncomeBenefit",
+    //       "desc": "",
+    //       "riderRef": "S00313",
+    //       "event": {
+    //         "name": "HOSPITALIZATION",
+    //         "desc": "Complete payment in case of hospitalization upto 5 days and 3 times an year",
+    //         "eventType": "HOSPITALIZATION",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND003",
+    //           "name": "DailyHospitalIncomeBenefit",
+    //           "desc": "Complete payment in case of hospitalization upto 5 days and 3 times an year",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateIPDBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV004",
+    //       "name": "LongTermHospitalisationBenefit ",
+    //       "desc": "In the event of hospitalisation,a daily cash benefit for each day at hospital confinement is paid to the insured",
+    //       "riderRef": "S00537",
+    //       "event": {
+    //         "name": "HOSPITALIZATION",
+    //         "desc": "In the event of hospitalization beyond 30 days,additional daily cash benefit for each day at hospital confinement is paid to the insured",
+    //         "eventType": "HOSPITALIZATION",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND004",
+    //           "name": "LongTermHospitalisationBenefit",
+    //           "desc": "In the event of hospitalisation,a daily cash benefit for each day at hospital confinement is paid to the insured",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateIPDBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV005",
+    //       "name": "ICUBenefit",
+    //       "desc": "In the event of hospitalisation in an ICU, a daily cash benefit for each day at ICU confinement is paid to the insured",
+    //       "riderRef": "S00538",
+    //       "event": {
+    //         "name": "ICU",
+    //         "desc": "In the event of hospitalisation in an ICU, a daily cash benefit for each day at ICU confinement is paid to the insured",
+    //         "eventType": "ICU",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND005",
+    //           "name": "ICUBenefit",
+    //           "desc": "Complete payment in case of hospitalization upto 5 days and 3 times an year",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateICUBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV006",
+    //       "name": "Infectious Disease Death Benefit",
+    //       "desc": "Additional protection for your family in case of your death due to infectious disease",
+    //       "riderRef": "S00557",
+    //       "event": {
+    //         "name": "ILLNESSDEATH",
+    //         "desc": "",
+    //         "eventType": "ILLNESSDEATH",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND006",
+    //           "name": "Infectious Disease Death Benefit",
+    //           "desc": "Additional protection for your family in case of your death due to infectious disease",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateDeathIllnessBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV007",
+    //       "name": "ADB - Accidental Death Benefit",
+    //       "desc": "Accidental Death Benefit",
+    //       "riderRef": "S00371",
+    //       "event": {
+    //         "name": "ACCIDENTALDEATH",
+    //         "desc": "Protection for your family in case of accidental death",
+    //         "eventType": "ACCIDENTALDEATH",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND007",
+    //           "name": "ACCIDENTALDEATH",
+    //           "desc": "Protection for your family in case of accidental death",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateADBBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV008",
+    //       "name": "Illness Benefit",
+    //       "desc": "Illness Benefit",
+    //       "riderRef": "S00469",
+    //       "event": {
+    //         "name": "ILLNESS",
+    //         "desc": "Protection for your family in case you are ill.",
+    //         "eventType": "ILLNESS",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND008",
+    //           "name": "ILLNESS Benefit",
+    //           "desc": "Protection for your family in case of your illness",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateIllnessBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV009",
+    //       "name": "MedicalBenefit",
+    //       "desc": "Medical Benefit",
+    //       "riderRef": "S00351",
+    //       "event": {
+    //         "name": "MEDICALREIMBURSEMENT",
+    //         "desc": "Protection for your family in case you are ill.",
+    //         "eventType": "MEDICALREIMBURSEMENT",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND009",
+    //           "name": "MEDICALREIMBURSEMENT",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateMedicalBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0010",
+    //       "name": "Funeral Benefit",
+    //       "desc": "Funeral Benefit amount that is payable to the Funeral Service Provider",
+    //       "riderRef": "S00496",
+    //       "event": {
+    //         "name": "DEATH",
+    //         "desc": "",
+    //         "eventType": "DEATH",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0010",
+    //           "name": "FUNERAL",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateDeathBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0011",
+    //       "name": "ADD - Accidental Death and Dismemberment",
+    //       "desc": "Accidental Death and Dismemberment (ADD)",
+    //       "riderRef": "S00375",
+    //       "event": {
+    //         "name": "ACCIDENT",
+    //         "desc": "Protection for your family in case of Accidental Death Dismemberment",
+    //         "eventType": "ACCIDENT",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0011",
+    //           "name": "ACCIDENT",
+    //           "desc": "Protection for your family in case of Accidental Death and Dismemberment",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateADDBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0012",
+    //       "name": "Additional Illness Benefit",
+    //       "desc": "",
+    //       "riderRef": "S00573",
+    //       "event": {
+    //         "name": "ILLNESS",
+    //         "desc": "",
+    //         "eventType": "ILLNESS",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0012",
+    //           "name": "Illness Benefit",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateIllnessBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0013",
+    //       "name": "AdditionalDeathBenefit",
+    //       "desc": "Protection for your family in case of your death",
+    //       "riderRef": "S00572",
+    //       "event": {
+    //         "name": "DEATH",
+    //         "desc": "Protection for your family in case of your death",
+    //         "eventType": "DEATH",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0013",
+    //           "name": "DEATH",
+    //           "desc": "Protection for your family in case of your death",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateDeathBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0014",
+    //       "name": "SurgeryBenefit",
+    //       "desc": "Surgery Benefit provides a lumpsum benefit in case of a surgery as per policy norms",
+    //       "riderRef": "S00548",
+    //       "event": {
+    //         "name": "SURGERY",
+    //         "desc": "Surgery Benefit",
+    //         "eventType": "SURGERY",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0014",
+    //           "name": "SURGERY",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateBenefit_Surgery"
+    //             }
+    //           ],
+    //           "selectionCriteria": null
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0015",
+    //       "name": "Hospital Service Benefit",
+    //       "desc": "",
+    //       "riderRef": "S00315",
+    //       "event": {
+    //         "name": "HOSPITALSERVICE",
+    //         "desc": "Hospital Service Benefit",
+    //         "eventType": "HOSPITALSERVICE",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0015",
+    //           "name": "HOSPITALSERVICE",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateBenefit_HospitalService"
+    //             }
+    //           ],
+    //           "selectionCriteria": null
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0016",
+    //       "name": "DentalBenefit",
+    //       "desc": "",
+    //       "riderRef": "S00316",
+    //       "event": {
+    //         "name": "DENTAL",
+    //         "desc": "Dental Benefit",
+    //         "eventType": "DENTAL",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0016",
+    //           "name": "DENTAL",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateBenefit_Dental"
+    //             }
+    //           ],
+    //           "selectionCriteria": null
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0017",
+    //       "name": "OPD Benefit",
+    //       "desc": "",
+    //       "riderRef": "S00317",
+    //       "event": {
+    //         "name": "OPD",
+    //         "desc": "OPD Benefit",
+    //         "eventType": "OPD",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0017",
+    //           "name": "OPD",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateBenefit_OPD"
+    //             }
+    //           ],
+    //           "selectionCriteria": null
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0018",
+    //       "name": "Emergency Benefit",
+    //       "desc": "",
+    //       "riderRef": "S00592",
+    //       "event": {
+    //         "name": "EMERGENCYTREATMENT",
+    //         "desc": "Emergency Benefit",
+    //         "eventType": "EMERGENCYTREATMENT",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0018",
+    //           "name": "EMERGENCYTREATMENT",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateBenefit_Emergency"
+    //             }
+    //           ],
+    //           "selectionCriteria": null
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0019",
+    //       "name": "CM Benefit",
+    //       "desc": "",
+    //       "riderRef": "S00563",
+    //       "event": {
+    //         "name": "CRITICALILLNESS",
+    //         "desc": "CM Benefit",
+    //         "eventType": "CRITICALILLNESS",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0019",
+    //           "name": "CRITICALILLNESS",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateBenefit_CM"
+    //             }
+    //           ],
+    //           "selectionCriteria": null
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0020",
+    //       "name": "DoctorConsultationBenefit",
+    //       "desc": "Doctor Consultation Benefit",
+    //       "riderRef": "S00318",
+    //       "event": {
+    //         "name": "CONSULTATION",
+    //         "desc": "Doctor Consultation Benefit",
+    //         "eventType": "CONSULTATION",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0020",
+    //           "name": "CONSULTATION",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateBenefit_Consultation"
+    //             }
+    //           ],
+    //           "selectionCriteria": null
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0021",
+    //       "name": "SpecialistConsultationBenefit",
+    //       "desc": "Specialist Consultation Benefit",
+    //       "riderRef": "S00318",
+    //       "event": {
+    //         "name": "CONSULTATION",
+    //         "desc": "Specialist Consultation Benefit",
+    //         "eventType": "CONSULTATION",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0021",
+    //           "name": "CONSULTATION",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateBenefit_Consultation"
+    //             }
+    //           ],
+    //           "selectionCriteria": null
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0022",
+    //       "name": "General Hospital Service Benefit",
+    //       "desc": "",
+    //       "riderRef": "S00320",
+    //       "event": {
+    //         "name": "HOSPITALSERVICE",
+    //         "desc": "General Hospital Service Benefit",
+    //         "eventType": "HOSPITALSERVICE",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0022",
+    //           "name": "HOSPITALSERVICE",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateBenefit_HospitalService"
+    //             }
+    //           ],
+    //           "selectionCriteria": null
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0023",
+    //       "name": "Illness Benefit",
+    //       "desc": "Illness Benefit",
+    //       "riderRef": "S00469",
+    //       "event": {
+    //         "name": "ILLNESS",
+    //         "desc": "Protection for your family in case you are ill.",
+    //         "eventType": "ILLNESS",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0023",
+    //           "name": "ILLNESS Benefit",
+    //           "desc": "Protection for your family in case of your illness",
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateIllnessBenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       "id": "COV0024",
+    //       "name": "Murder and Assault",
+    //       "desc": "Personal Accident Insurance policy provides complete financial protection to the insured members against uncertainties such as accidental death, accidental bodily injuries, and partial/total disabilities, permanent as well as temporary disabilities resulting from an accident.",
+    //       "riderRef": "S00534",
+    //       "event": {
+    //         "name": "MURDERASSAULT",
+    //         "desc": "",
+    //         "eventType": "MURDERASSAULT",
+    //         "selectionCriteria": [
+    //           {
+    //             "type": "INCLUSION",
+    //             "functionName": "F_checkPolicyAvailability"
+    //           }
+    //         ]
+    //       },
+    //       "indemnities": [
+    //         {
+    //           "id": "IND0024",
+    //           "name": "MURDER",
+    //           "desc": null,
+    //           "addition": "CUMULATIVE",
+    //           "type": "SIMPLE",
+    //           "computes": [
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_Calculate_Benefit"
+    //             },
+    //             {
+    //               "type": "BENEFIT",
+    //               "functionName": "F_CalculateMABenefit"
+    //             }
+    //           ],
+    //           "selectionCriteria": []
+    //         }
+    //       ]
+    //     }
+    //   ]
+    // }
   ],
   "computes": {
     "allFunctionsDefinitions": "",
@@ -2376,3 +2389,6 @@ export let BaseJson={
     "updateBy": ""
   }
 };
+
+export let fromPremium={"value":false,file:{}};
+export let globalInsuredObjectsId={value:"0"};

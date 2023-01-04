@@ -369,3 +369,52 @@ export let benefitDetailsSkeleton={
 		}
 	]
 }
+
+export let T_PLAN_Details={
+	"tableName": "T_PLANDETAILS",
+	"tableType": null,
+	"tableData": []
+  }
+
+  export let T_PREMIUM_Details={
+	"tableName": "T_PREMIUM_DETAILS",
+	"tableType": null,
+	"tableData": []
+  }
+
+
+
+  export let insuredObjs_coverages_array=[];
+  export let insuredObjs_coverages={
+	"id": "",
+	"name": "",
+	"desc": "",
+	"riderRef": "",
+	"event": {
+	  "name": "",
+	  "desc": "",
+	  "eventType": "",
+	  "selectionCriteria": [
+  
+	  ]
+	},
+	"indemnities": [
+	  {
+		"id": "C001",
+		"name": "",
+		"desc": null,
+		"addition": "CUMULATIVE",
+		"type": "SIMPLE",
+		"computes": [
+		  {
+			"type": "BENEFIT",
+			"functionName": "F_Calculate_Benefit"
+		  }
+		],
+		"selectionCriteria": [
+  
+		]
+	  }
+	]
+  };
+
