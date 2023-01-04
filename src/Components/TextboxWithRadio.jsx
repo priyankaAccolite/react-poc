@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Styles/textboxWithRadio.css";
 import { BaseJson, currencyCode } from '../Constants/Constants';
 import UpdateBenfitDetails from "../Containers/UpdateBenfitDetails";
-
+import { insuredObjs_coverages_array } from "../Constants/JsonSkeleton-BenefitDetails";
 const TextboxWithRadio = (props) => {
   const [value, setValue] = useState('');
   //console.log("global-array",currencyCode);
@@ -27,6 +27,17 @@ const TextboxWithRadio = (props) => {
       })
       if (index > -1) { 
         BaseJson.components.splice(index, 1); 
+      }
+
+      index=-1;
+      insuredObjs_coverages_array.map((item)=>{
+        if(item.name==value.substring(7)){
+          index=insuredObjs_coverages_array.indexOf(item);
+        }
+      })
+      if(index>-1){
+        insuredObjs_coverages_array.splice(index,1);
+        BaseJson.insuredObjs[0].coverages=insuredObjs_coverages_array;
       }
     }
   };
