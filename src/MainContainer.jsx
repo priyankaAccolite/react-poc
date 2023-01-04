@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 import Validation from './Containers/Validations'
 import PolicyServicing from "./Containers/PolicyServicing";
 import { BaseJson } from "./Constants/Constants";
-import { checkProductAvailability, checkProductAvailabilityArgument } from "./Constants/Constants";
+import { checkProductAvailability, checkProductAvailabilityArgument, checkPremium, checkPremiumArgument, checkCancelAvailability , calculateCancelRefund, calculateCancelRefundArgument} from "./Constants/Constants";
 
 const MainContainer = () => {
   const [download,setDownload]=useState(false);
@@ -17,9 +17,19 @@ const MainContainer = () => {
     Setrerender(!rerender);
  };
  const handleComputesAllFunctionsDefinitions = () =>{
+  console.log("cancellll",calculateCancelRefund,checkCancelAvailability)
   let var1 = `function checkProductAvailability(${checkProductAvailabilityArgument.join(",")})`
   let var2 = "function F_Calculate_Benefit(planName,T_PLANDETAILS){var rows=T_PLANDETAILS.filter(function (elem) {return elem.packageName==planName.toUpperCase()});if (rows.length>0) {return {\"totalSumAssured\": rows[0].sumInsured,\"S00309_SI\": rows[0].S00309_SI};} else{this.errorMessage = \"plan doesnt exist\"; this.errorCode = 1008;}}"
-  return BaseJson.computes.allFunctionsDefinitions = `${var1}{${checkProductAvailability.join("")}}${var2}`
+  let var3 = "function F_GetPlans(T_PLANDETAILS){return T_PLANDETAILS;}"
+  let var4 =  `function F_calculatePremium(${checkPremiumArgument.join(",")})`
+  let param= ""
+  if(calculateCancelRefund.length && checkCancelAvailability.length){
+    console.log("kjkj")
+    param=`function F_CalculateCancelRefund(${calculateCancelRefundArgument.join(",")}){${calculateCancelRefund}}${checkCancelAvailability.join("")}`
+  }
+  
+    // BaseJson.computes.allFunctionsDefinitions = BaseJson.computes.allFunctionsDefinitions + `${param}{${calculateCancelRefund.join("")}}`
+  return BaseJson.computes.allFunctionsDefinitions = `${var1}{${checkProductAvailability.join("")}}${var2}${var3}${var4}{${checkPremium.join("")}} ${param}`
 }
 handleComputesAllFunctionsDefinitions()
 
@@ -28,6 +38,11 @@ const handleComputesFunctionGroupsFunctionBody = () =>{
     if(item.type === "INCLUSION"){
       item.functions.map((i)=>{
         i.functionBody = `${checkProductAvailability.join("")}`
+      })
+    }
+    if(item.type === "PREMIUM"){
+      item.functions.map((i)=>{
+        i.functionBody = `${checkPremium.join("")}`
       })
     }
   })
@@ -91,8 +106,36 @@ const handleComputesFUnctionGroupBenefit = () =>{
 
   return BaseJson.computes.functionGroups.some((item) => item.type === "BENEFIT") ?null :BaseJson.computes.functionGroups.push(obj)
 }
+const handleComputesPlan = () =>{
+  let obj = {
+    "type": "EXTERNAL",
+    "functions": [
+      {
+        "transactionContextRef": [
+          "SALES-ANY-ALL"
+        ],
+        "functionName": "F_GetPlans",
+        "functionBody": "return T_PLANDETAILS;",
+        "input": [
+          {
+            "name": "table",
+            "tableRef": "T_PLANDETAILS"
+          }
+        ],
+        "output": {
+          "name": "plans",
+          "dataType": "jsonString"
+        },
+        "order": 0
+      }
+    ]
+}
+return BaseJson.computes.functionGroups.some((item) => item.type === "EXTERNAL") ?null :BaseJson.computes.functionGroups.push(obj)
+}
+
 handleComputesFunctionGroupsFunctionBody()
 handleComputesFUnctionGroupBenefit()
+handleComputesPlan()
 
 console.log("BaseJSON main container", BaseJson.attributes, BaseJson.computes.allFunctionsDefinitions)
   return <div>

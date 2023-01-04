@@ -306,25 +306,25 @@ export const updatePolicyServiceDetails = [
       },
     ],
   },
-  {
-    label: "If Yes, Type of Refund",
-    type: [
-      {
-        label: "dropdown",
-        options: [
-          { value: "full", label: "full" },
-          { value: "partial", label: "partial" },
-        ],
-        value: "",
-        width: "206px",
-        enable: "y",
-        fieldvalue: "",
-      },
-    ],
-  },
+  // {
+  //   label: "If Yes, Type of Refund",
+  //   type: [
+  //     {
+  //       label: "dropdown",
+  //       options: [
+  //         { value: "full", label: "full" },
+  //         { value: "partial", label: "partial" },
+  //       ],
+  //       value: "",
+  //       width: "206px",
+  //       enable: "y",
+  //       fieldvalue: "",
+  //     },
+  //   ],
+  // },
 
   {
-    label: "If Partial, Refund Logic",
+    label: "Refund Logic",
     type: [{ label: "textField", value: "", width: "900px" }],
   },
 ];
@@ -834,7 +834,15 @@ export let applicablePolicyServicing = [];
 
 export let checkProductAvailability = []
 
+export let checkCancelAvailability = []
+
+export let calculateCancelRefund = []
+export let calculateCancelRefundArgument = []
+
 export let checkProductAvailabilityArgument = ["birthDate","email","firstName","lastName","nationalId","laMinAge","laMaxAge"]
+
+export let checkPremium = []
+export let checkPremiumArgument = ["planName","birthDate","T_PREMIUMDETAILS"]
 
 export let BaseJson={
   "_id": "PRODUCT_DEFINITION/S00001/A.1",

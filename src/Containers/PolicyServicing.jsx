@@ -245,8 +245,8 @@ const PolicyServicing = () => {
                 }
                 else {
                   return <div style={{ display: "flex", flexDirection: "row", marginLeft: 5 }}>
-                    <TextboxWithRadio currencyCode={applicablePolicyServicing} />
-                    <input type="button" value="Edit" onClick={handleEdit} style={{ border: '1px solid black', backgroundColor: "#ED2939", height: 35, borderRadius: 3, width: 40, marginLeft: 5, fontWeight: 'bold', fontSize: 12, color: "whitesmoke" }} />
+                    <TextboxWithRadio currencyCode={applicablePolicyServicing} fromPolicyServicing={true} />
+                    {/* <input type="button" value="Edit" onClick={handleEdit} style={{ border: '1px solid black', backgroundColor: "#ED2939", height: 35, borderRadius: 3, width: 40, marginLeft: 5, fontWeight: 'bold', fontSize: 12, color: "whitesmoke" }} /> */}
                   </div>
                 }
               })}
