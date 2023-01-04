@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Components/Header";
 import { premiumDetails } from "../Constants/Constants";
 import "../Styles/premiumDetails.css";
-import FileUpload from "../Components/FileUpload";
+import FileUploadPremiumTable from "../Components/FileUploadPremiumTable";
 import DropDown2 from "../Components/DropDown2";
 import { BaseJson } from "../Constants/Constants";
 
@@ -258,7 +258,7 @@ const PremiumDetails = () => {
                       } else if (subItem.placeHolder === "upload") {
                         return (
                           <div className="upload">
-                            <FileUpload />
+                            <FileUploadPremiumTable />
                           </div>
                         );
                       }

@@ -6,7 +6,8 @@ import "../Styles/updateBenefit.css";
 import  Modal  from "react-modal";
 import { useState } from "react";
 import TextInput from "../Components/TextInput";
-import { benefitDetailsSkeleton } from "../Constants/JsonSkeleton-BenefitDetails"; 
+import { benefitDetailsSkeleton,insuredObjs_Skeleton,insuredObjs_coverages, insuredObjs_coverages_array} from "../Constants/JsonSkeleton-BenefitDetails"; 
+import { globalInsuredObjectsId } from "../Constants/Constants";
 
 const UpdateBenfitDetails = (props) => {
   console.log("props",props);
@@ -60,7 +61,36 @@ const UpdateBenfitDetails = (props) => {
 
   const handleSave=()=>{
     console.log("printteeddddd",props.selectedvalue.substring(7));
+
+
+
+
+    insuredObjs_coverages.id="C000"+`${parseInt(globalInsuredObjectsId.value)+1}`;
+    insuredObjs_coverages.name=props.selectedvalue.substring(7);
+    if(insuredObjs_coverages.name!=="DeathBenefit")
+    insuredObjs_coverages.desc=null;
+    else
+    insuredObjs_coverages.desc="Protection for your family in case of your death";
+    insuredObjs_coverages.code=props.selectedvalue.substring(0,6);
+    insuredObjs_coverages.event.name=claimType;
+    insuredObjs_coverages.event.eventType=claimType;
+    insuredObjs_coverages.indemnities[0].name=props.selectedvalue.substring(7);
+    globalInsuredObjectsId.value=(parseInt(globalInsuredObjectsId.value)+1).toString();
+    let resultData = JSON.parse(JSON.stringify(insuredObjs_coverages));
+    insuredObjs_coverages_array.push(resultData);
+     
+
+    console.log("insuredObjs_coverages_array",insuredObjs_coverages_array);
+    BaseJson.insuredObjs[0].coverages=insuredObjs_coverages_array;
+    console.log(" BaseJson.insuredObjs.coverages", BaseJson.insuredObjs.coverages);
+    //BaseJson.insuredObjs.push(insuredObjs_Skeleton);
+
+
+
     benefitDetailsSkeleton.name=props.selectedvalue.substring(7);
+    benefitDetailsSkeleton.code=props.selectedvalue.substring(0,6);
+    if(benefitDetailsSkeleton.name!=="DeathBenefit")
+    benefitDetailsSkeleton.desc=null;
     benefitDetailsSkeleton.behaviours[0].displayName=props.selectedvalue.substring(7);
     benefitDetailsSkeleton.relationshipTypeName=benefitType;
     benefitDetailsSkeleton.attributes.map(item=>{

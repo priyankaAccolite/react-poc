@@ -4,10 +4,9 @@ import {benefitDetails, otherLaValidations} from "../Constants/Constants";
 import DropDown from "../Components/DropDown";
 import '../Styles/productDetails.css'
 import TextboxWithRadio from "../Components/TextboxWithRadio";
-import FileUpload from "../Components/FileUpload";
+import FileUploadPlanTable from "../Components/FileUploadPlanTable";
 import { applicableBenefits } from "../Constants/Constants";
 import TextInput from "../Components/TextInput";
-import UpdateBenfitDetails from "./UpdateBenfitDetails";
 
 const BenefitDetails = () => {
 
@@ -80,7 +79,7 @@ const BenefitDetails = () => {
                   )
                 } else if (i.placeHolder === "upload") {
                   return <div style={{ marginLeft: 23 }}>
-                    <FileUpload />
+                    <FileUploadPlanTable />
                   </div>
                 } else if (i.placeHolder === "button") {
                   return <div style={{ marginLeft: 6 }}>
