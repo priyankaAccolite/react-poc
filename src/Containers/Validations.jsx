@@ -9,7 +9,7 @@ import { applicableExternalValidation } from '../Constants/Constants'
 import { applicableTransactionValidation } from '../Constants/Constants'
 import TextboxWithRadio from "../Components/TextboxWithRadio";
 import { BaseJson } from "../Constants/Constants";
-import { checkProductAvailability , checkProductAvailabilityArgument} from "../Constants/Constants";
+import { checkProductAvailability , checkProductAvailabilityArgument, calculationBasis} from "../Constants/Constants";
 
 const Validation = () => {
     const [value, setValue] = useState('');
@@ -30,16 +30,32 @@ const Validation = () => {
 
     const handleAgeVariable = () =>{
         let param = ""
-        if(calculation === "ANB")
-        param = "var age = calculateAgeNextBirthday(birthDate);"
-        else if (calculation === "ALB")
-        param = "var age = calculateAgeLastBirthday(birthDate);"
-        else if(calculation === "ANrB")
-        param = "var age = calculateAgeNearestBirthday(birthDate);"
-        else if(calculation === "ANBfrD")
-        param = "var age = calculateAgeNextBirthdayFromReferenceDate(birthDate);"
-        else if(calculation === "ALBfrD")
-        param = "var age = calculateAgeLastBirthdayFromReferenceDate(birthDate);"
+        let cal
+        if (calculation === "ANB") {
+            param = "var age = calculateAgeNextBirthday(birthDate);"
+            calculationBasis[0] = "calculateAgeNextBirthday"
+        }
+
+        else if (calculation === "ALB") {
+            param = "var age = calculateAgeLastBirthday(birthDate);"
+            calculationBasis[0] = "calculateAgeLastBirthday"
+        }
+
+        else if (calculation === "ANrB") {
+            param = "var age = calculateAgeNearestBirthday(birthDate);"
+            calculationBasis[0] = "calculateAgeNearestBirthday"
+        }
+
+        else if (calculation === "ANBfrD") {
+            param = "var age = calculateAgeNextBirthdayFromReferenceDate(birthDate);"
+            calculationBasis[0] = "calculateAgeNextBirthdayFromReferenceDate"
+        }
+
+        else if (calculation === "ALBfrD") {
+            param = "var age = calculateAgeLastBirthdayFromReferenceDate(birthDate);"
+            calculationBasis[0] = "calculateAgeLastBirthdayFromReferenceDate"
+        }
+
         checkProductAvailability[1] = param
         
     }
@@ -220,14 +236,6 @@ const Validation = () => {
     handleMinValue()
     handleAgeVariable()
 
-    console.log("BaseJSON", BaseJson.attributes, min, max, BaseJson.computes.functionGroups, checkProductAvailabilityArgument)
-    BaseJson.computes.functionGroups.map((item)=>{
-        if(item.type === "INCLUSION"){
-          item.functions.map((i)=>{
-         console.log("input",i.input)
-          })
-        }
-      })
     const handleChange = (e) => {
         setValue(e.label);
         Setrerender(!rerender);
@@ -274,7 +282,7 @@ const Validation = () => {
     };
 
     return (
-        <>
+    <>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                 <Header title={"Validation"} />
                 <div >

@@ -627,14 +627,14 @@ export const validation = [
       {
         placeHolder: "dropdown",
         options: [
-          { value: "Sales", label: "Sales" },
-          { value: "Manual Renew", label: "Manual Renewd" },
-          {
-            value: "Auto Renewal and Cancel Auto Renewal",
-            label: "Auto Renewal and Cancel Auto Renewal",
-          },
+          // { value: "Sales", label: "Sales" },
+          { value: "Manual Renew", label: "Manual Renew" },
+          // {
+          //   value: "Auto Renewal and Cancel Auto Renewal",
+          //   label: "Auto Renewal and Cancel Auto Renewal",
+          // },
           { value: "Cancel", label: "Cancel" },
-          { value: "Claims", label: "Claims" },
+          // { value: "Claims", label: "Claims" },
           { value: "Policy Loan", label: "Policy Loan" },
           {
             value: "Update Beneficiary Details",
@@ -801,7 +801,7 @@ export const policyServicing = [
       {
         placeHolder: "dropdown",
         options: [
-          { value: "Sales", label: "Sales" },
+          // { value: "Sales", label: "Sales" },
           { value: "Manual Renew", label: "Manual Renew" },
           {
             value: "Auto Renewal & Cancel Auto Renewal",
@@ -842,7 +842,9 @@ export let calculateCancelRefundArgument = []
 export let checkProductAvailabilityArgument = ["birthDate","email","firstName","lastName","nationalId","laMinAge","laMaxAge"]
 
 export let checkPremium = []
-export let checkPremiumArgument = ["planName","birthDate","T_PREMIUMDETAILS"]
+export let checkPremiumArgument = []
+
+export let calculationBasis = []
 
 export let BaseJson={
   "_id": "PRODUCT_DEFINITION/S00001/A.1",

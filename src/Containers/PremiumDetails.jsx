@@ -4,7 +4,7 @@ import { checkProductAvailability, premiumDetails } from "../Constants/Constants
 import "../Styles/premiumDetails.css";
 import FileUploadPremiumTable from "../Components/FileUploadPremiumTable";
 import DropDown2 from "../Components/DropDown2";
-import { BaseJson, checkPremium,checkPremiumArgument } from "../Constants/Constants";
+import { BaseJson, checkPremium,checkPremiumArgument,calculationBasis } from "../Constants/Constants";
 
 const PremiumDetails = () => {
   const [premiumDetailsData, setPremiumDetailsData] = React.useState(
@@ -151,13 +151,14 @@ const PremiumDetails = () => {
   handlePremiumFrequencyAttribute()
 
   const handleClick = () =>{
+    let param
     if(premiumDetailsData[0]?.type[0].fieldvalue==="free" || premiumDetailsData[0]?.type[0].fieldvalue==="freemium"){
-      setTextArea(`{"totalPremium": 0}`)
+      param = `{"totalPremium": 0}`
     } else if (premiumDetailsData[0]?.type[0].fieldvalue==="premium" && premiumDetailsData[1]?.type[0].fieldvalue==="constant"){
-      setTextArea(`{"totalPremium": totalPremium}`)
+      param = `{"totalPremium": totalPremium}`
     } else if(premiumDetailsData[0]?.type[0].fieldvalue==="premium" && premiumDetailsData[1]?.type[0].fieldvalue==="varies with attributes"){
-      setTextArea(`if (birthDate) {
-        var age = $$CalculationBasis$$(birthDate);
+      param = `if (birthDate) {
+        var age = ${calculationBasis.join("")}(birthDate);
             var row = T_PREMIUMDETAILS.filter(function (elem) {
                 return elem.age == age && elem.packageName.toUpperCase() == planName.toUpperCase() });
             });
@@ -176,12 +177,11 @@ const PremiumDetails = () => {
             "totalPremium": 0
         };
       }
-    `)
-    } 
-    // else {
-    //   setTextArea("")
-    // }
-    // console.log("setTextArea111111",textArea,checkPremium)
+    `
+    }
+    checkPremium[0] = param
+    setTextArea(param) 
+
   }
   const handleFunctionGroup = () =>{
     let obj = {
@@ -194,28 +194,6 @@ const PremiumDetails = () => {
           "functionName": "F_calculatePremium",
           "functionBody": "",
           "input": [
-            {
-              "name": "planName",
-              "attributeMapping": {
-                "domainObjectMapping": null,
-                "source": "productOption",
-                "productCode": "THIS",
-                "attributeName": "planName"
-              }
-            },
-            {
-              "name": "birthDate",
-              "attributeMapping": {
-                "domainObjectMapping": "$..lifeAssured[0].dob",
-                "source": null,
-                "productCode": "S00304",
-                "attributeName": "birthDate"
-              }
-            },
-            {
-              "name": "table",
-              "tableRef": "T_PREMIUMDETAILS"
-            }
           ],
           "output": {
             "name": "planInfo",
@@ -247,6 +225,30 @@ const PremiumDetails = () => {
         "attributeName": "totalPremium"
       }
     }
+    let obj1 = {
+        "name": "planName",
+        "attributeMapping": {
+          "domainObjectMapping": null,
+          "source": "productOption",
+          "productCode": "THIS",
+          "attributeName": "planName"
+        }
+      }
+      let obj2 = {
+        "name": "birthDate",
+        "attributeMapping": {
+          "domainObjectMapping": "$..lifeAssured[0].dob",
+          "source": null,
+          "productCode": "S00304",
+          "attributeName": "birthDate"
+        }
+      }
+      
+      let obj3 ={
+        "name": "table",
+        "tableRef": "T_PREMIUMDETAILS"
+      }
+    
     if(premiumDetailsData[0]?.type[0].fieldvalue==="premium" && premiumDetailsData[1]?.type[0].fieldvalue==="constant"){
       if(checkPremiumArgument.some((item) => item === "totalPremium")){}else checkPremiumArgument.push("totalPremium") 
       BaseJson.computes.functionGroups.map((item)=>{
@@ -266,10 +268,39 @@ const PremiumDetails = () => {
         }
       })
     }
+
+    if(premiumDetailsData[0]?.type[0].fieldvalue==="premium" && premiumDetailsData[1]?.type[0].fieldvalue==="varies with attributes"){
+      if(checkPremiumArgument.some((item) => item === "planName")){}else checkPremiumArgument.push("planName","birthDate","T_PREMIUMDETAILS") 
+      BaseJson.computes.functionGroups.map((item)=>{
+        if(item.type === "PREMIUM"){
+          item.functions.map((i)=>{
+            return  i.input.some((items) => items.name === "planName")?null:i.input.push(obj1,obj2,obj3)
+          })
+        }
+      })
+    } else {
+      if(checkPremiumArgument.some((item) => item === "planName")){
+        checkPremiumArgument.splice(checkPremiumArgument.findIndex(item => item === "planName"), 1)
+        checkPremiumArgument.splice(checkPremiumArgument.findIndex(item => item === "birthDate"), 1)
+        checkPremiumArgument.splice(checkPremiumArgument.findIndex(item => item === "T_PREMIUMDETAILS"), 1)
+      }else {}
+      BaseJson.computes.functionGroups.map((item)=>{
+        if(item.type === "PREMIUM"){
+          item.functions.map((i)=>{
+            return  i.input.some((items) => items.name === "planName")?(
+              i.input.splice(i.input.findIndex(item => item.name === "planName"), 1),
+              i.input.splice(i.input.findIndex(item => item.name === "birthDate"), 1),
+              i.input.splice(i.input.findIndex(item => item.name === "T_PREMIUMDETAILS"), 1)
+            )
+            :null
+          })
+        }
+      })
+    }
   }
   handleFunctionGroup()
   handleFunctionGroupInput()
-  checkPremium[0]=textArea
+  // checkPremium[0]=textArea
   return (
     console.log("checkkkk",BaseJson.attributes,BaseJson.computes.functionGroups,checkPremium.join(""),checkPremiumArgument.join(",")),
     <>
@@ -335,7 +366,7 @@ const PremiumDetails = () => {
                                   (premiumDetailsEnables[index] ??
                                     subItem.enable) === "n" && "#f2f2f3",
                               }}
-                              value={subItem.fieldvalue}
+                              value={premiumDetailsEnables[index] === "n"? "":subItem.fieldvalue}
                               onChange={(e) =>
                                 handleChange(index, subIndex, e?.target?.value)
                               }
@@ -370,7 +401,7 @@ const PremiumDetails = () => {
                                 rows="5"
                                 cols="102"
                                 value={textArea}
-                                // onChange={{}}
+                                onChange={e=>setTextArea(e.target.value)}
                               />
                             </div>
                           </div>

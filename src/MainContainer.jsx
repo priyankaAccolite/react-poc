@@ -24,11 +24,11 @@ const MainContainer = () => {
   let var4 =  `function F_calculatePremium(${checkPremiumArgument.join(",")})`
   let param= ""
   if(calculateCancelRefund.length && checkCancelAvailability.length){
-    param=`function F_CalculateCancelRefund(${calculateCancelRefundArgument.join(",")}){${calculateCancelRefund}}${checkCancelAvailability.join("")}`
+    param=`function F_CalculateCancelRefund(${calculateCancelRefundArgument.join(",")})${calculateCancelRefund}${checkCancelAvailability.join("")}`
   }
   
     // BaseJson.computes.allFunctionsDefinitions = BaseJson.computes.allFunctionsDefinitions + `${param}{${calculateCancelRefund.join("")}}`
-  return BaseJson.computes.allFunctionsDefinitions = `${var1}{${checkProductAvailability.join("")}}${var2}${var3}${var4}{${checkPremium.join("")}} ${param}`
+  return BaseJson.computes.allFunctionsDefinitions = `${var1}{${checkProductAvailability.join("")}}${var2}${var3}${var4}${checkPremium.join("")} ${param}`
 }
 handleComputesAllFunctionsDefinitions()
 
@@ -36,6 +36,7 @@ const handleComputesFunctionGroupsFunctionBody = () =>{
   return BaseJson.computes.functionGroups.map((item)=>{
     if(item.type === "INCLUSION"){
       item.functions.map((i)=>{
+        if(i.functionName === "checkProductAvailability")
         i.functionBody = `${checkProductAvailability.join("")}`
       })
     }
