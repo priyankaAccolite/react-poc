@@ -13,6 +13,16 @@ const MainContainer = () => {
   const [download,setDownload]=useState(false);
   const [rerender, Setrerender] = useState(false);
  const handleClick=()=>{
+  let index=-1;
+    BaseJson.computes.tables.map((item)=>{
+      console.log("***************************************************",item.tableName);
+      if(item.tableName=="T_WORKFLOW_EXTERNAL_VALIDATIONS"&&item.tableData.length==0){
+        index= BaseJson.computes.tables.indexOf(item);
+        console.log("index",index);
+      }
+    })
+    if(index>-1)
+    BaseJson.computes.tables.splice(index,1);
     setDownload(true);
     Setrerender(!rerender);
  };
