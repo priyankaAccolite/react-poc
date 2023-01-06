@@ -20,37 +20,58 @@ const PolicyServicing = () => {
 
   const handleTransactionContext = () => {
     if (value === "Manual Renew") {
-      if (BaseJson.transactionContext.some((item) => item.id === "RENEW-ANY-ALL")) { }
+      if (BaseJson.transactionContext.some((item) => item.id === "RENEW-PH-PULSE")) { }
       else {
-        BaseJson.transactionContext.push({
-          "id": "RENEW-ANY-ALL",
-          "transaction": "RENEW",
-          "transactionRole": "ANY",
-          "transactionChannel": "ALL"
-        },
-          {
-            "id": "RENEW-PH-PULSE",
+        if(BaseJson.transactionContext.some((item) => item.id === "RENEW-ANY-ALL"))
+        {
+          BaseJson.transactionContext.push(
+            {
+              "id": "RENEW-PH-PULSE",
+              "transaction": "RENEW",
+              "transactionChannel": "PULSE",
+              "transactionRole": "PH"
+            })
+        }else {
+          BaseJson.transactionContext.push({
+            "id": "RENEW-ANY-ALL",
             "transaction": "RENEW",
-            "transactionChannel": "PULSE",
-            "transactionRole": "PH"
-          })
+            "transactionRole": "ANY",
+            "transactionChannel": "ALL"
+          },
+            {
+              "id": "RENEW-PH-PULSE",
+              "transaction": "RENEW",
+              "transactionChannel": "PULSE",
+              "transactionRole": "PH"
+            })
+        }
       }
 
     } else if (value === "Auto Renewal & Cancel Auto Renewal") {
       if (BaseJson.transactionContext.some((item) => item.id === "CANCELAUTORENEW-ANY-ALL")) { }
       else {
-        BaseJson.transactionContext.push({
-          "id": "RENEW-ANY-ALL",
-          "transaction": "RENEW",
-          "transactionRole": "ANY",
-          "transactionChannel": "ALL"
-        },
-          {
-            "id": "CANCELAUTORENEW-ANY-ALL",
-            "transaction": "CANCELAUTORENEW",
+
+        if(BaseJson.transactionContext.some((item) => item.id === "RENEW-ANY-ALL")){
+          BaseJson.transactionContext.push({
+              "id": "CANCELAUTORENEW-ANY-ALL",
+              "transaction": "CANCELAUTORENEW",
+              "transactionRole": "ANY",
+              "transactionChannel": "ALL"
+            })
+        }else {
+          BaseJson.transactionContext.push({
+            "id": "RENEW-ANY-ALL",
+            "transaction": "RENEW",
             "transactionRole": "ANY",
             "transactionChannel": "ALL"
-          })
+          },
+            {
+              "id": "CANCELAUTORENEW-ANY-ALL",
+              "transaction": "CANCELAUTORENEW",
+              "transactionRole": "ANY",
+              "transactionChannel": "ALL"
+            })
+        }
       }
       if(BaseJson.attributes.some((item) => item.name === "isAutoRenewAllowed")){}
       else{

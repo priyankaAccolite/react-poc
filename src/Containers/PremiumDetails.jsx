@@ -13,6 +13,11 @@ const PremiumDetails = () => {
   const [selectedval, setSelectedVal] = React.useState("");
   const [display, setDisplay] = React.useState(true);
   const [textArea,setTextArea] = React.useState("")  
+
+  const handleTextArea =(e)=>{
+    setTextArea(e.target.value)
+    checkPremium[0]=e.target.value
+  } 
  
   const handleChange = (index, subIndex = 0, value) => {
     setSelectedVal(value);
@@ -300,7 +305,9 @@ const PremiumDetails = () => {
   }
   handleFunctionGroup()
   handleFunctionGroupInput()
+
   // checkPremium[0]=textArea
+  console.log("checkPremium", checkPremium[0], textArea)
   return (
     <>
       <div>
@@ -400,7 +407,7 @@ const PremiumDetails = () => {
                                 rows="5"
                                 cols="102"
                                 value={textArea}
-                                onChange={e=>setTextArea(e.target.value,checkPremium[0]=textArea)}
+                                onChange={e=>handleTextArea(e)}
                               />
                             </div>
                           </div>

@@ -257,8 +257,15 @@ const Validation = () => {
         if (e.target.dataset.id === "13") {
             // setgendersmokerval(textValue)
             let arrayValue = `${value}-${textValue}`;
-            if (!otherLaValidations.includes(arrayValue))
-                otherLaValidations.push(arrayValue);
+            if (!otherLaValidations.includes(arrayValue) && textValue!="" ){
+                let check =0
+                otherLaValidations.map((item)=>{
+                    if(item.includes(value)){
+                        check =1;
+                    }
+                })
+                if(check==0){otherLaValidations.push(arrayValue)} else {}
+            } 
                 handleOtherLaValidation(textValue)
             console.log("otherlaValidation", otherLaValidations, )
             Setrerender(!rerender);

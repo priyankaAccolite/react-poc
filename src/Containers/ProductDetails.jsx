@@ -260,8 +260,8 @@ const ProductDetails = ({ rerender, Setrerender }) => {
   BaseJson.shortName = name;
   BaseJson.fullName = name;
   BaseJson.productDisplayBehaviour.productDisplayName = name;
-  BaseJson.effectiveFrom = Date.now()
-  BaseJson.effectiveTo = Date.now() + 10
+  BaseJson.effectiveFrom = new Date().toISOString()
+  BaseJson.effectiveTo = new Date(new Date().setDate(new Date().getDate() + 3653)).toISOString()  ;
   BaseJson.desc = desc;
   BaseJson.category = category;
   BaseJson.productDisplayBehaviour.productGroupName = value;
@@ -277,8 +277,6 @@ const ProductDetails = ({ rerender, Setrerender }) => {
   handlePromoCodeValue()
   handleComputesSales()
   handleComputesMinor()
-
-  console.log("BaseJSON", BaseJson, BaseJson.attributes.length, BaseJson.attributes, BaseJson.computes.allFunctionsDefinitions, checkProductAvailabilityArgument)
 
   const handleChange = (e) => {
     setValue(e.label);

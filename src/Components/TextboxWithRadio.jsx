@@ -253,37 +253,8 @@ const TextboxWithRadio = (props) => {
     }
 
 
-
-
-
-
-
-    setValue(''); //Confusion
-    if (props.fromBenefit) {
-      let index = -1;
-      BaseJson.components.map((item) => {
-        if (item.name == value.substring(7)) {
-          index = BaseJson.components.indexOf(item);
-        }
-      })
-      if (index > -1) {
-        BaseJson.components.splice(index, 1);
-      }
-
-      index = -1;
-      insuredObjs_coverages_array.map((item) => {
-        if (item.name == value.substring(7)) {
-          index = insuredObjs_coverages_array.indexOf(item);
-        }
-      })
-      if (index > -1) {
-        insuredObjs_coverages_array.splice(index, 1);
-        BaseJson.insuredObjs[0].coverages = insuredObjs_coverages_array;
-      }
-    }
     if (props.fromPolicyServicing) {
       if (value === "Cancel") {
-
 
         let index = -1;
         BaseJson.insuredObjs[0].selectionCriteria.map((item) => {
@@ -310,11 +281,80 @@ const TextboxWithRadio = (props) => {
         while (calculateCancelRefundArgument.length > 0) {
           calculateCancelRefundArgument.pop()
         }
+          if(BaseJson.transactionContext.some((item) => item.id === "CANCEL-ANY-ALL")){
+            BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "CANCEL-ANY-ALL"), 1)
+            BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "CANCEL-PH-PULSE"), 1)
+          } else {}
+
       }
       if (value === "Auto Renewal & Cancel Auto Renewal") {
         if (BaseJson.attributes.some((item) => item.name === "isAutoRenewAllowed")) { BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name === "isAutoRenewAllowed"), 1) } else { }
+        if(props.currencyCode.includes("Manual Renew")){
+          if(BaseJson.transactionContext.some((item) => item.id === "CANCELAUTORENEW-ANY-ALL")){
+            BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "CANCELAUTORENEW-ANY-ALL"), 1)
+          } else {}       
+        } else {
+          if(BaseJson.transactionContext.some((item) => item.id === "CANCELAUTORENEW-ANY-ALL")){
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "CANCELAUTORENEW-ANY-ALL"), 1)    
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "RENEW-ANY-ALL"), 1)                    
+        }
       }
     }
+    if (value === "Manual Renew") {
+      if(props.currencyCode.includes("Auto Renewal & Cancel Auto Renewal")){
+        if(BaseJson.transactionContext.some((item) => item.id === "RENEW-PH-PULSE")){
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "RENEW-PH-PULSE"), 1)
+        } else {}       
+      } else {
+        if(BaseJson.transactionContext.some((item) => item.id === "RENEW-PH-PULSE")){
+        BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "RENEW-PH-PULSE"), 1)    
+        BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "RENEW-ANY-ALL"), 1)                    
+      }
+    }
+  }
+      if(value === "Claims"){
+        if(BaseJson.transactionContext.some((item) => item.id === "CLAIMS-ANY-ALL")){
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "CLAIMS-ANY-ALL"), 1)
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "MINORCLAIMS-PH-PULSE"), 1)
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "MAJORCLAIMS-BENEFICARY-PULSE"), 1)
+        } else {}
+        
+      }
+
+      if(value === "Policy Loan"){
+        if(BaseJson.transactionContext.some((item) => item.id === "LOANDISBURSEMENT-ANY-ALL")){
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "LOANDISBURSEMENT-ANY-ALL"), 1)
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "LOANREPAYMENT-ANY-ALL"), 1)
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "LOANSURRENDER-ANY-ALL"), 1) 
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "POLICYLOAN-ANY-ALL"), 1) 
+        } else {}
+      }
+
+      if(value === "Update Beneficiary details"){
+        if (BaseJson.transactionContext.some((item) => item.id === "CHANGEBENEFICIARY-PH-PULSE")) { 
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "CHANGEBENEFICIARY-PH-PULSE"), 1)
+        } else {}
+      }
+
+      if(value === "Reinstatement"){
+        if (BaseJson.transactionContext.some((item) => item.id === "REINSTATEMENT-ANY-ALL")) { 
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "REINSTATEMENT-ANY-ALL"), 1)
+        } else {}
+      }
+
+      if(value == "Surrender"){
+        if (BaseJson.transactionContext.some((item) => item.id === "SURRENDER-ANY-ALL")) { 
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "SURRENDER-ANY-ALL"), 1)
+        } else {}   
+      }
+
+      if(value === "Update Contact details"){
+        if (BaseJson.transactionContext.some((item) => item.id === "CHANGECONTACTDETAILS-PH-PULSE")) { 
+          BaseJson.transactionContext.splice(BaseJson.transactionContext.findIndex(item => item.id === "CHANGECONTACTDETAILS-PH-PULSE"), 1)
+        } else {}   
+      }
+    }
+
     if (props.fromOtherLaValidations) {
       if (value.substring(0, 1) === "G") {
         if (BaseJson.attributes.some((item) => item.name === "applicableLaGender")) { BaseJson.attributes.splice(BaseJson.attributes.findIndex(item => item.name === "applicableLaGender"), 1) } else { }
@@ -343,6 +383,32 @@ const TextboxWithRadio = (props) => {
         if (checkProductAvailabilityArgument.some((item) => item === "smoker")) { checkProductAvailabilityArgument.splice(checkProductAvailabilityArgument.findIndex(item => item === "smoker"), 1) } else { }
       }
     }
+
+
+    setValue(''); //Confusion
+    if (props.fromBenefit) {
+      let index = -1;
+      BaseJson.components.map((item) => {
+        if (item.name == value.substring(7)) {
+          index = BaseJson.components.indexOf(item);
+        }
+      })
+      if (index > -1) {
+        BaseJson.components.splice(index, 1);
+      }
+
+      index = -1;
+      insuredObjs_coverages_array.map((item) => {
+        if (item.name == value.substring(7)) {
+          index = insuredObjs_coverages_array.indexOf(item);
+        }
+      })
+      if (index > -1) {
+        insuredObjs_coverages_array.splice(index, 1);
+        BaseJson.insuredObjs[0].coverages = insuredObjs_coverages_array;
+      }
+    }
+
 
   };
   const handleEdit = () => {
