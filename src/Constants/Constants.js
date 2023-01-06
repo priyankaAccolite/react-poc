@@ -575,7 +575,7 @@ export const validation = [
         options: [
           { value: "Eligible National ID", label: "Eligible National ID" },
           { value: "Billing Created", label: "Billing Created" },
-          { value: "Payment Not Auto", label: "Payment Not Autor" },
+          { value: "Payment Not Auto", label: "Payment Not Auto" },
           {
             value: "Maximum Benefit SA Check",
             label: "Maximum Benefit SA Check",
@@ -602,6 +602,7 @@ export const validation = [
     type: [
       {
         placeHolder: "dropdown",
+        place:"first",
         options: [
           {
             value: "Minimum Policy Age Check",
@@ -626,6 +627,7 @@ export const validation = [
       },
       {
         placeHolder: "dropdown",
+        place:"second",
         options: [
           // { value: "Sales", label: "Sales" },
           { value: "Manual Renew", label: "Manual Renew" },
@@ -666,8 +668,12 @@ export let currencyCode = [];
 export let applicableBenefits = [];
 export let otherLaValidations = [];
 export let limitAgainstPolicy = [];
+export let limitAgainstPolicyJoint = [];
 export let applicableExternalValidation = [];
+export let applicableExternalValidationJoint = [];
 export let applicableTransactionValidation = [];
+export let applicableTransactionValidationCheck=[];
+export let applicableTransactionValidationJoint=[];
 
 export const benefitDetails = [
   {
@@ -2386,7 +2392,62 @@ export let BaseJson={
 			},
     ],
     "tables": [
-
+      {
+        "tableName": "T_PROPOSAL_PAYLOAD_VALIDATION",
+        "tableType": "PROPOSAL_PAYLOAD_VALIDATION",
+        "tableData": [
+          {
+            "elementModelPath": "$..productOption[?(@.product.code == 'S99999')]",
+            "elementName": "productCode",
+            "isMandatory": true,
+            "max": "",
+            "min": "",
+            "regexPath": "",
+            "transaction": "SALES",
+            "value": ""
+          },
+          {
+            "elementModelPath": "$..productOption[?(@.product.code == 'S99999')].totalSumAssured",
+            "elementName": "totalSumAssured",
+            "isMandatory": true,
+            "max": "",
+            "min": "",
+            "regexPath": "",
+            "transaction": "SALES",
+            "value": ""
+          },
+          {
+            "elementModelPath": "$..productOption[?(@.product.code == 'S99999')].options.policyTerm",
+            "elementName": "policyTerm",
+            "isMandatory": true,
+            "max": "",
+            "min": "",
+            "regexPath": "",
+            "transaction": "SALES",
+            "value": ""
+          },
+          {
+            "elementModelPath": "$..productOption[?(@.product.code == 'S99999')].options.policyTermUnit",
+            "elementName": "policyTermUnit",
+            "isMandatory": true,
+            "max": "",
+            "min": "",
+            "regexPath": "",
+            "transaction": "SALES",
+            "value": ""
+          },
+          {
+            "elementModelPath": "$..productOption[?(@.product.code == S99999')].totalPremium",
+            "elementName": "totalPremium",
+            "isMandatory": true,
+            "max": "",
+            "min": "",
+            "regexPath": "",
+            "transaction": "SALES",
+            "value": ""
+          }
+		  ]
+}
     ]
   },
   "customerJourney": null,
