@@ -222,7 +222,7 @@ const UpdatePolicyServiceDetails = (props) => {
                       return (
                         <div className="policyButtonHeader">
                           <div className="textareaContainer">
-                            <textarea className="textArea" rows="5" cols="46" value={textArea} />
+                            <textarea className="textArea" rows="5" cols="46" value={textArea} onChange={e=>setTextArea(e.target.value)}/>
                           </div>
                           <div className="buttonPolicy">
                             <button

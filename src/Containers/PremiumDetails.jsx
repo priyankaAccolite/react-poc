@@ -302,7 +302,6 @@ const PremiumDetails = () => {
   handleFunctionGroupInput()
   // checkPremium[0]=textArea
   return (
-    console.log("checkkkk",BaseJson.attributes,BaseJson.computes.functionGroups,checkPremium.join(""),checkPremiumArgument.join(",")),
     <>
       <div>
         <div className="premiumContainer">
@@ -401,7 +400,7 @@ const PremiumDetails = () => {
                                 rows="5"
                                 cols="102"
                                 value={textArea}
-                                onChange={e=>setTextArea(e.target.value)}
+                                onChange={e=>setTextArea(e.target.value,checkPremium[0]=textArea)}
                               />
                             </div>
                           </div>

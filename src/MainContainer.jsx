@@ -26,9 +26,13 @@ const MainContainer = () => {
   if(calculateCancelRefund.length && checkCancelAvailability.length){
     param=`function F_CalculateCancelRefund(${calculateCancelRefundArgument.join(",")})${calculateCancelRefund}${checkCancelAvailability.join("")}`
   }
-  
-    // BaseJson.computes.allFunctionsDefinitions = BaseJson.computes.allFunctionsDefinitions + `${param}{${calculateCancelRefund.join("")}}`
-  return BaseJson.computes.allFunctionsDefinitions = `${var1}{${checkProductAvailability.join("")}}${var2}${var3}${var4}${checkPremium.join("")} ${param}`
+  let check
+  if(checkPremium.join("").substring(0,2)=== "if"){
+    check = `{${checkPremium.join("")}}`
+  } else {
+    check = `${checkPremium.join("")}`
+  }
+  return BaseJson.computes.allFunctionsDefinitions = `${var1}{${checkProductAvailability.join("")}}${var2}${var3}${var4}${check}${param}`
 }
 handleComputesAllFunctionsDefinitions()
 
@@ -137,7 +141,7 @@ handleComputesFunctionGroupsFunctionBody()
 handleComputesFUnctionGroupBenefit()
 handleComputesPlan()
 
-console.log("BaseJSON main container", BaseJson.attributes, BaseJson.computes.allFunctionsDefinitions)
+console.log("BaseJSON main container", BaseJson.attributes, BaseJson.computes.allFunctionsDefinitions, checkPremium.join())
   return <div>
     <Container style={{ width: '100%', paddingTop: '10px', paddingBottom: '10px' }}>
       <div className="mainContainer">
