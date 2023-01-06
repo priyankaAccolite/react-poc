@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../Components/Header'
 import TextInput from '../Components/TextInput'
-import { validation } from '../Constants/Constants'
+import { limitAgainstPolicyJoint, applicableExternalValidationJoint,validation, applicableTransactionValidationJoint } from '../Constants/Constants'
 import DropDown from '../Components/DropDown'
 import { limitAgainstPolicy } from '../Constants/Constants'
 import { otherLaValidations } from '../Constants/Constants';
 import { applicableExternalValidation } from '../Constants/Constants'
-import { applicableTransactionValidation } from '../Constants/Constants'
+import { applicableTransactionValidation,applicableTransactionValidationCheck } from '../Constants/Constants'
 import TextboxWithRadio from "../Components/TextboxWithRadio";
 import { BaseJson } from "../Constants/Constants";
 import { checkProductAvailability , checkProductAvailabilityArgument, calculationBasis} from "../Constants/Constants";
+import { limitAgainstPolicySkeleton,limitAgainstPolicySkeletonMapper, transactionValidationSkeleton } from '../Constants/JsonSkeleton-Validations'
 
 const Validation = () => {
     const [value, setValue] = useState('');
@@ -21,13 +22,18 @@ const Validation = () => {
     const [count, setCountValue] = useState('');
     const [val1, setval1Value] = useState('');
     const [val2, setval2Value] = useState('');
-    const [enable, setEnable] = useState("n")
-    const [calculation, setCalculation] = useState('')
-    const [lapuc, setlapuc] = useState('')
-    const [aev, setaev] = useState('')
-    const [atv, setatv] = useState('')
+    const [enable, setEnable] = useState("n");
+    const [calculation, setCalculation] = useState('');
+    const [lapuc, setlapuc] = useState('');
+    const [lapucJoint, setlapucJoint] = useState('');
+    const [aev, setaev] = useState('');
+    const [aevJoint, setaevJoint] = useState('');
+    const [atv, setatv] = useState('');
+    const [atvTrans, setatvTrans] = useState('');
+    const [atvJoint, setatvJoint] = useState('');
+    const [disable,setdisable]=useState("y");
     // const [gendersmokerval, setgendersmokerval] = useState('')
-
+    
     const handleAgeVariable = () =>{
         let param = ""
         let cal
@@ -259,19 +265,141 @@ const Validation = () => {
             setTextValue("");
         }
         else if (e.target.dataset.id === "14") {
-            if (!limitAgainstPolicy.includes(lapuc)){
+            if (count&&lapuc&&!limitAgainstPolicy.includes(lapuc)){
                 limitAgainstPolicy.push(lapuc);
+                limitAgainstPolicyJoint.push(lapucJoint);
+                let checkName="";
+                limitAgainstPolicySkeletonMapper.map((item)=>{
+                    if(item.value==lapuc)
+                    checkName=item.checkName;
+                });
+                limitAgainstPolicySkeleton.tableData.push( {
+                    "ATTRIBUTE NAME": "maxAllowedPolicies",
+                    "ATTRIBUTE VALUE": `${count}`,
+                    "EXTERNAL CHECK NAME": `${checkName}`,
+                    "TRANSACTION": "SALES"
+                });
+                let index =-1;
+                BaseJson.computes.tables.map((item)=>{
+                    if(item.tableName=="T_WORKFLOW_EXTERNAL_VALIDATIONS"){
+                       index=0;
+                       item=limitAgainstPolicySkeleton;
+                    }
+                })
+                if(index==-1)
+                BaseJson.computes.tables.push(limitAgainstPolicySkeleton);
                 console.log("limitAgainstPolicy", limitAgainstPolicy)
             }
                 
             Setrerender(!rerender);
         } else if (e.target.dataset.id === "15") {
-            if (!applicableExternalValidation.includes(aev))
+            if (val1&&aev&&!applicableExternalValidation.includes(aev)&&limitAgainstPolicy.length>0){
                 applicableExternalValidation.push(aev);
+                applicableExternalValidationJoint.push(aevJoint);
+                if(limitAgainstPolicySkeleton.tableData.length>0){
+                    if(aev=="Eligible National ID"){
+                        limitAgainstPolicySkeleton.tableData.push({
+                            "ATTRIBUTE NAME": "maxAllowedPolicies",
+                            "ATTRIBUTE VALUE": `${val1}`,
+                            "EXTERNAL CHECK NAME": "EligibleNationalIdCheck",
+                            "TRANSACTION": "SALES"
+                        })
+                    }
+                    else if(aev=="Billing Created"){
+                        limitAgainstPolicySkeleton.tableData.push({
+                            "ATTRIBUTE NAME": "RENEW",
+                            "ATTRIBUTE VALUE": `${val1}`,
+                            "EXTERNAL CHECK NAME": "isBillingCreated",
+                            "TRANSACTION": "RENEW"
+                        });
+                    }
+                    else if(aev=="Payment Not Auto"){
+                        limitAgainstPolicySkeleton.tableData.push({
+                            "ATTRIBUTE NAME": "RENEW",
+                            "ATTRIBUTE VALUE": `${val1}`,
+                            "EXTERNAL CHECK NAME": "isPaymentNotAuto",
+                            "TRANSACTION": "RENEW"
+                        });
+                    }
+                    else if(aev=="Maximum Benefit SA Check"){
+                        limitAgainstPolicySkeleton.tableData.push({
+                            "ATTRIBUTE NAME": "maxAllowedSA",
+                            "ATTRIBUTE VALUE": `${val1}`,
+                            "ATTRIBUTE CODES": [],
+                            "EXTERNAL CHECK NAME": "MaxBenefitSACheck",
+                            "TRANSACTION": "SALES"
+                        });
+                    }
+                }
+                BaseJson.computes.tables.map((item)=>{
+                    if(item.tableName=="T_WORKFLOW_EXTERNAL_VALIDATIONS"){
+                       item=limitAgainstPolicySkeleton;
+                       console.log("addeddddddddddd",BaseJson);
+                    }
+                })
+                
+            }
             Setrerender(!rerender);
         } else if (e.target.dataset.id === "16") {
-            if (!applicableTransactionValidation.includes(atv))
+            if(atv=="Loan Applicable For the Product"&&!applicableTransactionValidation.includes(atv))
+            {
+                setval2Value('');
+                setatvTrans('');
+                setdisable("n");
                 applicableTransactionValidation.push(atv);
+                applicableTransactionValidationJoint.push(atv);
+                console.log("applicableTransactionValidationCheck1",applicableTransactionValidation,applicableTransactionValidationCheck);
+                transactionValidationSkeleton.tableData.push( {
+                    "ATTRIBUTE NAME": "POLICYLOAN",
+                    "ATTRIBUTE VALUE": 1,
+                    "EXTERNAL CHECK NAME": "IsLoanApplicableForProduct"
+                });
+            }
+            else if (atv!="Loan Applicable For the Product"&&!applicableTransactionValidationCheck.includes(atvTrans)){
+                // applicableTransactionValidation.push(atv);
+                // applicableTransactionValidationCheck.push(atvTrans);
+                // console.log("applicableTransactionValidationCheck",applicableTransactionValidation,applicableTransactionValidationCheck);
+            
+                
+                    if(atv&&atvTrans&&val2){
+                        applicableTransactionValidation.push(atv);
+                        applicableTransactionValidationCheck.push(atvTrans);
+                        console.log("applicableTransactionValidationCheck2",applicableTransactionValidation,applicableTransactionValidationCheck);
+                        applicableTransactionValidationJoint.push(atvJoint);
+                         let reqValue="";
+                        if(atvTrans=="Manual Renew")
+                        reqValue="RENEW"
+                        else if(atvTrans=="Cancel")
+                        reqValue="CANCEL"
+                        else if(atvTrans=="Policy Loan")
+                        reqValue="POLICY LOAN"
+                        else if(atvTrans=="Update Beneficiary Details")
+                        reqValue="CHANGEBENEFICIARY"
+                        else if(atvTrans=="Reinstatement")
+                        reqValue="REINSTATEMENT"
+                        else if(atvTrans=="Surrender")
+                        reqValue="SURRENDER"
+                        else if(atvTrans=="Update Contact Details")
+                        reqValue="CHANGECONTACTDETAILS"
+                        transactionValidationSkeleton.tableData.push({
+                            "ATTRIBUTE NAME": `${reqValue}`,
+                            "ATTRIBUTE VALUE": `${val2}`,
+                            "ATTRIBUTE CODES": [`${val2}`],
+                            "EXTERNAL CHECK NAME": "MinPolicyAgeCheck"
+                        })
+                    }
+            }
+            let index =-1;
+            BaseJson.computes.tables.map((item)=>{
+                if(item.tableName=="T_TRANSACTIONS_EXTERNAL_VALIDATIONS"){
+                   index=0;
+                   item=transactionValidationSkeleton;
+                }
+            })
+            if(index==-1)
+            BaseJson.computes.tables.push(transactionValidationSkeleton);
+
+
             Setrerender(!rerender);
         } else {
 
@@ -302,7 +430,7 @@ const Validation = () => {
 
                         }}
                     >
-                        <div style={{ width: 400, textAlign: 'left', fontSize: 16 }}>{item.id + '.' + ' ' + item.label + " " + (item.mandatory === "y" ? '*' : '')}</div>
+                        <div style={{ width: 400, textAlign: 'left', fontSize: 16 }}>{(parseInt(item.id)-1).toString() + '.' + ' ' + item.label + " " + (item.mandatory === "y" ? '*' : '')}</div>
                         {item.type.map((i) => {
                             if (i.placeHolder === "input") {
                                 return (
@@ -311,9 +439,9 @@ const Validation = () => {
                                             <TextInput
                                                 placeHolderText={i.placeHolderText}
                                                 value={i.u_id === 1 ? min : i.u_id === 2 ? max : i.u_id === 3 ? textValue : i.u_id === 4 ? count : i.u_id === 5 ? val1 : val2}
-                                                handleChange={e => i.u_id === 1 ? setMinValue(e.target.value) : i.u_id === 2 ? setMaxValue(e.target.value) : i.u_id === 3 ? setTextValue(e.target.value) : i.u_id === 4 ? setCountValue(e.target.value) : i.u_id === 5 ? setval1Value(e.target.value) : setval2Value(e.target.value)}
+                                                handleChange={e => i.u_id === 1 ? setMinValue(e.target.value) : i.u_id === 2 ? setMaxValue(e.target.value) : i.u_id === 3 ? setTextValue(e.target.value) : i.u_id === 4 ? (setCountValue(e.target.value),setlapucJoint(e.target.value+"-"+lapuc)) : i.u_id === 5 ? (setval1Value(e.target.value),setaevJoint(e.target.value+"-"+aev)) : (setval2Value(e.target.value), setatvJoint(atv+"-"+e.target.value+"-"+atvTrans))}
                                                 width={i.width}
-                                                enable={item.label === "Other LA Validations" ? enable : ""}
+                                                enable={item.label === "Other LA Validations" ? enable : item.label=="Applicable Transaction Validations"?disable:""}
                                                 data={i.u_id}
                                             />
                                         </div>
@@ -325,9 +453,10 @@ const Validation = () => {
                                     <div style={{ marginTop: i.label ? -20 : 0, marginRight: i.marginRight ? i.marginRight : 80 , marginLeft: 15}}>
                                         <div style={{ textAlign: "left", marginLeft: "27px" }}>{i.label ? i.label + (i.mandatory === "y" ? "*" : "") : ""}</div>
                                         <DropDown
-                                            handleChange={e => item.id === 12 ? setCalculation(e.label) : item.id === 13 ? handleChange(e) : item.id === 14 ? setlapuc(e.label) : item.id === 15 ? setaev(e.label) : setatv(e.label)}
+                                            handleChange={e => item.id === 12 ? setCalculation(e.label) : item.id === 13 ? handleChange(e) : item.id === 14 ? (setlapuc(e.label),setlapucJoint(count+"-"+e.label)) : item.id === 15 ? (setaev(e.label),setaevJoint(val1+"-"+e.label)) : item.id==16&&e.label=="Minimum Policy Age Check"?(setatv(e.label),setdisable("y"),  setatvJoint(e.label+"-"+val2+"-"+atvTrans)):item.id==16&&e.label=="Loan Applicable For the Product"?(setatv(e.label),setdisable("n"),setval2Value(''),setatvJoint(e.label+"-"+val2+"-"+atvTrans)):(setatvTrans(e.label), setatvJoint(atv+"-"+val2+"-"+e.label))}
                                             options={i.options}
                                             width={i.width}
+                                            enable={ i.place=="second"?disable:""}
                                         />
                                     </div>
 
@@ -342,11 +471,11 @@ const Validation = () => {
                                     data-id={item.id}
                                 />
                             } else if (i.placeHolder === "dropdownlist1") {
-                                return <TextboxWithRadio currencyCode={limitAgainstPolicy} fromLimitAgainstPolicy={true}/>
+                                return <TextboxWithRadio currencyCode={limitAgainstPolicyJoint} fromLimitAgainstPolicy={true}/>
                             } else if (i.placeHolder === "dropdownlist2") {
-                                return <TextboxWithRadio currencyCode={applicableExternalValidation} />
+                                return <TextboxWithRadio currencyCode={applicableExternalValidationJoint} fromExternalvalidation={true} rerender={rerender} Setrerender={Setrerender}/>
                             } else if (i.placeHolder === "dropdownlist3") {
-                                return <TextboxWithRadio currencyCode={applicableTransactionValidation} />
+                                return <TextboxWithRadio currencyCode={applicableTransactionValidationJoint} fromapplicableTransaction={true}/>
                             } else if (i.placeHolder === "list") {
                                 return <TextboxWithRadio currencyCode={otherLaValidations} fromOtherLaValidations={true}/>
                             }
