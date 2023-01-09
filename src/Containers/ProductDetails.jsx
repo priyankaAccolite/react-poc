@@ -266,6 +266,9 @@ const ProductDetails = ({ rerender, Setrerender }) => {
   BaseJson.category = category;
   BaseJson.productDisplayBehaviour.productGroupName = value;
   BaseJson.LBU.distributingCurrency = currency;
+  BaseJson.auditDetail.createTime = new Date().toISOString();
+  BaseJson.auditDetail.updateTime = new Date().toISOString();
+
   handleMinor()
   handleBeneficiary()
   handlePromotion()

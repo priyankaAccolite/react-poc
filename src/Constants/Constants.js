@@ -336,9 +336,9 @@ export const premiumDetails = [
       {
         placeHolder: "dropdown",
         options: [
-          { value: "free", label: "free" },
-          { value: "premium", label: "premium" },
-          { value: "freemium", label: "freemium" },
+          { value: "free", label: "Free" },
+          { value: "premium", label: "Premium" },
+          { value: "freemium", label: "Freemium" },
         ],
         fieldvalue: "",
         enable: "y",
@@ -354,8 +354,8 @@ export const premiumDetails = [
       {
         placeHolder: "dropdown",
         options: [
-          { value: "constant", label: "constant" },
-          { value: "varies with attributes", label: "varies with attributes" },
+          { value: "constant", label: "Constant" },
+          { value: "varies with attributes", label: "Varies with attributes" },
         ],
         enable: "n",
         fieldvalue: "",
@@ -2457,7 +2457,7 @@ export let BaseJson={
   "auditDetail": {
     "createTime": "",
     "updateTime": "",
-    "updateBy": ""
+    "updateBy": "PRTC.User"
   }
 };
 

@@ -23,6 +23,7 @@ const DropDown = ({ handleChange, width, options, enable }) => {
         backgroundColor: "white",
         padding: "6px 6px",
         fontSize: "14px",
+        textAlign: "left"
       };
     },
 

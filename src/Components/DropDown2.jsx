@@ -30,6 +30,7 @@ const DropDown2 = ({
         backgroundColor: "white",
         padding: "6px 6px",
         fontSize: "14px",
+        textAlign: "left"
       };
     },
 
