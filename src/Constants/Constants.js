@@ -371,7 +371,7 @@ export const premiumDetails = [
       {
         placeHolder: "input",
         enable: "n",
-        width: "200px",
+        width: "185px",
         fieldvalue: "",
       },
     ],
@@ -384,7 +384,7 @@ export const premiumDetails = [
       {
         placeHolder: "input",
         enable: "n",
-        width: "200px",
+        width: "185px",
         fieldvalue: "",
       },
       {

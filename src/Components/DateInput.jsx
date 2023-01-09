@@ -6,23 +6,25 @@ import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/dateInput.css"
 
 const DateInput = (props) => {
-//   const [pickedDate, setPickedDate] = useState(new Date());
+  //   const [pickedDate, setPickedDate] = useState(new Date());
 
   const CustomInput = ((props) => {
     return (
-        <>
-        <label className="customLabel" onClick={props.onClick}>
-          {props.value}
-        </label>
-        <FontAwesomeIcon icon={faCalendarAlt} onClick={props.onClick} />
-        </>
+      <>
+        <div style={{ display: "flex", justifyContent: "space-between", marginRight: 20, marginLeft: 20 }}>
+          <label className="customLabel" onClick={props.onClick}>
+            {props.value}
+          </label>
+          <FontAwesomeIcon icon={faCalendarAlt} onClick={props.onClick} />
+        </div>
+      </>
     );
   });
 
   return (
     <div
-     style={{border: '1px solid black', height:30, borderRadius:3, width:222, display:'flex', justifyContent:'center', alignItems:'center'}}
-     >
+      style={{ border: '1px solid black', height: 30, borderRadius: 3, width: 222, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+    >
       <DatePicker
         selected={props.pickDate}
         dateFormat="dd-MM-yyyy"
@@ -31,7 +33,7 @@ const DateInput = (props) => {
         }}
         customInput={<CustomInput />}
       />
-      </div>
+    </div>
   );
 };
 

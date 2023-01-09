@@ -371,6 +371,8 @@ const PremiumDetails = () => {
                                 backgroundColor:
                                   (premiumDetailsEnables[index] ??
                                     subItem.enable) === "n" && "#f2f2f3",
+                                fontSize: 15,
+                                paddingLeft:15
                               }}
                               value={premiumDetailsEnables[index] === "n"? "":subItem.fieldvalue}
                               onChange={(e) =>
