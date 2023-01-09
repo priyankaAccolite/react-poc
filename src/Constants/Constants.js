@@ -2380,7 +2380,25 @@ export let BaseJson={
 									"productCode": "S00304",
 									"attributeName": "nationalId"
 								}
-							}
+							},
+              {
+                "name": "laMinAge",
+                "attributeMapping": {
+                  "domainObjectMapping": "",
+                  "source": null,
+                  "productCode": "THIS",
+                  "attributeName": "laMinAge"
+                }
+              },
+              {
+                "name": "laMaxAge",
+                "attributeMapping": {
+                  "domainObjectMapping": "",
+                  "source": null,
+                  "productCode": "THIS",
+                  "attributeName": "laMaxAge"
+                }
+              }
 						],
 						"output": {
 							"name": "planInfo",

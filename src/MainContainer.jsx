@@ -40,9 +40,9 @@ const MainContainer = () => {
   if(checkPremium.join("").substring(0,2)=== "if"){
     check = `{${checkPremium.join("")}}`
   } else {
-    check = `${checkPremium.join("")}`
+    check = `{return${checkPremium.join("")}}`
   }
-  return BaseJson.computes.allFunctionsDefinitions = `${var1}{${checkProductAvailability.join("")}}${var2}${var3}${var4}${check}${param}`
+  return BaseJson.computes.allFunctionsDefinitions = `${var1}{${checkProductAvailability.join("")}} ${var2} ${var3} ${var4}${check} ${param}`
 }
 handleComputesAllFunctionsDefinitions()
 
